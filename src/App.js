@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
-import { fireauth } from './base'
+import { fireauth } from './base';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import { Button } from 'reactstrap';
 import logo from './logo.svg';
+
+import SignIn from './SignIn';
+import CreateAccount from './CreateAccount';
 
 import './App.css';
 
@@ -15,13 +20,15 @@ class App extends Component {
 
   // get auth status of user
   componentWillMount() {
+    let self = this;
+
     this.getUserFromLocalStorage();
 
     fireauth.onAuthStateChanged((user) => {
       if (user)
         self.authHandler(user);
       else
-        this.setState({uid: null});
+        self.setState({uid: null});
     });
   }
 
@@ -43,9 +50,9 @@ class App extends Component {
     return this.state.uid;
   };
 
-  render() {
-    return (
-      <div className="App">
+
+  /*
+  <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to our CS252 Project</h1>
@@ -54,6 +61,17 @@ class App extends Component {
           Team Members:  Jake Koontz, Riley Robertson, Jeremy Putnam
         </p>
       </div>
+   */
+  render() {
+    return (
+      <Switch>
+        <Route path={} render={() => (
+          !this.signedIn()
+            ? <CreateAccount/>
+            : <Redirect to="/ScribeScholars/HomePage"/>
+        )}/>
+
+      </Switch>
     );
   }
 }

@@ -1,10 +1,48 @@
 import React, { Component } from 'react';
+import { fireauth } from './base'
 import logo from './logo.svg';
+
 import './App.css';
 
-import firebase from './base.js';
-
 class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      uid: null,
+    }
+  }
+
+  // get auth status of user
+  componentWillMount() {
+    this.getUserFromLocalStorage();
+
+    fireauth.onAuthStateChanged((user) => {
+      if (user)
+        self.authHandler(user);
+      else
+        this.setState({uid: null});
+    });
+  }
+
+  // get uid if it exists
+  getUserFromLocalStorage() {
+    const uid = localStorage.getItem("uid");
+    if (uid != null)
+      this.setState({uid: uid});
+  }
+
+  // set uid
+  authHandler = (user) => {
+    localStorage.setItem("uid", user.uid);
+    this.setState({uid: user.uid});
+  };
+
+  // check if user is signed in
+  signedIn = () => {
+    return this.state.uid;
+  };
+
   render() {
     return (
       <div className="App">

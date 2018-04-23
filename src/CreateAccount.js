@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { fireauth, firestore } from "./base";
-import { Form, FormGroup, Label, Input, Button, Alert } from 'reactstrap';
+import { Form, FormGroup, Label, Input, Button, Alert, Col } from 'reactstrap';
 
 class CreateAccount extends Component {
   constructor() {
@@ -18,22 +18,26 @@ class CreateAccount extends Component {
     ev.preventDefault();
     let self = this;
 
-    if (ev.target.firstName.value === "") {
+    let firstName = ev.target.firstName.value;
+    let lastName = ev.target.firstName.value;
+    let email = ev.target.firstName.value;
+
+    if (firstName === "") {
       self.setState({
         errorCode: "Please enter your first name",
         visible: true,
       });
-    } else if (ev.target.lastName.value === "") {
+    } else if (lastName === "") {
       self.setState({
         errorCode: "Please enter your last name",
         visible: true,
       });
     } else {
-      fireauth.createUserAndRetrieveDataWithEmailAndPassword(ev.target.email.value, ev.target.password.value).then(() => {
+      fireauth.createUserAndRetrieveDataWithEmailAndPassword(email, ev.target.password.value).then(() => {
         self.setState({
-          firstName: ev.target.firstName.value,
-          lastName: ev.target.lastName.value,
-          email: ev.target.email.value,
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
         });
 
         self.addUser();
@@ -47,6 +51,8 @@ class CreateAccount extends Component {
   };
 
   addUser = () => {
+    let self = this;
+
     fireauth.onAuthStateChanged((user) => {
       if (user) {
         let userRef = firestore.collection("users").doc(user.uid);
@@ -69,6 +75,33 @@ class CreateAccount extends Component {
   };
 
   render() {
-
+    return (
+      <div>
+        <Form onSubmit={(ev) => this.onFormSubmit(ev)}>
+          <FormGroup row>
+            <Col sm={6}>
+              <Input name="firstName" id="exampleFirstName" placeholder="First Name" />
+            </Col>
+            <Col sm={6}>
+              <Input name="lastName" id="exampleLastName" placeholder="Last Name" />
+            </Col>
+          </FormGroup>
+          <FormGroup>
+            <Input type="email" name="email" id="exampleEmail" placeholder="Email" />
+          </FormGroup>
+          <FormGroup>
+            <Input type="password" name="password" id="examplePassword" placeholder="Password" />
+          </FormGroup>
+          <Alert color="danger" isOpen={this.state.visible} toggle={this.onDismiss}>
+            {this.state.errorCode}
+          </Alert>
+          <FormGroup>
+            <Button className="createAccountButton" size="lg" block>Create Account!</Button>
+          </FormGroup>
+        </Form>
+      </div>
+    )
   }
 }
+
+export default CreateAccount;

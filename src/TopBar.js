@@ -142,12 +142,16 @@ class TopBar extends Component {
           <NavbarToggler onClick={this.toggle} className="mr-2" />
           <Collapse isOpen={!this.state.open} navbar>
             <Nav className="ml-auto" navbar>
+              <Col>
               <NavItem>
                 <Button onClick={this.toggle}>Sign In</Button>
               </NavItem>
+              </Col>
+              <Col>
               <NavItem>
-                <Button onClick={this.toggle}>Create Account</Button>
+                <Button >Sign Out</Button>
               </NavItem>
+              </Col>
             </Nav>
           </Collapse>
         </Navbar>

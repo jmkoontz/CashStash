@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { firestore } from "../base";
-import { Row, Col } from 'reactstrap';
+import { Container, Row, Col, Button } from 'reactstrap';
 import './Main.css';
 
 import TopBar from './TopBar';
+import BudgetForm from '../BudgetForm/BudgetForm'
+
+import intro from '../dollabills.jpeg'
 
 class Main extends Component {
   constructor(props) {
@@ -14,6 +17,7 @@ class Main extends Component {
 
       firstName: null,
       lastName: null,
+      show: false,
     }
   }
 
@@ -39,6 +43,12 @@ class Main extends Component {
     })
   };
 
+  switch = () => {
+    this.setState({
+      show: !this.state.show,
+    })
+  }
+
   render() {
     let data = {
       firstName: this.state.firstName,
@@ -48,18 +58,43 @@ class Main extends Component {
     if (this.state.uid) {   // if user is signed in
       return (
         <div className="App">
+          {/*<Container fluid className="topBar">
+            <Row>
+              <div className={"titlePic"}>
+                <img src={intro} alt=""/>
+              </div>
+            </Row>
+          </Container>*/}
           <TopBar signedIn={true} {...data}/>
           <br/>
           <br/>
           <br/>
-          <Row className="space"/>
-          <Row>
-            <Col xs={4}/>
-            <Col xs={4}>
-              <h2 className="titleCash">{this.state.firstName}'s Cash Stash</h2>
-            </Col>
-            <Col xs={4}/>
-          </Row>
+          <Container>
+            <Row className="space"/>
+            <Row >
+              <Col xs={4}/>
+              <Col xs={4}>
+                <h2 className="titleCash">{this.state.firstName}'s Cash Stash</h2>
+              </Col>
+              <Col xs={4}/>
+            </Row>
+            <Row>
+              <Col xs={3}/>
+              <Col xs={6}>
+                {this.state.show
+                  ?
+                  <div>
+                    <BudgetForm/>
+                  </div>
+                  :
+                  <div>
+                    <Button onClick={this.switch}>Get Started!</Button>
+                  </div>
+                }
+              </Col>
+              <Col xs={3}/>
+            </Row>
+          </Container>
         </div>
       )
     } else {  // if user is not signed in

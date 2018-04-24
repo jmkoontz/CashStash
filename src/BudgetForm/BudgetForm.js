@@ -37,59 +37,53 @@ class BudgetForm extends Component {
 
     render() {
         return (
-            <div>
-                <TopBar/>
-
-                <Container fluid>
-
-                    <br/>
-
-                    <Row>
-                        <Col/>
+          <div>
+            <Container>
+              <br/>
+              <Row>
+                <Col>
+                  <h1 className={"centerText"}>Monthly Info</h1>
+                  <hr/>
+                  <Form>
+                    <FormGroup>
+                      <InputGroup>
+                        <InputGroupAddon addonType={"prepend"}>Monthly Income</InputGroupAddon>
+                        <Input placeholder={"1000.00"}/>
+                      </InputGroup>
+                    </FormGroup>
+                    <FormGroup>
+                      <InputGroup>
+                        <InputGroupAddon addonType={"prepend"}>Living Expense</InputGroupAddon>
+                        <Input placeholder={"300.00"}/>
+                      </InputGroup>
+                    </FormGroup>
+                    <FormGroup>
+                      <InputGroup>
+                        <InputGroupAddon addonType={"prepend"}>Food</InputGroupAddon>
+                        <Input placeholder={"200.00"}/>
+                      </InputGroup>
+                    </FormGroup>
+                    <FormGroup>
+                      <InputGroup>
+                        <InputGroupAddon addonType={"prepend"}>Entertainment</InputGroupAddon>
+                        <Input placeholder={"100.00"}/>
+                      </InputGroup>
+                    </FormGroup>
+                    <FormGroup>
+                      <Row>
                         <Col>
-                            <h1 className={"centerText"}>Monthly Info</h1>
-                            <hr/>
-                            <Form>
-                                <FormGroup>
-                                    <InputGroup>
-                                        <InputGroupAddon addonType={"prepend"}>Monthly Income</InputGroupAddon>
-                                        <Input placeholder={"1000.00"}/>
-                                    </InputGroup>
-                                </FormGroup>
-                                <FormGroup>
-                                    <InputGroup>
-                                        <InputGroupAddon addonType={"prepend"}>Living Expense</InputGroupAddon>
-                                        <Input placeholder={"300.00"}/>
-                                    </InputGroup>
-                                </FormGroup>
-                                <FormGroup>
-                                    <InputGroup>
-                                        <InputGroupAddon addonType={"prepend"}>Food</InputGroupAddon>
-                                        <Input placeholder={"200.00"}/>
-                                    </InputGroup>
-                                </FormGroup>
-                                <FormGroup>
-                                    <InputGroup>
-                                        <InputGroupAddon addonType={"prepend"}>Entertainment</InputGroupAddon>
-                                        <Input placeholder={"100.00"}/>
-                                    </InputGroup>
-                                </FormGroup>
-                                <FormGroup>
-                                    <Row>
-                                    <Col>
-                                        <Button>+</Button>
-                                    </Col>
-                                    <Col>
-                                        <Button className={"saveForm"}>Save</Button>
-                                    </Col>
-                                    </Row>
-                                </FormGroup>
-                            </Form>
+                          <Button>+</Button>
                         </Col>
-                        <Col/>
-                    </Row>
-                </Container>
-            </div>
+                        <Col>
+                          <Button className={"saveForm"}>Save</Button>
+                        </Col>
+                      </Row>
+                    </FormGroup>
+                  </Form>
+                </Col>
+              </Row>
+            </Container>
+          </div>
         )
     }
 }

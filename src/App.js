@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { fireauth } from './base';
 import { Route, Switch, Redirect } from 'react-router-dom';
-//import { Button } from 'reactstrap';
-//import logo from './logo.svg';
 
 import About from './About';
 import HomePage from './HomePage';
 import SignIn from './SignIn';
+import Form from './BudgetForm/BudgetForm'
 import CreateAccount from './CreateAccount';
 
 import './App.css';
@@ -67,15 +66,19 @@ class App extends Component {
   render() {
     return (
       <Switch>
-        <Route path='/CashStash/About' render={() => (
-          <About/>
-        )}/>
+          <Route path='/CashStash/About' render={() => (
+              <About/>
+          )}/>
 
         <Route path='/CashStash/HomePage' render={() => (
           this.signedIn()
             ? <HomePage uid={this.state.uid}/>
             : <Redirect to="/CashStash/About"/>
         )}/>
+
+          <Route path='/CashStash/Form' render={() => (
+              <Form/>
+          )}/>
 
         <Route path='/CashStash/sign-in' render={() => (
           !this.signedIn()

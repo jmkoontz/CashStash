@@ -141,7 +141,6 @@ console.log(monthlyIncome);
 
     return (
       <div>
-        <TopBar/>
         <Container fluid>
           <br/>
           <br/>

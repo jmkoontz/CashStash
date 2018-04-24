@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { fireauth } from './base';
 import { Route, Switch, Redirect } from 'react-router-dom';
+import './App.css';
 
 import Main from './Main';
-import Form from './BudgetForm/BudgetForm'
-
-import './App.css';
+import Form from './BudgetForm/BudgetForm';
 
 class App extends Component {
   constructor() {

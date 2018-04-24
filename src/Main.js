@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'reactstrap';
+import './Main.css';
 
 import TopBar from './TopBar';
-
-import './Main.css';
 
 class Main extends Component {
   constructor(props) {
@@ -15,7 +14,7 @@ class Main extends Component {
   }
 
   render() {
-    if (this.state.uid) { // if user is signed in
+    if (this.state.uid) {   // if user is signed in
       return (
         <div className={"App"}>
           <TopBar signedIn={true}/>

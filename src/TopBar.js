@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { fireauth } from "./base";
-import { Container, Row, Col, Button, Navbar, Modal, ModalHeader, ModalBody, ModalFooter, Collapse, Nav, NavbarBrand, NavItem, NavbarToggler, FormGroup, Form, Input, Alert } from 'reactstrap';
+import { Container, Row, Col, Button, Navbar, Modal, ModalHeader, ModalBody, Collapse, Nav, NavbarBrand, NavItem, NavbarToggler } from 'reactstrap';
 import './TopBar.css'
-import logo from './logo.svg';
 
 import SignIn from './SignIn';
 import CreateAccount from './CreateAccount';
@@ -12,26 +11,13 @@ class TopBar extends Component {
     super(props);
 
     this.state = {
-      modal: false,
-      open: true,
-
-      sign: true,
-
       modalSignIn: false,
       modalCreateAccount: false,
+      open: true, // TODO why is this needed
     }
-
   }
 
-  /*
-   * Disables the modal or enables it
-   */
-  toggle = () => {
-    this.setState({
-      modal: !this.state.modal,
-    });
-  };
-
+  // toggle sign in modal
   toggleSignIn = () => {
     this.setState({
       modalSignIn: !this.state.modalSignIn,
@@ -39,6 +25,7 @@ class TopBar extends Component {
     });
   };
 
+  // toggle create account modal
   toggleCreateAccount = () => {
     this.setState({
       modalCreateAccount: !this.state.modalCreateAccount,
@@ -46,6 +33,7 @@ class TopBar extends Component {
     });
   };
 
+  // sign user out of application
   handleSignOut = () => {
     localStorage.removeItem('uid');   // remove user from local storage
     this.setState({uid: null});   // reset state
@@ -57,8 +45,8 @@ class TopBar extends Component {
     return (
       <div className={"App"}>
         <Navbar className="bg-dark" light expand={"md"}>
-          <NavbarBrand className={"head"}>Cash$tash</NavbarBrand>
-          <NavbarToggler onClick={this.toggle} className="mr-2" />
+          <NavbarBrand className="head">Cash$tash</NavbarBrand>
+          <NavbarToggler className="mr-2"/>
           <Collapse isOpen={!this.state.open} navbar>
             <Nav className="ml-auto" navbar>
               <Col hidden={this.props.signedIn}>

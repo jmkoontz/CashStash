@@ -13,7 +13,6 @@ class TopBar extends Component {
     this.state = {
       modalSignIn: false,
       modalCreateAccount: false,
-      open: true, // TODO why is this needed
     }
   }
 
@@ -48,7 +47,7 @@ class TopBar extends Component {
           <NavbarBrand className="head">Cash$tash</NavbarBrand>
           <NavbarBrand className="name" hidden={!this.props.signedIn}>{this.props.firstName} {this.props.lastName}</NavbarBrand>
           <NavbarToggler className="mr-2"/>
-          <Collapse isOpen={!this.state.open} navbar>
+          <Collapse navbar>
             <Nav className="ml-auto" navbar>
               <Col hidden={this.props.signedIn}>
                 <NavItem>

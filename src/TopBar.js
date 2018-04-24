@@ -141,7 +141,7 @@ class TopBar extends Component {
             <Nav className="ml-auto" navbar>
               <Col>
               <NavItem>
-                <Button  onClick={this.toggle}>Sign In</Button>
+                <Button onClick={this.toggle}>Sign In</Button>
               </NavItem>
               </Col>
               <Col>

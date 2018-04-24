@@ -35,26 +35,30 @@ class Main extends Component {
 
       firstName: null,
       lastName: null,
+
+      budget: [],
+
       show: false,
       edit: false,
     }
   }
 
   componentWillMount() {
-    this.getName();
+    this.getUserInfo();
   }
 
-  getName = () => {
+  getUserInfo = () => {
     if (!this.state.uid) return;
 
     let self = this;
     let userRef = firestore.collection("users").doc(this.state.uid);
 
-    userRef.get().then((doc) => {
+    userRef.onSnapshot((doc) => {
       if (doc.exists) {
         self.setState({
           firstName: doc.data().firstName,
           lastName: doc.data().lastName,
+          budget: doc.data().budget,
         });
       }
     }).catch((error) => {

@@ -56,12 +56,16 @@ class TopBar extends Component {
             <Nav className="ml-auto" navbar>
               <Col>
                 <NavItem>
+                  <Button onClick={this.toggleCreateAccount}>Create Account</Button>
+                </NavItem>
+              </Col>
+              <Col>
+                <NavItem>
                   <Button onClick={this.toggleSignIn}>Sign In</Button>
                 </NavItem>
               </Col>
               <Col>
                 <NavItem>
-                  <Button onClick={this.toggleCreateAccount}>Create Account</Button>
                   <Button >Sign Out</Button>
                 </NavItem>
               </Col>

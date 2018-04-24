@@ -16,7 +16,6 @@ class TopBar extends Component {
       open: true,
     }
 
-    this.toggle = this.toggle.bind(this);
   }
 
   onFormSubmit = (ev) => {
@@ -36,7 +35,7 @@ class TopBar extends Component {
     this.setState({visible: false});
   };
 
-  toggle() {
+  toggle = () => {
     this.setState({
       modal: !this.state.modal,
     });
@@ -71,7 +70,7 @@ class TopBar extends Component {
               <Modal isOpen={this.state.modal} toggle={this.toggle} backdrop={false}>
                 <ModalHeader toggle={this.toggle}>
                   {/*<img src={logo} alt="" width="50" height="50"/>*/}
-                  Sign In Here!
+                  Sign In Here
                 </ModalHeader>
                 <Form onSubmit={(ev) => this.onFormSubmit(ev)}>
                   <ModalBody>
@@ -85,8 +84,8 @@ class TopBar extends Component {
                       {this.state.errorCode}
                     </Alert>
                     <ModalFooter>
-                      <NavLink className={"bgC"} onClick={this.createAccount}>Create Account</NavLink>{' '}
-                      <Button className={"bgC"} onClick={this.signIn}>Sign In</Button>{' '}
+                      <Button onClick={this.createAccount}>Create Account</Button>{' '}
+                      <Button onClick={this.signIn}>Sign In</Button>{' '}
                     </ModalFooter>
                   </ModalBody>
                 </Form>

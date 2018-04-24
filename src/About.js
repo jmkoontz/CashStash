@@ -18,24 +18,13 @@ class About extends Component {
       open: true,
     }
 
-    this.toggle = this.toggle.bind(this);
   }
 
-  toggle() {
-    this.setState({
-      modal: !this.state.modal,
-    });
-  }
-
-  signIn = () => {
-
-  };
 
   render() {
     return (
       <div className={"App"}>
         <TopBar/>
-
       </div>
     )
   }

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { fireauth } from "../base";
 import { NavLink } from 'react-router-dom';
-import { Form, FormGroup, Label, Input, Button, Alert, Navbar, NavbarBrand, NavbarToggler, Collapse, Nav, NavItem, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { Form, FormGroup,InputGroup, Label, InputGroupAddon, Input, Button, Container, Row, Col } from 'reactstrap';
 
 import dollar from '../dollar.svg'
+
+import './BudgetForm.css'
 
 class BudgetForm extends Component {
     constructor(props) {
@@ -35,7 +37,54 @@ class BudgetForm extends Component {
     render() {
         return (
             <div>
+                <Container fluid>
+                    <Row>
+                        /*Top Bar goes here*/
+                    </Row>
+                    <Row>
 
+                        <Col>
+                            <Form>
+                                <FormGroup>
+                                    <InputGroup>
+                                        <InputGroupAddon addonType={"prepend"}>Monthly Income</InputGroupAddon>
+                                        <Input placeholder={"1000.00"}/>
+                                    </InputGroup>
+                                </FormGroup>
+                                <FormGroup>
+                                    <InputGroup>
+                                        <InputGroupAddon addonType={"prepend"}>Living Expense</InputGroupAddon>
+                                        <Input placeholder={"1000.00"}/>
+                                    </InputGroup>
+                                </FormGroup>
+                                <FormGroup>
+                                    <InputGroup>
+                                        <InputGroupAddon addonType={"prepend"}>Food</InputGroupAddon>
+                                        <Input placeholder={"1000.00"}/>
+                                    </InputGroup>
+                                </FormGroup>
+                                <FormGroup>
+                                    <InputGroup>
+                                        <InputGroupAddon addonType={"prepend"}>Entertainment</InputGroupAddon>
+                                        <Input placeholder={"1000.00"}/>
+                                    </InputGroup>
+                                </FormGroup>
+                                <FormGroup>
+                                    <Row>
+                                    <Col>
+                                        <Button>+</Button>
+                                    </Col>
+                                    <Col>
+                                        <Button className={"saveForm"}>Save</Button>
+                                    </Col>
+                                    </Row>
+                                </FormGroup>
+                            </Form>
+                        </Col>
+                        <Col/>
+                        <Col/>
+                    </Row>
+                </Container>
             </div>
         )
     }

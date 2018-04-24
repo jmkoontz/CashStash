@@ -50,7 +50,7 @@ class TopBar extends Component {
             <Nav className="ml-auto" navbar>
               <Col xs={7} hidden={!this.props.signedIn}>
                 <NavItem>
-                  <Label className="name">{this.props.firstName} {this.props.lastName}</Label>
+                  <NavbarBrand className="name">{this.props.firstName} {this.props.lastName}</NavbarBrand>
                 </NavItem>
               </Col>
               <Col hidden={this.props.signedIn}>

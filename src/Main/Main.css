@@ -45,3 +45,24 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     background-color: #F5F5F5;
     opacity: 1;
 }
+
+.fullBudget {
+    font-size: 2em;
+}
+
+.centerThings {
+    align-content: center;
+    align-self: center;
+    alignment: center;
+    align-items: center;
+    child-align: middle;
+    margin: 0 auto;
+}
+
+.fullBack {
+    background-color: #353941;
+}
+
+.graphBack {
+    background-color: whitesmoke;
+}

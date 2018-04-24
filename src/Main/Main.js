@@ -61,9 +61,7 @@ class Main extends Component {
           budget: doc.data().budget,
         });
       }
-    }).catch((error) => {
-      console.log("Error getting user:", error);
-    })
+    });
   };
 
   switch = () => {

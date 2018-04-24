@@ -75,7 +75,7 @@ class BudgetForm extends Component {
                           <Button>+</Button>
                         </Col>
                         <Col>
-                          <Button className={"saveForm"}>Save</Button>
+                          <Button onClick={this.showGraphs} className={"saveForm"}>Save</Button>
                         </Col>
                       </Row>
                     </FormGroup>

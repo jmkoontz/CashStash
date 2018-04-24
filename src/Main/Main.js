@@ -37,6 +37,7 @@ class Main extends Component {
       lastName: null,
       show: false,
       edit: false,
+      graphs: false,
     }
   }
 
@@ -74,6 +75,12 @@ class Main extends Component {
     });
   };
 
+  showGraphs = () => {
+    this.setState({
+      graphs: true,
+    });
+  }
+
 
   render() {
     let data = {
@@ -105,40 +112,66 @@ class Main extends Component {
               </Col>
               <Col className={"backColor"} xs={4}/>
             </Row>
-            <Row className={"backColor moreSpace"}>
-              <Col xs={3} className={"backColor"}>
-                {this.state.edit
-                  ?
-                  <div>
-                    <br/>
-                    <Button onClick={this.switchEdit}>Edit Budget</Button>
-                    <br/>
-                    <BudgetForm/>
-                  </div>
-                  :
-                  <div>
-                    <br/>
-                    <Button onClick={this.switchEdit}>Edit Budget</Button>
-                    <br/>
-                  </div>
-                }
-              </Col>
-              <Col xs={6} className={"backColor"}>
-                {this.state.show
-                  ?
-                  <div>
-                    <BudgetForm/>
-                  </div>
-                  :
-                  <div>
-                    <br/>
-                    <Button onClick={this.switch}>Get Started!</Button>
-                    <br/>
-                  </div>
-                }
-              </Col>
-              <Col xs={3} className={"backColor"}/>
-            </Row>
+              {this.state.graphs
+                ?
+                <Row className={"backColor moreSpace"}>
+                  <Col xs={3} className={"backColor"}>
+                    {this.state.edit
+                      ?
+                      <div>
+                        <br/>
+                        <Button onClick={this.switchEdit}>Edit Budget</Button>
+                        <br/>
+                        <BudgetForm showGraphs={this.showGraphs}/>
+                      </div>
+                      :
+                      <div>
+                        <br/>
+                        <Button onClick={this.switchEdit}>Edit Budget</Button>
+                        <br/>
+                      </div>
+                    }
+                  </Col>
+                  <Col xs={9} className={"backColor"}>
+                    {/*Show the graphs here*/}
+                  </Col>
+                </Row>
+                :
+                  <Row className={"backColor moreSpace"}>
+                    <Col xs={3} className={"backColor"}>
+                      {this.state.edit
+                        ?
+                        <div>
+                          <br/>
+                          <Button onClick={this.switchEdit}>Edit Budget</Button>
+                          <br/>
+                          <BudgetForm showGraphs={this.showGraphs}/>
+                        </div>
+                        :
+                        <div>
+                          <br/>
+                          <Button onClick={this.switchEdit}>Edit Budget</Button>
+                          <br/>
+                        </div>
+                      }
+                    </Col>
+                    <Col xs={6} className={"backColor"}>
+                      {this.state.show
+                        ?
+                        <div>
+                          <BudgetForm showGraphs={this.showGraphs}/>
+                        </div>
+                        :
+                        <div>
+                          <br/>
+                          <Button onClick={this.switch}>Get Started!</Button>
+                          <br/>
+                        </div>
+                      }
+                    </Col>
+                    <Col xs={3} className={"backColor"}/>
+                  </Row>
+              }
           </Container>
         </div>
       )
@@ -158,7 +191,7 @@ class Main extends Component {
               <Col xs={12}>
                 <h2 className="titleCash">Cash Stash</h2>
                 <p>Your money troubles are a thing of the past! Cash Stash is a simple and effective way to manage your monthly,
-                  weekly, and daily budget.  Our graphs make it easy to know how much money you have to spend.</p>
+                  weekly, and daily budget.  Our graphs give a break down of where each dollar of your budget ends up to help you plan ahead.</p>
               </Col>
             </Row>
             <hr/>

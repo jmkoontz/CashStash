@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { fireauth, firestore } from "./base";
-import { Form, FormGroup, Label, Input, Button, Alert, Col } from 'reactstrap';
+import { Form, FormGroup, Input, Button, Alert, Col } from 'reactstrap';
 
 class CreateAccount extends Component {
   constructor() {
@@ -19,8 +19,8 @@ class CreateAccount extends Component {
     let self = this;
 
     let firstName = ev.target.firstName.value;
-    let lastName = ev.target.firstName.value;
-    let email = ev.target.firstName.value;
+    let lastName = ev.target.lastName.value;
+    let email = ev.target.email.value;
 
     if (firstName === "") {
       self.setState({

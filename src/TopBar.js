@@ -1,29 +1,27 @@
 import React, { Component } from 'react';
-import {fireauth, firestore} from "./base";
 import { NavLink } from 'react-router-dom';
 import { Container, Row, Col, Button, Navbar, Modal, ModalHeader, ModalBody, ModalFooter, Collapse, Nav, NavbarBrand, NavItem, NavbarToggler, FormGroup, Form, Input, Alert } from 'reactstrap';
 import './TopBar.css'
 import logo from './logo.svg';
 
+import SignIn from './SignIn';
+import CreateAccount from './CreateAccount';
+
 class TopBar extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
-      errorCode: "",
-      visible: false,
       modal: false,
       open: true,
 
       sign: true,
+
+      modalSignIn: false,
+      modalCreateAccount: false,
     }
 
   }
-
-  // hide error message
-  onDismiss = () => {
-    this.setState({visible: false});
-  };
 
   /*
    * Disables the modal or enables it
@@ -34,100 +32,17 @@ class TopBar extends Component {
     });
   };
 
-  /*
-   * Creates an account using firebase
-   */
-  createAccount = (ev) => {
-    ev.preventDefault();
-    let self = this;
-
-    let firstName = ev.target.firstName.value;
-    let lastName = ev.target.lastName.value;
-    let email = ev.target.email.value;
-
-    if (firstName === "") {
-      self.setState({
-        errorCode: "Please enter your first name",
-        visible: true,
-      });
-    } else if (lastName === "") {
-      self.setState({
-        errorCode: "Please enter your last name",
-        visible: true,
-      });
-    } else {
-      fireauth.createUserAndRetrieveDataWithEmailAndPassword(email, ev.target.password.value).then(() => {
-        self.setState({
-          firstName: firstName,
-          lastName: lastName,
-          email: email,
-        });
-
-        self.addUser();
-        if (this.state.errorCode === "") {
-          self.setState({
-            modal: !this.state.modal,
-          });
-        }
-      }).catch((error) => {
-        self.setState({
-          errorCode: error.message,
-          visible: true,
-        })
-      });
-    }
-  };
-
-  /*
-   * Adds a user to firebase
-   */
-  addUser = () => {
-    let self = this;
-
-    fireauth.onAuthStateChanged((user) => {
-      if (user) {
-        let userRef = firestore.collection("users").doc(user.uid);
-        userRef.set({
-          firstName: self.state.firstName,
-          lastName: self.state.lastName,
-          email: self.state.email,
-        }).catch((error) => {
-          self.setState({
-            errorCode: error.message,
-            visible: true,
-          });
-        });
-      }
-    });
-  };
-
-  /*
-   * Signs you in using firebase
-   */
-  signIn = (ev) => {
-    ev.preventDefault();  // stop page from redirecting
-    let self = this;
-
-    fireauth.signInWithEmailAndPassword(ev.target.email.value, ev.target.password.value).catch((error) => {
-      self.setState({
-        errorCode: error.message,
-        visible: true,
-      });
-    });
-
-    if (this.state.errorCode === "") {
-      self.setState({
-        modal: !this.state.modal,
-      });
-    }
-  };
-
-  /*
-   * Switches between the signin and create account tab
-   */
-  switch = () => {
+  toggleSignIn = () => {
     this.setState({
-      sign: !this.state.sign,
+      modalSignIn: !this.state.modalSignIn,
+      modalCreateAccount: false,
+    });
+  };
+
+  toggleCreateAccount = () => {
+    this.setState({
+      modalCreateAccount: !this.state.modalCreateAccount,
+      modalSignIn: false,
     });
   };
 
@@ -139,9 +54,17 @@ class TopBar extends Component {
           <NavbarToggler onClick={this.toggle} className="mr-2" />
           <Collapse isOpen={!this.state.open} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem>
-                <Button onClick={this.toggle}>Sign In</Button>
-              </NavItem>
+              <Col>
+                <NavItem>
+                  <Button onClick={this.toggleSignIn}>Sign In</Button>
+                </NavItem>
+              </Col>
+              <Col>
+                <NavItem>
+                  <Button onClick={this.toggleCreateAccount}>Create Account</Button>
+                  <Button >Sign Out</Button>
+                </NavItem>
+              </Col>
             </Nav>
           </Collapse>
         </Navbar>
@@ -149,16 +72,14 @@ class TopBar extends Component {
         <Container fluid>
           <Row>
             <Col>
-              <Modal isOpen={this.state.modal} toggle={this.toggle} backdrop={false}>
-                {this.state.sign
-                  ?
-                  <div>
-                    <ModalHeader toggle={this.toggle}>
-                      {/*<img src={logo} alt="" width="50" height="50"/>*/}
-                      Sign In
-                    </ModalHeader>
-                  <Form>
-                    <ModalBody>
+              <Modal isOpen={this.state.modalSignIn} toggle={this.toggleSignIn} backdrop={false}>
+                <div>
+                  <ModalHeader toggle={this.toggleSignIn}>
+                    {/*<img src={logo} alt="" width="50" height="50"/>*/}
+                    Sign In
+                  </ModalHeader>
+                  <ModalBody>
+                    {/*
                       <FormGroup>
                         <Input type="email" name="email" id="exampleEmail" placeholder="Email"/>
                       </FormGroup>
@@ -172,17 +93,19 @@ class TopBar extends Component {
                         <Button onClick={this.switch}>Create Account</Button>{' '}
                         <Button onClick={(ev) => this.signIn(ev)}>Sign In</Button>{' '}
                       </ModalFooter>
-                    </ModalBody>
-                  </Form>
-                  </div>
-                  :
-                  <div>
-                    <ModalHeader toggle={this.toggle}>
-                      {/*<img src={logo} alt="" width="50" height="50"/>*/}
-                      Create an account
-                    </ModalHeader>
-                  <Form>
-                    <ModalBody>
+                        */}
+                    <SignIn/>
+                  </ModalBody>
+                </div>
+              </Modal>
+              <Modal isOpen={this.state.modalCreateAccount} toggle={this.toggleCreateAccount} backdrop={false}>
+                <div>
+                  <ModalHeader toggle={this.toggleCreateAccount}>
+                    {/*<img src={logo} alt="" width="50" height="50"/>*/}
+                    Create an account
+                  </ModalHeader>
+                  <ModalBody>
+                    {/*
                       <FormGroup row>
                         <Col sm={6}>
                           <Input name="firstName" id="exampleFirstName" placeholder="First Name"/>
@@ -204,10 +127,10 @@ class TopBar extends Component {
                         <Button onClick={(ev) => this.createAccount(ev)}>Create Account</Button>{' '}
                         <Button onClick={this.switch}>Sign In</Button>{' '}
                       </ModalFooter>
-                    </ModalBody>
-                  </Form>
-                  </div>
-                }
+                      */}
+                    <CreateAccount/>
+                  </ModalBody>
+                </div>
               </Modal>
             </Col>
           </Row>

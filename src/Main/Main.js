@@ -12,9 +12,17 @@ import DayPie from '../Charts/DailyPie'
 
 import intro from '../dollabills.jpeg'
 
-const vals = [{name: "Living Expense", value: 300, color: "#00C49F"},{name: "Food", value: 250, color: "#55B8D9"},
-    {name: "Luxury", value: 200, color: "#E8F576"},{name: "Entertainment", value: 100, color: "#B855D9"},
-    {name: "Gas", value: 50, color: "#FF8042"}];
+const vals = [{name: "Living Expense", value: 300, color: "#353941"},{name: "Food", value: 250, color: "#9cdb97"},
+    {name: "Luxury", value: 200, color: "#82c4cc"},{name: "Entertainment", value: 100, color: "#afa3cc"},
+    {name: "Gas", value: 50, color: "#d67b77"}];
+
+const colors = [
+    {color: "#353941"},
+    {color: "#9cdb97"},
+    {color: "#82c4cc"},
+    {color: "#afa3cc"},
+    {color: "#d67b77"}
+    ];
 
 class Main extends Component {
 

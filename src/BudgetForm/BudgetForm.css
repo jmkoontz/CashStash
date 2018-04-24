@@ -1,0 +1,14 @@
+.addOnWidth {
+    max-width: 5rem;
+    min-width: 5rem;
+}
+
+.pWidth {
+    width: 8rem;
+}
+
+.saveForm {
+    background-color: yellowgreen !important;
+    color: #222222 !important;
+    border: none !important;
+}

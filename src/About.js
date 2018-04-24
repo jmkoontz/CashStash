@@ -25,6 +25,14 @@ class About extends Component {
     return (
       <div className={"App"}>
         <TopBar/>
+        <Row className={"space"}/>
+        <Row>
+          <Col xs={4}/>
+          <Col xs={4}>
+            <h2 className={"titleCash"}>Cash Stash</h2>
+          </Col>
+          <Col xs={4}/>
+        </Row>
       </div>
     )
   }

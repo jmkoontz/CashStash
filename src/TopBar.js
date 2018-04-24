@@ -20,18 +20,6 @@ class TopBar extends Component {
 
   }
 
-  onFormSubmit = (ev) => {
-    ev.preventDefault();  // stop page from redirecting
-    let self = this;
-
-    fireauth.signInWithEmailAndPassword(ev.target.email.value, ev.target.password.value).catch((error) => {
-      self.setState({
-        errorCode: error.message,
-        visible: true,
-      });
-    });
-  };
-
   // hide error message
   onDismiss = () => {
     this.setState({visible: false});
@@ -53,13 +41,9 @@ class TopBar extends Component {
     ev.preventDefault();
     let self = this;
 
-    self.setState({
-      modal: !this.state.modal,
-    });
-
     let firstName = ev.target.firstName.value;
-    let lastName = ev.target.firstName.value;
-    let email = ev.target.firstName.value;
+    let lastName = ev.target.lastName.value;
+    let email = ev.target.email.value;
 
     if (firstName === "") {
       self.setState({
@@ -80,6 +64,11 @@ class TopBar extends Component {
         });
 
         self.addUser();
+        if (this.state.errorCode === "") {
+          self.setState({
+            modal: !this.state.modal,
+          });
+        }
       }).catch((error) => {
         self.setState({
           errorCode: error.message,
@@ -119,16 +108,18 @@ class TopBar extends Component {
     ev.preventDefault();  // stop page from redirecting
     let self = this;
 
-    self.setState({
-      modal: !this.state.modal,
-    });
-
     fireauth.signInWithEmailAndPassword(ev.target.email.value, ev.target.password.value).catch((error) => {
       self.setState({
         errorCode: error.message,
         visible: true,
       });
     });
+
+    if (this.state.errorCode === "") {
+      self.setState({
+        modal: !this.state.modal,
+      });
+    }
   };
 
   /*
@@ -166,7 +157,7 @@ class TopBar extends Component {
                       {/*<img src={logo} alt="" width="50" height="50"/>*/}
                       Sign In
                     </ModalHeader>
-                  <Form onSubmit={(ev) => this.onFormSubmit(ev)}>
+                  <Form>
                     <ModalBody>
                       <FormGroup>
                         <Input type="email" name="email" id="exampleEmail" placeholder="Email"/>
@@ -190,7 +181,7 @@ class TopBar extends Component {
                       {/*<img src={logo} alt="" width="50" height="50"/>*/}
                       Create an account
                     </ModalHeader>
-                  <Form onSubmit={(ev) => this.onFormSubmit(ev)}>
+                  <Form>
                     <ModalBody>
                       <FormGroup row>
                         <Col sm={6}>

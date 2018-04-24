@@ -48,7 +48,7 @@ class TopBar extends Component {
           <NavbarToggler className="mr-2"/>
           <Collapse navbar>
             <Nav className="ml-auto" navbar>
-              <Col xs={5} hidden={!this.props.signedIn}>
+              <Col xs={7} hidden={!this.props.signedIn}>
                 <NavItem>
                   <Label className="name">{this.props.firstName} {this.props.lastName}</Label>
                 </NavItem>

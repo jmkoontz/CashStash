@@ -1,96 +1,177 @@
-import React, { Component } from 'react';
-import { fireauth } from "../base";
-import { NavLink } from 'react-router-dom';
-import { Form, FormGroup,InputGroup, Label, InputGroupAddon, Input, Button, Container, Row, Col } from 'reactstrap';
-
-import dollar from '../dollar.svg'
+import React, {Component} from 'react';
+import {fireauth} from "../base";
+import {Form, FormGroup, InputGroup, Collapse, InputGroupAddon, Input, Alert, Button, Container, Row, Col, Card, CardBody, CardTitle} from 'reactstrap';
 
 import './BudgetForm.css'
 import TopBar from '../Main/TopBar'
+
 class BudgetForm extends Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.state = {
-            errorCode: "",
-            visible: false,
-        }
+    this.state = {
+      items: [],
+
+      collapse: false,
+
+      errorCode: "",
+      visible: false,
     }
+  }
 
-    onFormSubmit = (ev) => {
-        ev.preventDefault();  // stop page from redirecting
-        let self = this;
+  submitBudget = (ev) => {
+    ev.preventDefault();  // stop page from redirecting
+    let self = this;
+  };
 
-        fireauth.signInWithEmailAndPassword(ev.target.email.value, ev.target.password.value).catch((error) => {
-            self.setState({
-                errorCode: error.message,
-                visible: true,
-            });
-        });
-    };
+  // add budget item to form
+  addItem = (ev, formID) => {
+    ev.preventDefault();  // stop page from redirecting
 
-    // hide error message
-    onDismiss = () => {
-        this.setState({visible: false});
-    };
+    let name = ev.target.name.value;
+    let amount = ev.target.amount.value;
 
-    render() {
-        return (
-            <div>
-                <TopBar/>
+    // check for valid input
+    if (name == null || name.length === 0) {
+      this.setState({
+        errorCode: "Please enter a category name.",
+        visible: true,
+      });
+    } else if (amount == null || amount.length === 0) {
+      this.setState({
+        errorCode: "Please enter an amount value.",
+        visible: true,
+      });
+    } else if (this.state.items.find((item) => {return item.name === name;})) {
+      this.setState({
+        errorCode: "Category already exists.",
+        visible: true,
+      });
+    } else {
+      this.setState({
+        items: this.state.items.concat({name: name, amount: amount}),
+        collapse: false,
+      });
 
-                <Container fluid>
+      document.getElementById(formID).reset();  // reset form
+    }
+  };
 
-                    <br/>
+  // remove budget item from form
+  removeItem = (item) => {
+    let tmpItems = this.state.items.filter((obj) => {
+      return obj.name !== item.name;
+    });
 
-                    <Row>
-                        <Col/>
-                        <Col>
-                            <h1 className={"centerText"}>Monthly Info</h1>
-                            <hr/>
-                            <Form>
-                                <FormGroup>
-                                    <InputGroup>
-                                        <InputGroupAddon addonType={"prepend"}>Monthly Income</InputGroupAddon>
-                                        <Input placeholder={"1000.00"}/>
-                                    </InputGroup>
-                                </FormGroup>
-                                <FormGroup>
-                                    <InputGroup>
-                                        <InputGroupAddon addonType={"prepend"}>Living Expense</InputGroupAddon>
-                                        <Input placeholder={"300.00"}/>
-                                    </InputGroup>
-                                </FormGroup>
-                                <FormGroup>
-                                    <InputGroup>
-                                        <InputGroupAddon addonType={"prepend"}>Food</InputGroupAddon>
-                                        <Input placeholder={"200.00"}/>
-                                    </InputGroup>
-                                </FormGroup>
-                                <FormGroup>
-                                    <InputGroup>
-                                        <InputGroupAddon addonType={"prepend"}>Entertainment</InputGroupAddon>
-                                        <Input placeholder={"100.00"}/>
-                                    </InputGroup>
-                                </FormGroup>
-                                <FormGroup>
-                                    <Row>
-                                    <Col>
-                                        <Button>+</Button>
-                                    </Col>
-                                    <Col>
-                                        <Button className={"saveForm"}>Save</Button>
-                                    </Col>
-                                    </Row>
-                                </FormGroup>
+    this.setState({items: tmpItems});
+  };
+
+  // toggle collapse for adding a new category
+  toggleCollapse = () => {
+    this.setState({collapse: !this.state.collapse});
+  };
+
+  // hide error message
+  onDismiss = () => {
+    this.setState({visible: false});
+  };
+
+  // render individual input in each thing
+  renderItem = (item) => {
+    return (
+      <FormGroup key={item.name}>
+        <InputGroup>
+          <InputGroupAddon addonType={"prepend"}>{item.name}</InputGroupAddon>
+          <Input placeHolder="Amount" defaultValue={item.amount}/>
+          <InputGroupAddon addonType={"append"}>
+            <Button onClick={() => {this.removeItem(item)}}>-</Button>
+          </InputGroupAddon>
+        </InputGroup>
+      </FormGroup>
+    )
+  };
+
+  render() {
+    let allItems = [];
+
+    this.state.items.forEach((item) => {
+      let itemInput = this.renderItem(item);
+      allItems = allItems.concat(itemInput);
+    });
+
+    return (
+      <div>
+        <TopBar/>
+        <Container fluid>
+          <br/>
+          <Row>
+            <Col/>
+            <Col>
+              <h1 className={"centerText"}>Monthly Info</h1>
+              <hr/>
+              <Form onSubmit={(ev) => {this.submitBudget(ev)}}>
+                <FormGroup>
+                  <InputGroup>
+                    <InputGroupAddon addonType={"prepend"}>Monthly Income</InputGroupAddon>
+                    <Input placeholder="Amount"/>
+                  </InputGroup>
+                </FormGroup>
+                <FormGroup>
+                  <InputGroup>
+                    <InputGroupAddon addonType={"prepend"}>Living Expense</InputGroupAddon>
+                    <Input placeholder="Amount"/>
+                  </InputGroup>
+                </FormGroup>
+                <FormGroup>
+                  <InputGroup>
+                    <InputGroupAddon addonType={"prepend"}>Food</InputGroupAddon>
+                    <Input placeholder="Amount"/>
+                  </InputGroup>
+                </FormGroup>
+                <FormGroup>
+                  <InputGroup>
+                    <InputGroupAddon addonType={"prepend"}>Entertainment</InputGroupAddon>
+                    <Input placeholder="Amount"/>
+                  </InputGroup>
+                </FormGroup>
+                {allItems}
+                <FormGroup>
+                  <Row>
+                    <Col>
+                      <Button onClick={this.toggleCollapse}>+</Button>
+                      <Collapse isOpen={this.state.collapse} style={{marginBottom: '1rem'}}>
+                        <Card>
+                          <CardBody>
+                            <CardTitle>New Category</CardTitle>
+                            <Form onSubmit={(ev) => this.addItem(ev, "add-event-form")} id={"add-event-form"}>
+                              <FormGroup>
+                                <Input name="name" placeholder="Category Name"/>
+                              </FormGroup>
+                              <FormGroup>
+                                <Input name="amount" placeholder="Amount"/>
+                              </FormGroup>
+                              <Alert color="danger" isOpen={this.state.visible} toggle={this.onDismiss}>
+                                {this.state.errorCode}
+                              </Alert>
+                              <Button block>Add to Budget</Button>
                             </Form>
-                        </Col>
-                        <Col/>
-                    </Row>
-                </Container>
-            </div>
-        )
-    }
+                          </CardBody>
+                        </Card>
+                      </Collapse>
+                    </Col>
+                    <Col>
+                      <Button className={"saveForm"}>Submit Budget</Button>
+                    </Col>
+                  </Row>
+                </FormGroup>
+              </Form>
+            </Col>
+            <Col/>
+          </Row>
+        </Container>
+      </div>
+    )
+  }
 }
 
 export default BudgetForm;

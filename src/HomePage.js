@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { Form, FormGroup, Label, Input, Button, Alert } from 'reactstrap';
 
 import logo from './logo.svg';
+import dollar from './dollar.svg'
 
 class HomePage extends Component {
   constructor(props) {
@@ -36,8 +37,8 @@ class HomePage extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to our CS252 Project</h1>
+          <img src={dollar} className="App-logo" alt="logo" />
+          <h1 className="App-title">Cash Stash</h1>
         </header>
         <p className="App-intro">
           Team Members:  Jake Koontz, Riley Robertson, Jeremy Putnam

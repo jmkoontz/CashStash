@@ -49,6 +49,9 @@ class Main extends Component {
       return (
         <div className="App">
           <TopBar signedIn={true} {...data}/>
+          <br/>
+          <br/>
+          <br/>
           <Row className="space"/>
           <Row>
             <Col xs={4}/>
@@ -63,6 +66,9 @@ class Main extends Component {
       return (
         <div className="App">
           <TopBar signedIn={false} {...data}/>
+          <br/>
+          <br/>
+          <br/>
           <Row className="space"/>
           <Row>
             <Col xs={4}/>

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { fireauth } from "./base";
 import { NavLink } from 'react-router-dom';
-import { Form, FormGroup, Label, Input, Button, Alert, Navbar, NavbarBrand, NavbarToggler, Collapse, Nav, NavItem, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { Container, Row, Col, Button, Navbar, Modal, ModalHeader, ModalBody, ModalFooter, Collapse, Nav, NavbarBrand, NavItem, NavbarToggler } from 'reactstrap';
+import './About.css'
+import TopBar from './TopBar';
 
 import logo from './logo.svg';
 import dollar from './dollar.svg'
@@ -14,42 +16,25 @@ class About extends Component {
     this.state = {
       errorCode: "",
       visible: false,
+      modal: false,
+      open: true,
     }
+
   }
 
-  onFormSubmit = (ev) => {
-    ev.preventDefault();  // stop page from redirecting
-    let self = this;
-
-    fireauth.signInWithEmailAndPassword(ev.target.email.value, ev.target.password.value).catch((error) => {
-      self.setState({
-        errorCode: error.message,
-        visible: true,
-      });
-    });
-  };
-
-  // hide error message
-  onDismiss = () => {
-    this.setState({visible: false});
-  };
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={dollar} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to our CS252 Project</h1>
-        </header>
-        <p className="App-intro">
-          Team Members:  Jake Koontz, Riley Robertson, Jeremy Putnam
-        </p>
-        <NavLink to="/CashStash/sign-in">
-          <Button>Sign In</Button>
-        </NavLink>
-        <NavLink to="/CashStash/create-account">
-          <Button>Create Account</Button>
-        </NavLink>
+      <div className={"App"}>
+        <TopBar/>
+        <Row className={"space"}/>
+        <Row>
+          <Col xs={4}/>
+          <Col xs={4}>
+            <h2 className={"titleCash"}>Cash Stash</h2>
+          </Col>
+          <Col xs={4}/>
+        </Row>
       </div>
     )
   }

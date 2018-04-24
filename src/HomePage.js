@@ -16,18 +16,6 @@ class HomePage extends Component {
     }
   }
 
-  onFormSubmit = (ev) => {
-    ev.preventDefault();  // stop page from redirecting
-    let self = this;
-
-    fireauth.signInWithEmailAndPassword(ev.target.email.value, ev.target.password.value).catch((error) => {
-      self.setState({
-        errorCode: error.message,
-        visible: true,
-      });
-    });
-  };
-
   // hide error message
   onDismiss = () => {
     this.setState({visible: false});
@@ -43,12 +31,6 @@ class HomePage extends Component {
         <p className="App-intro">
           Team Members:  Jake Koontz, Riley Robertson, Jeremy Putnam
         </p>
-        <NavLink to="/CashStash/sign-in">
-          <Button>Sign In</Button>
-        </NavLink>
-        <NavLink to="/CashStash/create-account">
-          <Button>Create Account</Button>
-        </NavLink>
       </div>
     )
   }

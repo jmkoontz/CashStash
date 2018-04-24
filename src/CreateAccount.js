@@ -96,7 +96,7 @@ class CreateAccount extends Component {
             {this.state.errorCode}
           </Alert>
           <FormGroup>
-            <Button className="createAccountButton" size="lg" block>Create Account!</Button>
+            <Button size="lg" block>Create Account!</Button>
           </FormGroup>
         </Form>
       </div>

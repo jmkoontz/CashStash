@@ -62,9 +62,13 @@ class TopBar extends Component {
               <Col>
                 <NavItem>
                   <Button onClick={this.toggleCreateAccount}>Create Account</Button>
-                  <Button >Sign Out</Button>
                 </NavItem>
               </Col>
+              {/*<Col>
+                <NavItem>
+                  <Button>Sign Out</Button>
+                </NavItem>
+              </Col>*/}
             </Nav>
           </Collapse>
         </Navbar>

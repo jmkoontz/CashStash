@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { fireauth } from "../base";
-import { Container, Row, Col, Button, Navbar, Modal, ModalHeader, ModalBody, Collapse, Nav, NavbarBrand, NavItem, NavbarToggler } from 'reactstrap';
+import { Container, Row, Col, Button, Navbar, Modal, ModalHeader, ModalBody, Label, Collapse, Nav, NavbarBrand, NavItem, NavbarToggler } from 'reactstrap';
 import './TopBar.css'
 
 import SignIn from '../Account/SignIn';
@@ -46,6 +46,7 @@ class TopBar extends Component {
       <div className={"App"}>
         <Navbar className="bg-dark" light expand={"md"}>
           <NavbarBrand className="head">Cash$tash</NavbarBrand>
+          <NavbarBrand className="name" hidden={!this.props.signedIn}>{this.props.firstName} {this.props.lastName}</NavbarBrand>
           <NavbarToggler className="mr-2"/>
           <Collapse isOpen={!this.state.open} navbar>
             <Nav className="ml-auto" navbar>

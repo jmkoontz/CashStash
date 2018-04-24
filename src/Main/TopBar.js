@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { fireauth } from "../base";
-import { Container, Row, Col, Button, Navbar, Modal, ModalHeader, ModalBody, Collapse, Nav, NavbarBrand, NavItem, NavbarToggler } from 'reactstrap';
+import { Container, Row, Col, Button, Navbar, Modal, ModalHeader, ModalBody, Collapse, Nav, NavbarBrand, NavItem, NavbarToggler, Label } from 'reactstrap';
 import './TopBar.css'
 
 import SignIn from '../Account/SignIn';
@@ -42,13 +42,17 @@ class TopBar extends Component {
 
   render() {
     return (
-      <div className={"App"}>
+      <div className={"App navT"}>
         <Navbar className="bg-dark" light expand={"md"}>
           <NavbarBrand className="head">Cash$tash</NavbarBrand>
-          <NavbarBrand className="name" hidden={!this.props.signedIn}>{this.props.firstName} {this.props.lastName}</NavbarBrand>
           <NavbarToggler className="mr-2"/>
           <Collapse navbar>
             <Nav className="ml-auto" navbar>
+              <Col xs={5} hidden={!this.props.signedIn}>
+                <NavItem>
+                  <Label className="name">{this.props.firstName} {this.props.lastName}</Label>
+                </NavItem>
+              </Col>
               <Col hidden={this.props.signedIn}>
                 <NavItem>
                   <Button onClick={this.toggleSignIn}>Sign In</Button>
@@ -97,6 +101,7 @@ class TopBar extends Component {
           </Row>
         </Container>
       </div>
+
     )
   }
 }

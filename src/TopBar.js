@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
 import { Container, Row, Col, Button, Navbar, Modal, ModalHeader, ModalBody, ModalFooter, Collapse, Nav, NavbarBrand, NavItem, NavbarToggler, FormGroup, Form, Input, Alert } from 'reactstrap';
 import './TopBar.css'
 import logo from './logo.svg';
@@ -8,8 +7,8 @@ import SignIn from './SignIn';
 import CreateAccount from './CreateAccount';
 
 class TopBar extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       modal: false,
@@ -54,17 +53,17 @@ class TopBar extends Component {
           <NavbarToggler onClick={this.toggle} className="mr-2" />
           <Collapse isOpen={!this.state.open} navbar>
             <Nav className="ml-auto" navbar>
-              <Col>
+              <Col hidden={this.props.signedIn}>
                 <NavItem>
                   <Button onClick={this.toggleSignIn}>Sign In</Button>
                 </NavItem>
               </Col>
-              <Col>
+              <Col hidden={this.props.signedIn}>
                 <NavItem>
                   <Button onClick={this.toggleCreateAccount}>Create Account</Button>
                 </NavItem>
               </Col>
-              <Col>
+              <Col hidden={!this.props.signedIn}>
                 <NavItem>
                   <Button>Sign Out</Button>
                 </NavItem>
@@ -83,21 +82,6 @@ class TopBar extends Component {
                     Sign In
                   </ModalHeader>
                   <ModalBody>
-                    {/*
-                      <FormGroup>
-                        <Input type="email" name="email" id="exampleEmail" placeholder="Email"/>
-                      </FormGroup>
-                      <FormGroup>
-                        <Input type="password" name="password" id="examplePassword" placeholder="Password"/>
-                      </FormGroup>
-                      <Alert color="danger" isOpen={this.state.visible} toggle={this.onDismiss}>
-                        {this.state.errorCode}
-                      </Alert>
-                      <ModalFooter>
-                        <Button onClick={this.switch}>Create Account</Button>{' '}
-                        <Button onClick={(ev) => this.signIn(ev)}>Sign In</Button>{' '}
-                      </ModalFooter>
-                        */}
                     <SignIn/>
                   </ModalBody>
                 </div>
@@ -109,29 +93,6 @@ class TopBar extends Component {
                     Create an account
                   </ModalHeader>
                   <ModalBody>
-                    {/*
-                      <FormGroup row>
-                        <Col sm={6}>
-                          <Input name="firstName" id="exampleFirstName" placeholder="First Name"/>
-                        </Col>
-                        <Col sm={6}>
-                          <Input name="lastName" id="exampleLastName" placeholder="Last Name"/>
-                        </Col>
-                      </FormGroup>
-                      <FormGroup>
-                        <Input type="email" name="email" id="exampleEmail" placeholder="Email"/>
-                      </FormGroup>
-                      <FormGroup>
-                        <Input type="password" name="password" id="examplePassword" placeholder="Password"/>
-                      </FormGroup>
-                      <Alert color="danger" isOpen={this.state.visible} toggle={this.onDismiss}>
-                        {this.state.errorCode}
-                      </Alert>
-                      <ModalFooter>
-                        <Button onClick={(ev) => this.createAccount(ev)}>Create Account</Button>{' '}
-                        <Button onClick={this.switch}>Sign In</Button>{' '}
-                      </ModalFooter>
-                      */}
                     <CreateAccount/>
                   </ModalBody>
                 </div>

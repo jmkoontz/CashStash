@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
-import { fireauth } from "./base";
-import { NavLink } from 'react-router-dom';
-import { Container, Row, Col, Button, Navbar, Modal, ModalHeader, ModalBody, ModalFooter, Collapse, Nav, NavbarBrand, NavItem, NavbarToggler } from 'reactstrap';
-import './About.css'
+import { Row, Col } from 'reactstrap';
+
 import TopBar from './TopBar';
 
-
-import logo from './logo.svg';
-import dollar from './dollar.svg'
-
+import './Main.css';
 
 class Main extends Component {
   constructor(props) {
@@ -16,14 +11,8 @@ class Main extends Component {
 
     this.state = {
       uid: props.uid,
-      errorCode: "",
-      visible: false,
-      modal: false,
-      open: true,
     }
-
   }
-
 
   render() {
     if (this.state.uid) { // if user is signed in

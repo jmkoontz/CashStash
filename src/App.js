@@ -3,8 +3,6 @@ import { fireauth } from './base';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
 import Main from './Main';
-import About from './About';
-import HomePage from './HomePage';
 import Form from './BudgetForm/BudgetForm'
 
 import './App.css';
@@ -65,20 +63,15 @@ class App extends Component {
   render() {
     return (
       <Switch>
-
         <Route path='/CashStash' render={() => (
           <Main uid={this.state.uid}/>
         )}/>
-
-          <Route path='/CashStash/About' render={() => (
-              <About/>
-          )}/>
 
           <Route path='/CashStash/Form' render={() => (
               <Form/>
           )}/>
 
-        <Route render={() => <Redirect to="/CashStash"/>}/>
+        <Route render={() => <Redirect to='/CashStash'/>}/>
       </Switch>
     );
   }

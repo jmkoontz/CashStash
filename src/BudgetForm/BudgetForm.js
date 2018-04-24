@@ -80,7 +80,6 @@ console.log(monthlyIncome);
         items: this.state.items.concat({name: name, amount: amount}),
         collapse: false,
       });
-
       // reset form
       document.getElementById(nameID).value = "";
       document.getElementById(amountID).value = "";

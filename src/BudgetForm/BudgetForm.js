@@ -54,19 +54,19 @@ class BudgetForm extends Component {
                                 <FormGroup>
                                     <InputGroup>
                                         <InputGroupAddon addonType={"prepend"}>Living Expense</InputGroupAddon>
-                                        <Input placeholder={"1000.00"}/>
+                                        <Input placeholder={"300.00"}/>
                                     </InputGroup>
                                 </FormGroup>
                                 <FormGroup>
                                     <InputGroup>
                                         <InputGroupAddon addonType={"prepend"}>Food</InputGroupAddon>
-                                        <Input placeholder={"1000.00"}/>
+                                        <Input placeholder={"200.00"}/>
                                     </InputGroup>
                                 </FormGroup>
                                 <FormGroup>
                                     <InputGroup>
                                         <InputGroupAddon addonType={"prepend"}>Entertainment</InputGroupAddon>
-                                        <Input placeholder={"1000.00"}/>
+                                        <Input placeholder={"100.00"}/>
                                     </InputGroup>
                                 </FormGroup>
                                 <FormGroup>

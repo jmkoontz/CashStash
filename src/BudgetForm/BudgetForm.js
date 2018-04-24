@@ -6,7 +6,7 @@ import { Form, FormGroup,InputGroup, Label, InputGroupAddon, Input, Button, Cont
 import dollar from '../dollar.svg'
 
 import './BudgetForm.css'
-import TopBar from '../TopBar'
+import TopBar from '../Main/TopBar'
 class BudgetForm extends Component {
     constructor(props) {
         super(props);

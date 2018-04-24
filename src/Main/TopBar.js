@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { fireauth } from "./base";
+import { fireauth } from "../base";
 import { Container, Row, Col, Button, Navbar, Modal, ModalHeader, ModalBody, Collapse, Nav, NavbarBrand, NavItem, NavbarToggler } from 'reactstrap';
 import './TopBar.css'
 
-import SignIn from './SignIn';
-import CreateAccount from './CreateAccount';
+import SignIn from './Account/SignIn';
+import CreateAccount from './Account/CreateAccount';
 
 class TopBar extends Component {
   constructor(props) {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { fireauth } from "./base";
+import { fireauth } from "../base";
 import { Form, FormGroup, Input, Button, Alert } from 'reactstrap';
 
 class SignIn extends Component {

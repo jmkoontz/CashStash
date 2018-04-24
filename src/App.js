@@ -3,7 +3,7 @@ import { fireauth } from './base';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
 
-import Main from './Main';
+import Main from './Main/Main';
 import Form from './BudgetForm/BudgetForm';
 
 class App extends Component {
@@ -66,9 +66,9 @@ class App extends Component {
           <Main uid={this.state.uid}/>
         )}/>
 
-          <Route path='/CashStash/Form' render={() => (
-              <Form/>
-          )}/>
+        <Route path='/CashStash/Form' render={() => (
+          <Form/>
+        )}/>
 
         <Route render={() => <Redirect to='/CashStash'/>}/>
       </Switch>

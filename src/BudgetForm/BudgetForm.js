@@ -24,7 +24,7 @@ class BudgetForm extends Component {
   submitBudget = (ev) => {
     ev.preventDefault();  // stop page from redirecting
     let self = this;
-console.log(ev);
+
     let monthlyIncome = ev.target.monthlyIncome.value;
 console.log(monthlyIncome);
     // check for valid input
@@ -34,15 +34,22 @@ console.log(monthlyIncome);
         errorCode: "Please enter a monthly income.",
         visible: true,
       });
-    } else if (this.checkInputs() === false) {
+    } else if (this.checkInputs(ev) === false) {
       this.setState({
-        errorCode: "Please fill enter an amount for each category.",
+        errorCode: "Please enter an amount for each category.",
         visible: true,
       });
     }
   };
 
-  checkInputs = () => {
+  checkInputs = (ev) => {
+    this.state.items.forEach((item) => {
+      let name = item.name;
+      console.log(ev.target.$[name].value);
+      if (ev.target.$(name).value === "")
+        return false;
+    });
+
     return true;
   };
 
@@ -114,7 +121,7 @@ console.log(monthlyIncome);
       <FormGroup key={item.name}>
         <InputGroup>
           <InputGroupAddon addonType={"prepend"}>{item.name}</InputGroupAddon>
-          <Input placeholder="Amount" defaultValue={item.amount}/>
+          <Input name={item.name} placeholder="Amount" defaultValue={item.amount}/>
           <InputGroupAddon addonType={"append"}>
             <Button onClick={() => {this.removeItem(item)}}>-</Button>
           </InputGroupAddon>

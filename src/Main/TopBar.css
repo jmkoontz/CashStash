@@ -10,3 +10,9 @@
 .bgC {
     background-color: #353941 !important;
 }
+
+.navT {
+    position: fixed;
+    z-index: 10;
+    width: 100%
+}

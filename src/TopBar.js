@@ -5,6 +5,9 @@ import { Container, Row, Col, Button, Navbar, Modal, ModalHeader, ModalBody, Mod
 import './TopBar.css'
 import logo from './logo.svg';
 
+import SignIn from './SignIn';
+import CreateAccount from './CreateAccount';
+
 class TopBar extends Component {
   constructor(props) {
     super(props);
@@ -166,6 +169,7 @@ class TopBar extends Component {
                     </ModalHeader>
                   <Form>
                     <ModalBody>
+                      {/*
                       <FormGroup>
                         <Input type="email" name="email" id="exampleEmail" placeholder="Email"/>
                       </FormGroup>
@@ -179,6 +183,8 @@ class TopBar extends Component {
                         <Button onClick={this.switch}>Create Account</Button>{' '}
                         <Button onClick={(ev) => this.signIn(ev)}>Sign In</Button>{' '}
                       </ModalFooter>
+                        */}
+                        <SignIn/>
                     </ModalBody>
                   </Form>
                   </div>
@@ -190,6 +196,7 @@ class TopBar extends Component {
                     </ModalHeader>
                   <Form>
                     <ModalBody>
+                      {/*
                       <FormGroup row>
                         <Col sm={6}>
                           <Input name="firstName" id="exampleFirstName" placeholder="First Name"/>
@@ -211,6 +218,8 @@ class TopBar extends Component {
                         <Button onClick={(ev) => this.createAccount(ev)}>Create Account</Button>{' '}
                         <Button onClick={this.switch}>Sign In</Button>{' '}
                       </ModalFooter>
+                      */}
+                      <CreateAccount/>
                     </ModalBody>
                   </Form>
                   </div>

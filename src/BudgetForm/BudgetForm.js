@@ -141,12 +141,7 @@ console.log(monthlyIncome);
     return (
       <div>
         <Container fluid>
-          <br/>
-          <br/>
-          <br/>
-          <br/>
           <Row>
-            <Col/>
             <Col>
               <h1 className={"centerText"}>Monthly Info</h1>
               <hr/>
@@ -208,12 +203,13 @@ console.log(monthlyIncome);
                 </FormGroup>
               </Form>
             </Col>
-            <Col/>
           </Row>
         </Container>
       </div>
     )
   }
 }
+
+
 
 export default BudgetForm;

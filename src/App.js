@@ -80,18 +80,6 @@ class App extends Component {
               <Form/>
           )}/>
 
-        <Route path='/CashStash/sign-in' render={() => (
-          !this.signedIn()
-            ? <SignIn/>
-            : <Redirect to="/CashStash/HomePage"/>
-        )}/>
-
-        <Route path='/CashStash/create-account' render={() => (
-          !this.signedIn()
-            ? <CreateAccount/>
-            : <Redirect to="/CashStash/HomePage"/>
-        )}/>
-
         <Route render={() => <Redirect to="/CashStash/HomePage"/>}/>
       </Switch>
     );

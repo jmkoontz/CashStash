@@ -36,6 +36,7 @@ class Main extends Component {
       firstName: null,
       lastName: null,
       show: false,
+      edit: false,
     }
   }
 
@@ -64,8 +65,15 @@ class Main extends Component {
   switch = () => {
     this.setState({
       show: !this.state.show,
-    })
-  }
+    });
+  };
+
+  switchEdit = () => {
+    this.setState({
+      edit: !this.state.edit,
+    });
+  };
+
 
   render() {
     let data = {
@@ -76,29 +84,46 @@ class Main extends Component {
     if (this.state.uid) {   // if user is signed in
       return (
         <div className="App">
-          {/*<Container fluid className="topBar">
+          <Container fluid className="topBar">
             <Row>
               <div className={"titlePic"}>
                 <img src={intro} alt=""/>
               </div>
             </Row>
-          </Container>*/}
+          </Container>
           <TopBar signedIn={true} {...data}/>
-          <br/>
-          <br/>
-          <br/>
+          <br className={"backColor"}/>
+          <br className={"backColor"}/>
+          <br className={"backColor"}/>
           <Container>
-            <Row className="space"/>
-            <Row >
-              <Col xs={4}/>
-              <Col xs={4}>
+            <Row className="backColor"/>
+            <Row className={"backColor"}>
+              <Col className={"backColor"} xs={4} />
+              <Col className={"backColor"} xs={4}>
+                <br/>
                 <h2 className="titleCash">{this.state.firstName}'s Cash Stash</h2>
               </Col>
-                <Col xs={4}/>
+              <Col className={"backColor"} xs={4}/>
             </Row>
-            <Row>
-              <Col xs={3}/>
-              <Col xs={6}>
+            <Row className={"backColor moreSpace"}>
+              <Col xs={3} className={"backColor"}>
+                {this.state.edit
+                  ?
+                  <div>
+                    <br/>
+                    <Button onClick={this.switchEdit}>Edit Budget</Button>
+                    <br/>
+                    <BudgetForm/>
+                  </div>
+                  :
+                  <div>
+                    <br/>
+                    <Button onClick={this.switchEdit}>Edit Budget</Button>
+                    <br/>
+                  </div>
+                }
+              </Col>
+              <Col xs={6} className={"backColor"}>
                 {this.state.show
                   ?
                   <div>
@@ -106,11 +131,13 @@ class Main extends Component {
                   </div>
                   :
                   <div>
+                    <br/>
                     <Button onClick={this.switch}>Get Started!</Button>
+                    <br/>
                   </div>
                 }
               </Col>
-              <Col xs={3}/>
+              <Col xs={3} className={"backColor"}/>
             </Row>
           </Container>
         </div>

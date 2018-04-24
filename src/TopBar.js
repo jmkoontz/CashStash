@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { fireauth } from "./base";
 import { NavLink } from 'react-router-dom';
-import { Container, Row, Col, Button, Navbar, Modal, ModalHeader, ModalBody, ModalFooter, Collapse, Nav, NavbarBrand, NavItem, NavbarToggler, FormGroup, Form, Input, Label, Alert } from 'reactstrap';
+import { Container, Row, Col, Button, Navbar, Modal, ModalHeader, ModalBody, ModalFooter, Collapse, Nav, NavbarBrand, NavItem, NavbarToggler, FormGroup, Form, Input, Alert } from 'reactstrap';
 import './TopBar.css'
 import logo from './logo.svg';
 
@@ -42,11 +42,19 @@ class TopBar extends Component {
   }
 
   createAccount = () => {
+    let self = this;
 
+    self.setState({
+      modal: !this.state.modal,
+    });
   };
 
   signIn = () => {
+    let self = this;
 
+    self.setState({
+      modal: !this.state.modal,
+    });
   };
 
   render() {

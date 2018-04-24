@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { fireauth } from "./base";
 import { Container, Row, Col, Button, Navbar, Modal, ModalHeader, ModalBody, ModalFooter, Collapse, Nav, NavbarBrand, NavItem, NavbarToggler, FormGroup, Form, Input, Alert } from 'reactstrap';
 import './TopBar.css'
 import logo from './logo.svg';
@@ -45,6 +46,13 @@ class TopBar extends Component {
     });
   };
 
+  handleSignOut = () => {
+    localStorage.removeItem('uid');   // remove user from local storage
+    this.setState({uid: null});   // reset state
+    fireauth.signOut();   // sign out from firebase
+    window.location.reload();   // force reload page
+  };
+
   render() {
     return (
       <div className={"App"}>
@@ -65,7 +73,7 @@ class TopBar extends Component {
               </Col>
               <Col hidden={!this.props.signedIn}>
                 <NavItem>
-                  <Button>Sign Out</Button>
+                  <Button onClick={this.handleSignOut}>Sign Out</Button>
                 </NavItem>
               </Col>
             </Nav>

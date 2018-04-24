@@ -7,29 +7,29 @@ class CreateAccount extends Component {
     super();
 
     this.state = {
-      uid: null,
-
       errorCode: "",
       visible: false,
     };
   }
 
   onFormSubmit = (ev) => {
-    ev.preventDefault();
+    ev.preventDefault();  // stop page from redirecting
     let self = this;
 
+    // save values from inputs
     let firstName = ev.target.firstName.value;
     let lastName = ev.target.lastName.value;
     let email = ev.target.email.value;
 
+    // check for valid input
     if (firstName === "") {
       self.setState({
-        errorCode: "Please enter your first name",
+        errorCode: "Please enter your first name.",
         visible: true,
       });
     } else if (lastName === "") {
       self.setState({
-        errorCode: "Please enter your last name",
+        errorCode: "Please enter your last name.",
         visible: true,
       });
     } else {
@@ -50,6 +50,7 @@ class CreateAccount extends Component {
     }
   };
 
+  // add user information to firebase
   addUser = () => {
     let self = this;
 
@@ -60,6 +61,8 @@ class CreateAccount extends Component {
           firstName: self.state.firstName,
           lastName: self.state.lastName,
           email: self.state.email,
+        }).then(() => {
+          window.location.reload();   // force reload page
         }).catch((error) => {
           self.setState({
             errorCode: error.message,
@@ -70,6 +73,7 @@ class CreateAccount extends Component {
     });
   };
 
+  // hide error message
   onDismiss = () => {
     this.setState({visible: false});
   };
@@ -79,25 +83,23 @@ class CreateAccount extends Component {
       <div>
         <Form onSubmit={(ev) => this.onFormSubmit(ev)}>
           <FormGroup row>
-            <Col sm={6}>
-              <Input name="firstName" id="exampleFirstName" placeholder="First Name" />
+            <Col xs={6}>
+              <Input name="firstName" id="exampleFirstName" placeholder="First Name"/>
             </Col>
-            <Col sm={6}>
-              <Input name="lastName" id="exampleLastName" placeholder="Last Name" />
+            <Col xs={6}>
+              <Input name="lastName" id="exampleLastName" placeholder="Last Name"/>
             </Col>
           </FormGroup>
           <FormGroup>
-            <Input type="email" name="email" id="exampleEmail" placeholder="Email" />
+            <Input type="email" name="email" id="exampleEmail" placeholder="Email"/>
           </FormGroup>
           <FormGroup>
-            <Input type="password" name="password" id="examplePassword" placeholder="Password" />
+            <Input type="password" name="password" id="examplePassword" placeholder="Password"/>
           </FormGroup>
           <Alert color="danger" isOpen={this.state.visible} toggle={this.onDismiss}>
             {this.state.errorCode}
           </Alert>
-          <FormGroup>
-            <Button size="lg" block>Create Account!</Button>
-          </FormGroup>
+          <Button size="lg" block>Create Account</Button>
         </Form>
       </div>
     )

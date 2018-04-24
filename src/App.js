@@ -74,12 +74,6 @@ class App extends Component {
               <About/>
           )}/>
 
-        <Route path='/CashStash/HomePage' render={() => (
-          this.signedIn()
-            ? <HomePage uid={this.state.uid}/>
-            : <Redirect to="/CashStash/About"/>
-        )}/>
-
           <Route path='/CashStash/Form' render={() => (
               <Form/>
           )}/>

@@ -16,7 +16,9 @@ class SignIn extends Component {
     ev.preventDefault();  // stop page from redirecting
     let self = this;
 
-    fireauth.signInWithEmailAndPassword(ev.target.email.value, ev.target.password.value).catch((error) => {
+    fireauth.signInWithEmailAndPassword(ev.target.email.value, ev.target.password.value).then(() => {
+      window.location.reload();   // force reload page
+    }).catch((error) => {
       self.setState({
         errorCode: error.message,
         visible: true,
@@ -42,7 +44,7 @@ class SignIn extends Component {
           <Alert color="danger" isOpen={this.state.visible} toggle={this.onDismiss}>
             {this.state.errorCode}
           </Alert>
-          <Button size="lg">Sign In</Button>
+          <Button size="lg" block>Sign In</Button>
         </Form>
       </div>
     )

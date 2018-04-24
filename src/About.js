@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { fireauth } from "./base";
 import { NavLink } from 'react-router-dom';
-import { Form, FormGroup, Label, Input, Button, Alert } from 'reactstrap';
+import { Form, FormGroup, Label, Input, Button, Alert, Navbar, NavbarBrand, NavbarToggler, Collapse, Nav, NavItem, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
 import logo from './logo.svg';
+import dollar from './dollar.svg'
+
 
 class About extends Component {
   constructor(props) {
@@ -36,7 +38,7 @@ class About extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          <img src={dollar} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to our CS252 Project</h1>
         </header>
         <p className="App-intro">

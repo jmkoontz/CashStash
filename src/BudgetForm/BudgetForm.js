@@ -3,6 +3,7 @@ import {firestore} from "../base";
 import {Form, FormGroup, InputGroup, Collapse, InputGroupAddon, Input, Alert, Button, Container, Row, Col, Card, CardBody, CardTitle} from 'reactstrap';
 
 import './BudgetForm.css'
+
 import TopBar from '../Main/TopBar';
 
 class BudgetForm extends Component {

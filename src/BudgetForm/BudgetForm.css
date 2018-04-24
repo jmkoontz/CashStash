@@ -16,3 +16,7 @@
 .centerText {
     text-align: center;
 }
+
+.cord {
+    border: solid 1px black;
+}

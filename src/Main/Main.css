@@ -5,9 +5,74 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 
 .titleCash {
     font-family: "Bookman Old Style";
-    color: lawngreen;
+    color: yellowgreen;
+}
+
+.titOut {
+    font-family: "Bookman Old Style";
+    color: #353941;
 }
 
 .space {
     height: 3em;
+}
+
+.moreSpace {
+    height: 60em;
+}
+
+.show {
+    border: solid 1px black;
+}
+
+/*Background picture*/
+.titlePic {
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+}
+
+.titlePic img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    min-width: 50%;
+    min-height: 50%;
+    opacity: 0.4;
+}
+
+.backColor {
+    background-color: #F5F5F5;
+    opacity: 1;
+}
+
+.fullBudget {
+    font-size: 2em;
+}
+
+.centerThings {
+    align-content: center;
+    align-self: center;
+    alignment: center;
+    align-items: center;
+    child-align: middle;
+    margin: 0 auto;
+}
+
+.fullBack {
+    background-color: #353941;
+}
+
+.graphBack {
+    background-color: whitesmoke;
+}
+
+.backImage {
+    background-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)),url("../dollabills.jpeg");
+
 }

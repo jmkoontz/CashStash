@@ -144,7 +144,8 @@ class Main extends Component {
       )
     } else {  // if user is not signed in
       return (
-          <div className="App fullBack">
+          <div className="App">
+              <body className="backImage">
 
               <TopBar signedIn={false} {...data}/>
 
@@ -212,6 +213,7 @@ class Main extends Component {
                       </Col>
                   </Row>
               </Container>
+              </body>
           </div>
       )
     }

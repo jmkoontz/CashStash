@@ -12,3 +12,7 @@
     color: #222222 !important;
     border: none !important;
 }
+
+.centerText {
+    text-align: center;
+}

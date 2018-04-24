@@ -6,7 +6,7 @@ import { Form, FormGroup,InputGroup, Label, InputGroupAddon, Input, Button, Cont
 import dollar from '../dollar.svg'
 
 import './BudgetForm.css'
-
+import TopBar from '../TopBar'
 class BudgetForm extends Component {
     constructor(props) {
         super(props);
@@ -37,13 +37,17 @@ class BudgetForm extends Component {
     render() {
         return (
             <div>
-                <Container fluid>
-                    <Row>
-                        /*Top Bar goes here*/
-                    </Row>
-                    <Row>
+                <TopBar/>
 
+                <Container fluid>
+
+                    <br/>
+
+                    <Row>
+                        <Col/>
                         <Col>
+                            <h1 className={"centerText"}>Monthly Info</h1>
+                            <hr/>
                             <Form>
                                 <FormGroup>
                                     <InputGroup>
@@ -81,7 +85,6 @@ class BudgetForm extends Component {
                                 </FormGroup>
                             </Form>
                         </Col>
-                        <Col/>
                         <Col/>
                     </Row>
                 </Container>

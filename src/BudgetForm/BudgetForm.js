@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import {fireauth} from "../base";
+import {firestore} from "../base";
 import {Form, FormGroup, InputGroup, Collapse, InputGroupAddon, Input, Alert, Button, Container, Row, Col, Card, CardBody, CardTitle} from 'reactstrap';
 
 import './BudgetForm.css'
-import TopBar from '../Main/TopBar'
+import TopBar from '../Main/TopBar';
 
 class BudgetForm extends Component {
   constructor(props) {
@@ -22,6 +22,8 @@ class BudgetForm extends Component {
   submitBudget = (ev) => {
     ev.preventDefault();  // stop page from redirecting
     let self = this;
+
+
   };
 
   // add budget item to form
@@ -104,6 +106,9 @@ class BudgetForm extends Component {
         <TopBar/>
         <Container fluid>
           <br/>
+          <br/>
+          <br/>
+          <br/>
           <Row>
             <Col/>
             <Col>
@@ -138,8 +143,8 @@ class BudgetForm extends Component {
                 <FormGroup>
                   <Row>
                     <Col>
-                      <Button onClick={this.toggleCollapse}>+</Button>
-                      <Collapse isOpen={this.state.collapse} style={{marginBottom: '1rem'}}>
+                      <Button onClick={this.toggleCollapse} style={{marginBottom: '1rem'}}>+</Button>
+                      <Collapse isOpen={this.state.collapse}>
                         <Card>
                           <CardBody>
                             <CardTitle>New Category</CardTitle>
@@ -160,7 +165,7 @@ class BudgetForm extends Component {
                       </Collapse>
                     </Col>
                     <Col>
-                      <Button className={"saveForm"}>Submit Budget</Button>
+                      <Button className="saveForm">Submit Budget</Button>
                     </Col>
                   </Row>
                 </FormGroup>

@@ -50,10 +50,27 @@ class BudgetForm extends Component {
         visible: false,
       });
 
-      
+      let budgetRef = firestore.collection("users").doc(this.state.uid).collection("budgets").doc(this.getCode());
+      budgetRef.set({
+        name: name,
+        income: monthlyIncome,
+        items: self.state.items,
+      }).catch((error) => {
+        console.log("Error setting budget:", error);
+      });
     }
   };
 
+  // generate a code for the budget in Firebase
+  getCode = () => {
+    let code = "";
+    for (let i = 0; i < 8; i++)
+      code += Math.floor(Math.random() * 10);
+
+    return code;
+  };
+
+  // check that all budget items have an amount inputted
   checkInputs = () => {
     for (let i in this.state.items) {
       if (this.state.items.hasOwnProperty(i)) {

@@ -4,8 +4,6 @@ import {Form, FormGroup, InputGroup, Collapse, InputGroupAddon, Input, Alert, Bu
 
 import './BudgetForm.css'
 
-import TopBar from '../Main/TopBar';
-
 class BudgetForm extends Component {
   constructor(props) {
     super(props);
@@ -26,30 +24,43 @@ class BudgetForm extends Component {
     ev.preventDefault();  // stop page from redirecting
     let self = this;
 
+    let name = ev.target.name.value;
     let monthlyIncome = ev.target.monthlyIncome.value;
-console.log(monthlyIncome);
+
     // check for valid input
-    if (monthlyIncome == null || monthlyIncome.length === 0) {
-      console.log("here");
+    if (name == null || name.length === 0) {
+      this.setState({
+        errorCode: "Please enter a name for the budget.",
+        visible: true,
+      });
+    } else if (monthlyIncome == null || monthlyIncome.length === 0) {
       this.setState({
         errorCode: "Please enter a monthly income.",
         visible: true,
       });
-    } else if (this.checkInputs(ev) === false) {
+    } else if (this.checkInputs() === false) {
       this.setState({
         errorCode: "Please enter an amount for each category.",
         visible: true,
       });
+    } else {
+      // reset error messages
+      this.setState({
+        errorCode: "",
+        visible: false,
+      });
+
+      
     }
   };
 
-  checkInputs = (ev) => {
-    this.state.items.forEach((item) => {
-      let name = item.name;
-      console.log(ev.target.$[name].value);
-      if (ev.target.$(name).value === "")
-        return false;
-    });
+  checkInputs = () => {
+    for (let i in this.state.items) {
+      if (this.state.items.hasOwnProperty(i)) {
+        if (this.state.items[i].amount === "")
+          return false;
+      }
+    }
 
     return true;
   };
@@ -79,7 +90,10 @@ console.log(monthlyIncome);
       this.setState({
         items: this.state.items.concat({name: name, amount: amount}),
         collapse: false,
+        errorCode: "",
+        visible: false,
       });
+
       // reset form
       document.getElementById(nameID).value = "";
       document.getElementById(amountID).value = "";
@@ -96,13 +110,24 @@ console.log(monthlyIncome);
   };
 
   updateNameInputValue = (name) => {
-    console.log(name);
     this.setState({nameInput: name});
   };
 
   updateAmountInputValue = (amount) => {
-    console.log(amount);
     this.setState({amountInput: amount});
+  };
+
+  updateItem = (name, amount) => {
+    let tmpItems = [];
+
+    this.state.items.forEach((item) => {
+      if (item.name === name)
+        tmpItems.push({name: name, amount: amount});
+      else
+        tmpItems.push(item);
+    });
+
+    this.setState({items: tmpItems});
   };
 
   // toggle collapse for adding a new category
@@ -121,7 +146,7 @@ console.log(monthlyIncome);
       <FormGroup key={item.name}>
         <InputGroup>
           <InputGroupAddon addonType={"prepend"}>{item.name}</InputGroupAddon>
-          <Input name={item.name} placeholder="Amount" defaultValue={item.amount}/>
+          <Input onChange={(ev) => this.updateItem(item.name, ev.target.value)} placeholder="Amount" defaultValue={item.amount}/>
           <InputGroupAddon addonType={"append"}>
             <Button onClick={() => {this.removeItem(item)}}>-</Button>
           </InputGroupAddon>

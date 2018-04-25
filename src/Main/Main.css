@@ -4,7 +4,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 }
 
 .titleCash {
-    font-family: "Bookman Old Style";
+
     color: yellowgreen;
 }
 
@@ -14,7 +14,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 }
 
 .test {
-    background-color: greenyellow !important;
+    background-color: yellowgreen !important;
 }
 
 .space {

@@ -40,7 +40,7 @@ class Main extends Component {
 
       show: false,
       edit: false,
-      graphs: false,
+      graphs: true,
     }
   }
 
@@ -97,71 +97,51 @@ class Main extends Component {
     if (this.state.uid) {   // if user is signed in
       return (
         <div className="App">
-          <Container fluid className="topBar">
-            <Row>
-              <div className={"titlePic"}>
-                <img src={intro} alt=""/>
-              </div>
-            </Row>
-          </Container>
+          <body className="backImage">
           <TopBar signedIn={true} {...data}/>
-          <br className={"backColor"}/>
-          <br className={"backColor"}/>
-          <br className={"backColor"}/>
-          <Container>
-            <Row className="backColor"/>
-            <Row className={"backColor"}>
-              <Col className={"backColor"} xs={4}/>
-              <Col className={"backColor"} xs={4}>
+          <br/>
+          <br/>
+          <br/>
+          <Container className="graphBack">
+            <Row/>
+            <Row>
+              <Col xs={4}/>
+              <Col xs={4}>
                 <br/>
                 <h2 className="titleCash">{this.state.firstName}'s Cash Stash</h2>
               </Col>
-              <Col className={"backColor"} xs={4}/>
+              <Col xs={4}/>
             </Row>
               {this.state.graphs
                 ?
-                <Row className={"backColor moreSpace"}>
-                  <Col xs={3} className={"backColor"}>
-                    {this.state.edit
-                      ?
-                      <div>
-                        <br/>
-                        <Button onClick={this.switchEdit}>Edit Budget</Button>
-                        <br/>
-                        <BudgetForm showGraphs={this.showGraphs}/>
-                      </div>
-                      :
-                      <div>
-                        <br/>
-                        <Button onClick={this.switchEdit}>Edit Budget</Button>
-                        <br/>
-                      </div>
-                    }
+                <Row className={"moreSpace"}>
+                  <Col xs={6}>
+                    <div>
+                      <br/>
+                      <BudgetForm showGraphs={this.showGraphs}/>
+                    </div>
                   </Col>
-                  <Col xs={9} className={"backColor"}>
-                    {/*Show the graphs here*/}
+                  <Col xs={1}/>
+                  <Col xs={{size: 4}}>
+                    <br/>
+                    <ListGroup>
+                      <ListGroupItem className={"test"} active>Select a Budget</ListGroupItem>
+                    </ListGroup>
+                    <ListGroup>
+                      {/*This is where we will loop over available budgets*/}
+                      <ListGroupItem className={"test"} tag="button" onClick={this.printOut} action>June Budget</ListGroupItem>
+                      <ListGroupItem className={"test"} tag="button" >July Budget</ListGroupItem>
+                      <ListGroupItem className={"test"} tag="button" >August Budget</ListGroupItem>
+                      <ListGroupItem className={"test"} tag="button" >September Budget</ListGroupItem>
+                    </ListGroup>
                   </Col>
+                  <Col xs={1} />
                 </Row>
                 :
-                  <Row className={"backColor moreSpace"}>
-                    <Col xs={3} className={"backColor"}/>
-                      {/*{this.state.edit
-                        ?
-                        <div>
-                          <br/>
-                          <Button onClick={this.switchEdit}>Edit Budget</Button>
-                          <br/>
-                          <BudgetForm showGraphs={this.showGraphs}/>
-                        </div>
-                        :
-                        <div>
-                          <br/>
-                          <Button onClick={this.switchEdit}>Edit Budget</Button>
-                          <br/>
-                        </div>
-                      }
-                    </Col>*/}
-                    <Col xs={6} className={"backColor"}>
+                  <Row className={"moreSpace"}>
+                    <Col xs={3}/>
+
+                    <Col xs={6}>
                       {this.state.show
                         ?
                         <div>
@@ -175,19 +155,11 @@ class Main extends Component {
                         </div>
                       }
                     </Col>
-                    <Col xs={3} className={"backColor"}>
-                      <br/>
-                      <ListGroup>
-                        <ListGroupItem className={"test"} active tag="button" action>Select a Budget</ListGroupItem>
-                        <ListGroupItem className={"test"} tag="button" onClick={this.printOut} action>Dapibus ac facilisis in</ListGroupItem>
-                        <ListGroupItem className={"test"} tag="button" action>Morbi leo risus</ListGroupItem>
-                        <ListGroupItem className={"test"} tag="button" action>Porta ac consectetur ac</ListGroupItem>
-                        <ListGroupItem className={"test"} tag="button" action>Vestibulum at eros</ListGroupItem>
-                      </ListGroup>
-                    </Col>
+                    <Col xs={3}/>
                   </Row>
               }
           </Container>
+          </body>
         </div>
       )
     } else {  // if user is not signed in

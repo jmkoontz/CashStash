@@ -178,11 +178,11 @@ class Main extends Component {
                     <Col xs={3} className={"backColor"}>
                       <br/>
                       <ListGroup>
-                        <ListGroupItem className={""} active tag="button" action>Select a Budget</ListGroupItem>
-                        <ListGroupItem tag="button" onClick={this.printOut} action>Dapibus ac facilisis in</ListGroupItem>
-                        <ListGroupItem tag="button" action>Morbi leo risus</ListGroupItem>
-                        <ListGroupItem tag="button" action>Porta ac consectetur ac</ListGroupItem>
-                        <ListGroupItem tag="button" action>Vestibulum at eros</ListGroupItem>
+                        <ListGroupItem className={"test"} active tag="button" action>Select a Budget</ListGroupItem>
+                        <ListGroupItem className={"test"} tag="button" onClick={this.printOut} action>Dapibus ac facilisis in</ListGroupItem>
+                        <ListGroupItem className={"test"} tag="button" action>Morbi leo risus</ListGroupItem>
+                        <ListGroupItem className={"test"} tag="button" action>Porta ac consectetur ac</ListGroupItem>
+                        <ListGroupItem className={"test"} tag="button" action>Vestibulum at eros</ListGroupItem>
                       </ListGroup>
                     </Col>
                   </Row>

@@ -4,13 +4,22 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 }
 
 .titleCash {
-    font-family: "Bookman Old Style";
+
     color: yellowgreen;
 }
 
 .titOut {
     font-family: "Bookman Old Style";
     color: #353941;
+}
+
+.cord {
+    border: solid 1px black;
+}
+
+.test {
+    background-color: yellowgreen !important;
+    border: solid 1px #353941 !important
 }
 
 .space {
@@ -69,7 +78,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 }
 
 .graphBack {
-    background-color: whitesmoke;
+    background-color: #F5F5F5;
     align-content: center;
     text-align: center;
 }

@@ -83,9 +83,12 @@ class Main extends Component {
     });
   };
 
-  printOut = () => {
-    console.log("Hello!")
-  }
+  /*
+   * Sets the states need for the graph data based on the budget name
+   */
+  loadBudget = () => {
+
+  };
 
 
   render() {
@@ -118,6 +121,7 @@ class Main extends Component {
                   <Col xs={6}>
                     <div>
                       <br/>
+                      {/* TODO make a loop which generates the Budget form based on what the user already had*/}
                       <BudgetForm showGraphs={this.showGraphs}/>
                     </div>
                   </Col>
@@ -128,11 +132,11 @@ class Main extends Component {
                       <ListGroupItem className={"test"} active>Select a Budget</ListGroupItem>
                     </ListGroup>
                     <ListGroup>
-                      {/*This is where we will loop over available budgets*/}
-                      <ListGroupItem className={"test"} tag="button" onClick={this.printOut} action>June Budget</ListGroupItem>
-                      <ListGroupItem className={"test"} tag="button" >July Budget</ListGroupItem>
-                      <ListGroupItem className={"test"} tag="button" >August Budget</ListGroupItem>
-                      <ListGroupItem className={"test"} tag="button" >September Budget</ListGroupItem>
+                      {/* TODO generate all the existing */}
+                      <ListGroupItem className={"test"} tag="button" onClick={this.loadBudget}>June Budget</ListGroupItem>
+                      <ListGroupItem className={"test"} tag="button" onClick={this.loadBudget}>July Budget</ListGroupItem>
+                      <ListGroupItem className={"test"} tag="button" onClick={this.loadBudget}>August Budget</ListGroupItem>
+                      <ListGroupItem className={"test"} tag="button" onClick={this.loadBudget}>September Budget</ListGroupItem>
                     </ListGroup>
                   </Col>
                   <Col xs={1} />

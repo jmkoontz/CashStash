@@ -50,10 +50,28 @@ class BudgetForm extends Component {
         visible: false,
       });
 
-      
+      // write budget into Firebase
+      let budgetRef = firestore.collection("users").doc(this.props.uid).collection("budgets").doc(this.getCode());
+      budgetRef.set({
+        name: name,
+        income: parseInt(monthlyIncome, 10),
+        items: self.state.items,
+      }).catch((error) => {
+        console.log("Error setting budget:", error);
+      });
     }
   };
 
+  // generate a code for the budget in Firebase
+  getCode = () => {
+    let code = "";
+    for (let i = 0; i < 8; i++)
+      code += Math.floor(Math.random() * 10);
+
+    return code;
+  };
+
+  // check that all budget items have an amount inputted
   checkInputs = () => {
     for (let i in this.state.items) {
       if (this.state.items.hasOwnProperty(i)) {
@@ -68,7 +86,7 @@ class BudgetForm extends Component {
   // add budget item to form
   addItem = (nameID, amountID) => {
     let name = this.state.nameInput;
-    let amount = this.state.amountInput;
+    let amount = parseInt(this.state.amountInput, 10);
 
     // check for valid input
     if (name == null || name.length === 0) {
@@ -76,7 +94,7 @@ class BudgetForm extends Component {
         errorCode: "Please enter a category name.",
         visible: true,
       });
-    } else if (amount == null || amount.length === 0) {
+    } else if (isNaN(amount)) {
       this.setState({
         errorCode: "Please enter an amount value.",
         visible: true,
@@ -89,6 +107,8 @@ class BudgetForm extends Component {
     } else {
       this.setState({
         items: this.state.items.concat({name: name, amount: amount}),
+        nameInput: "",
+        amountInput: "",
         collapse: false,
         errorCode: "",
         visible: false,

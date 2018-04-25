@@ -36,7 +36,7 @@ class Main extends Component {
       firstName: null,
       lastName: null,
 
-      budget: [],
+      budgets: [],
 
       show: false,
       edit: false,
@@ -59,7 +59,13 @@ class Main extends Component {
         self.setState({
           firstName: doc.data().firstName,
           lastName: doc.data().lastName,
-          budget: doc.data().budget,
+        });
+
+        let budgetsRef = userRef.collection("budgets");
+        budgetsRef.get().then((docs) => {
+          docs.forEach((doc) => {
+            self.setState({budgets: self.state.budgets.concat({code: doc.id, data: doc.data()})});
+          });
         });
       }
     });
@@ -92,6 +98,7 @@ class Main extends Component {
 
 
   render() {
+    console.log(this.state.budgets);
     let data = {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
@@ -122,7 +129,7 @@ class Main extends Component {
                     <div>
                       <br/>
                       {/* TODO make a loop which generates the Budget form based on what the user already had*/}
-                      <BudgetForm showGraphs={this.showGraphs}/>
+                      <BudgetForm uid={this.state.uid} showGraphs={this.showGraphs}/>
                     </div>
                   </Col>
                   <Col xs={1}/>

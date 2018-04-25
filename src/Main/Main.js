@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {firestore} from "../base";
-import {Container, Row, Col, Button} from 'reactstrap';
+import {Container, Row, Col, Button, ListGroup, ListGroupItem} from 'reactstrap';
 import {ResponsiveContainer} from 'recharts';
 import './Main.css';
 
@@ -81,6 +81,10 @@ class Main extends Component {
     this.setState({
       graphs: true,
     });
+  };
+
+  printOut = () => {
+    console.log("Hello!")
   }
 
 
@@ -140,8 +144,8 @@ class Main extends Component {
                 </Row>
                 :
                   <Row className={"backColor moreSpace"}>
-                    <Col xs={3} className={"backColor"}>
-                      {this.state.edit
+                    <Col xs={3} className={"backColor"}/>
+                      {/*{this.state.edit
                         ?
                         <div>
                           <br/>
@@ -156,7 +160,7 @@ class Main extends Component {
                           <br/>
                         </div>
                       }
-                    </Col>
+                    </Col>*/}
                     <Col xs={6} className={"backColor"}>
                       {this.state.show
                         ?
@@ -171,7 +175,16 @@ class Main extends Component {
                         </div>
                       }
                     </Col>
-                    <Col xs={3} className={"backColor"}/>
+                    <Col xs={3} className={"backColor"}>
+                      <br/>
+                      <ListGroup>
+                        <ListGroupItem className={""} active tag="button" action>Select a Budget</ListGroupItem>
+                        <ListGroupItem tag="button" onClick={this.printOut} action>Dapibus ac facilisis in</ListGroupItem>
+                        <ListGroupItem tag="button" action>Morbi leo risus</ListGroupItem>
+                        <ListGroupItem tag="button" action>Porta ac consectetur ac</ListGroupItem>
+                        <ListGroupItem tag="button" action>Vestibulum at eros</ListGroupItem>
+                      </ListGroup>
+                    </Col>
                   </Row>
               }
           </Container>

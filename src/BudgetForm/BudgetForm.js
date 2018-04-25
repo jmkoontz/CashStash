@@ -148,6 +148,12 @@ console.log(monthlyIncome);
               <Form onSubmit={(ev) => this.submitBudget(ev)}>
                 <FormGroup>
                   <InputGroup>
+                    <InputGroupAddon addonType={"prepend"}>Budget Name</InputGroupAddon>
+                    <Input name="name" placeholder="Name"/>
+                  </InputGroup>
+                </FormGroup>
+                <FormGroup>
+                  <InputGroup>
                     <InputGroupAddon addonType={"prepend"}>Monthly Income</InputGroupAddon>
                     <Input name="monthlyIncome" placeholder="Amount"/>
                   </InputGroup>

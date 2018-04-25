@@ -24,10 +24,16 @@ class BudgetForm extends Component {
     ev.preventDefault();  // stop page from redirecting
     let self = this;
 
+    let name = ev.target.name.value;
     let monthlyIncome = ev.target.monthlyIncome.value;
 
     // check for valid input
-    if (monthlyIncome == null || monthlyIncome.length === 0) {
+    if (name == null || name.length === 0) {
+      this.setState({
+        errorCode: "Please enter a name for the budget.",
+        visible: true,
+      });
+    } else if (monthlyIncome == null || monthlyIncome.length === 0) {
       this.setState({
         errorCode: "Please enter a monthly income.",
         visible: true,
@@ -38,15 +44,23 @@ class BudgetForm extends Component {
         visible: true,
       });
     } else {
-      console.log("written!");
+      // reset error messages
+      this.setState({
+        errorCode: "",
+        visible: false,
+      });
+
+      
     }
   };
 
   checkInputs = () => {
-    this.state.items.forEach((item) => {
-      if (item.amount === "")
-        return false;
-    });
+    for (let i in this.state.items) {
+      if (this.state.items.hasOwnProperty(i)) {
+        if (this.state.items[i].amount === "")
+          return false;
+      }
+    }
 
     return true;
   };
@@ -76,6 +90,8 @@ class BudgetForm extends Component {
       this.setState({
         items: this.state.items.concat({name: name, amount: amount}),
         collapse: false,
+        errorCode: "",
+        visible: false,
       });
 
       // reset form
@@ -102,11 +118,14 @@ class BudgetForm extends Component {
   };
 
   updateItem = (name, amount) => {
-    let tmpItems = this.state.items.filter((item) => {
-      return item.name !== name;
-    });
+    let tmpItems = [];
 
-    tmpItems.push({name: name, amount: amount});
+    this.state.items.forEach((item) => {
+      if (item.name === name)
+        tmpItems.push({name: name, amount: amount});
+      else
+        tmpItems.push(item);
+    });
 
     this.setState({items: tmpItems});
   };

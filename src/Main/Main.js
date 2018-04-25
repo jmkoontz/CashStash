@@ -100,7 +100,7 @@ class Main extends Component {
     if (this.state.uid) {   // if user is signed in
       return (
         <div className="App">
-          <body className="backImage">
+          <div className="backImage">
           <TopBar signedIn={true} {...data}/>
           <br/>
           <br/>
@@ -163,7 +163,7 @@ class Main extends Component {
                   </Row>
               }
           </Container>
-          </body>
+          </div>
         </div>
       )
     } else {  // if user is not signed in

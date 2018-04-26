@@ -46,10 +46,13 @@ class BudgetForm extends Component {
     //console.log(this.state);
     //console.log(this.props);
     if (nextProps.selectedBudget) {
+      console.log(nextProps.selectedBudget.data.name);
       this.setState({
         budgetName: nextProps.selectedBudget.data.name,
         incomeInput: nextProps.selectedBudget.data.income,
         items: nextProps.selectedBudget.data.items,
+      }, () => {
+        console.log(this.state.budgetName);
       });
     } else {
       this.setState({
@@ -58,6 +61,7 @@ class BudgetForm extends Component {
         items: [],
       });
     }
+    //console.log(this.state.budgetName);
   }
 
   submitBudget = (ev) => {
@@ -222,7 +226,6 @@ class BudgetForm extends Component {
   };
 
   render() {
-    console.log(this.props.test);
     let allItems = [];
 
     this.state.items.forEach((item) => {
@@ -246,13 +249,23 @@ class BudgetForm extends Component {
                 <FormGroup>
                   <InputGroup>
                     <InputGroupAddon addonType={"prepend"}>Budget Name</InputGroupAddon>
-                    <Input name="name" placeholder="Name" defaultValue={this.state.budgetName}/>
+                    {this.props.selectedBudget
+                      ?
+                      <Input name="name" placeholder="Name" defaultValue={this.props.selectedBudget.data.name}/>
+                      :
+                      <Input name="name" placeholder="Name"/>
+                    }
                   </InputGroup>
                 </FormGroup>
                 <FormGroup>
                   <InputGroup>
                     <InputGroupAddon addonType={"prepend"}>Monthly Income</InputGroupAddon>
-                    <Input name="monthlyIncome" placeholder="Amount" defaultValue={this.state.incomeInput}/>
+                    {this.props.selectedBudget
+                      ?
+                      <Input name="name" placeholder="Name" defaultValue={this.props.selectedBudget.data.income}/>
+                      :
+                      <Input name="name" placeholder="Name"/>
+                    }
                   </InputGroup>
                 </FormGroup>
                 {allItems}

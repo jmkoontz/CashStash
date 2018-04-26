@@ -43,7 +43,6 @@ class Main extends Component {
       new: false,
 
       selectedBudget: null,
-      test: false,
     }
   }
 
@@ -93,11 +92,7 @@ class Main extends Component {
    * Sets the states need for the graph data based on the budget name
    */
   loadBudget = (budget) => {
-    console.log("loading new");
-    this.setState({
-      selectedBudget: budget,
-      test: budget.data.name,
-    });
+    this.setState({selectedBudget: budget});
   };
 
   render() {

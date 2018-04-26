@@ -148,7 +148,7 @@ class Main extends Component {
                 <Col xs={4}/>
                 <Col xs={4}>
                   <br/>
-                  <h2 className="titleCash">{this.state.firstName}'s CashStash</h2>
+                  <h2 className="titleCash">{this.state.firstName}'s Cash$tash</h2>
                 </Col>
                 <Col xs={4}/>
               </Row>
@@ -254,7 +254,8 @@ class Main extends Component {
             <Row>
               <Col xs={12}>
                 <h2 className="titleCash">Cash$tash</h2>
-                <p>Your money troubles are a thing of the past! Cash Stash is a simple and effective way to manage your monthly,
+                <br/>
+                <p className={"titOut"}>Your money troubles are a thing of the past!<hr/>Cash Stash is a simple and effective way to manage your monthly,
                   weekly, and daily budget.  Our graphs give a break down of where each dollar of your budget ends up to help you plan ahead.</p>
               </Col>
             </Row>

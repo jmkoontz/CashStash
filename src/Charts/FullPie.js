@@ -78,9 +78,9 @@ class FullPie extends Component{
         let temp = this.state.tempArray;
         return (
             <PieChart width={500} height={500}>
-                <Pie data={temp} dataKey="amount" nameKey="name" cx="50%" cy="50%"
+                <Pie data={this.props.vals.data.items} dataKey="amount" nameKey="name" cx="50%" cy="50%"
                      outerRadius={200} fill="#8884d8" label>
-                    {temp.map((entry, index) => <Cell key={entry.amount} fill={colors[index].color}/>)}
+                    {this.props.vals.data.items.map((entry, index) => <Cell key={entry.amount} fill={colors[index].color}/>)}
                 </Pie><Tooltip/>
             </PieChart>
         )

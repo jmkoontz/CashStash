@@ -21,7 +21,10 @@ class DailyPie extends Component{
         this.setDailyValues();
     }
 
-    componentWillReceiveProps() {
+    componentWillReceiveProps (nextProps) {
+        this.setState({
+            tempArray : nextProps.vals.data.items,
+        });
         this.makeTempArray();
         this.setDailyValues();
     }

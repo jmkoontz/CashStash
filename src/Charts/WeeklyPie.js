@@ -21,7 +21,10 @@ class WeeklyPie extends Component{
         this.setWeeklyValues();
     }
 
-    componentWillReceiveProps() {
+    componentWillReceiveProps (nextProps) {
+        this.setState({
+            tempArray : nextProps.vals.data.items,
+        });
         this.makeTempArray();
         this.setWeeklyValues();
     }

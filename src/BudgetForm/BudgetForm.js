@@ -12,12 +12,24 @@ class BudgetForm extends Component {
       items: [],
 
       collapse: false,
+      budgetName: "",
+      incomeInput: "",
       nameInput: "",
       amountInput: "",
 
       errorCode: "",
       visible: false,
     };
+  }
+
+  componentWillMount() {
+    if (this.props.selectedBudget) {
+      this.setState({
+        budgetName: this.props.selectedBudget.data.name,
+        incomeInput: this.props.selectedBudget.data.income,
+        items: this.props.selectedBudget.data.items,
+      });
+    }
   }
 
   submitBudget = (ev) => {
@@ -59,11 +71,16 @@ class BudgetForm extends Component {
       }).catch((error) => {
         console.log("Error setting budget:", error);
       });
+
+      window.location.reload();   // force reload page
     }
   };
 
   // generate a code for the budget in Firebase
   getCode = () => {
+    if (this.props.selectedBudget)
+      return this.props.selectedBudget.code;
+
     let code = "";
     for (let i = 0; i < 8; i++)
       code += Math.floor(Math.random() * 10);
@@ -199,33 +216,15 @@ class BudgetForm extends Component {
                 <FormGroup>
                   <InputGroup>
                     <InputGroupAddon addonType={"prepend"}>Budget Name</InputGroupAddon>
-                    <Input name="name" placeholder="Name"/>
+                    <Input name="name" placeholder="Name" defaultValue={this.state.budgetName}/>
                   </InputGroup>
                 </FormGroup>
                 <FormGroup>
                   <InputGroup>
                     <InputGroupAddon addonType={"prepend"}>Monthly Income</InputGroupAddon>
-                    <Input name="monthlyIncome" placeholder="Amount"/>
+                    <Input name="monthlyIncome" placeholder="Amount" defaultValue={this.state.incomeInput}/>
                   </InputGroup>
                 </FormGroup>
-                {/*<FormGroup>
-                  <InputGroup>
-                    <InputGroupAddon addonType={"prepend"}>Living Expense</InputGroupAddon>
-                    <Input placeholder="Amount"/>
-                  </InputGroup>
-                </FormGroup>
-                <FormGroup>
-                  <InputGroup>
-                    <InputGroupAddon addonType={"prepend"}>Food</InputGroupAddon>
-                    <Input placeholder="Amount"/>
-                  </InputGroup>
-                </FormGroup>
-                <FormGroup>
-                  <InputGroup>
-                    <InputGroupAddon addonType={"prepend"}>Entertainment</InputGroupAddon>
-                    <Input placeholder="Amount"/>
-                  </InputGroup>
-                </FormGroup>*/}
                 {allItems}
                 <Alert color="danger" isOpen={this.state.visible} toggle={this.onDismiss}>
                   {this.state.errorCode}

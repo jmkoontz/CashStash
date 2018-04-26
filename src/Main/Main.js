@@ -68,7 +68,6 @@ class Main extends Component {
 
       budgets: [],
 
-      edit: false,
       new: false,
 
       selectedBudget: null,
@@ -102,16 +101,8 @@ class Main extends Component {
     });
   };
 
-  showEdit = () => {
-    this.setState({
-      edit: true,
-      new: false,
-    });
-  };
-
   showNew = () => {
     this.setState({
-      edit: false,
       new: true,
       selectedBudget: null,
     });
@@ -121,7 +112,10 @@ class Main extends Component {
    * Sets the states need for the graph data based on the budget name
    */
   loadBudget = (budget) => {
-    this.setState({selectedBudget: budget});
+    this.setState({
+      new: false,
+      selectedBudget: budget,
+    });
   };
 
   render() {
@@ -153,7 +147,7 @@ class Main extends Component {
                 <br/>
                 <Row>
                   <Col xs={6}>
-                      {(this.state.edit || this.state.new)
+                      {(this.state.new || this.state.selectedBudget)
                           ?
                           <BudgetForm selectedBudget={this.state.selectedBudget} uid={this.state.uid}/>
                           :
@@ -177,17 +171,6 @@ class Main extends Component {
                   </Col>
                   <Col xs={1}/>
                   <Col xs={{size: 4}}>
-                    <Row>
-                      <Col xs={{size: 3}}>
-                        <Button onClick={this.showEdit}>Edit</Button>
-                      </Col>
-
-                    </Row>
-                    <br/>
-
-                    {/*<ListGroup>
-                      <ListGroupItem className="" active>Select a Budget</ListGroupItem>
-                    </ListGroup>*/}
                       <h1>Select a Budget</h1>
                     <br/>
                     <BudgetList budgets={this.state.budgets} selectedBudget={this.state.selectedBudget}

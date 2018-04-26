@@ -9,15 +9,15 @@ class BudgetForm extends Component {
     super(props);
 
     this.state = {
-
       items: [],
 
-      collapse: false,
       budgetName: "",
-      incomeInput: "",
-      nameInput: "",
-      amountInput: "",
+      income: "",
 
+      tmpNameInput: "",
+      tmpAmountInput: "",
+
+      collapse: false,
       errorCode: "",
       visible: false,
     };
@@ -28,13 +28,13 @@ class BudgetForm extends Component {
     if (this.props.selectedBudget) {
       this.setState({
         budgetName: this.props.selectedBudget.data.name,
-        incomeInput: this.props.selectedBudget.data.income,
+        income: this.props.selectedBudget.data.income,
         items: this.props.selectedBudget.data.items,
       });
     } else {
       this.setState({
         budgetName: "",
-        incomeInput: "",
+        income: "",
         items: [],
       });
     }
@@ -45,13 +45,13 @@ class BudgetForm extends Component {
     if (nextProps.selectedBudget) {
       this.setState({
         budgetName: nextProps.selectedBudget.data.name,
-        incomeInput: nextProps.selectedBudget.data.income,
+        income: nextProps.selectedBudget.data.income,
         items: nextProps.selectedBudget.data.items,
       });
     } else {
       this.setState({
         budgetName: "",
-        incomeInput: "",
+        income: "",
         items: [],
       });
     }
@@ -59,10 +59,11 @@ class BudgetForm extends Component {
 
   submitBudget = (ev) => {
     ev.preventDefault();  // stop page from redirecting
+
     let self = this;
 
-    let name = ev.target.name.value;
-    let monthlyIncome = ev.target.monthlyIncome.value;
+    let name = this.state.budgetName;
+    let monthlyIncome = this.state.income;
 
     // check for valid input
     if (name == null || name.length === 0) {
@@ -127,8 +128,8 @@ class BudgetForm extends Component {
 
   // add budget item to form
   addItem = (nameID, amountID) => {
-    let name = this.state.nameInput;
-    let amount = parseInt(this.state.amountInput, 10);
+    let name = this.state.tmpNameInput;
+    let amount = parseInt(this.state.tmpAmountInput, 10);
 
     // check for valid input
     if (name == null || name.length === 0) {
@@ -149,8 +150,8 @@ class BudgetForm extends Component {
     } else {
       this.setState({
         items: this.state.items.concat({name: name, amount: amount}),
-        nameInput: "",
-        amountInput: "",
+        tmpNameInput: "",
+        tmpAmountInput: "",
         collapse: false,
         errorCode: "",
         visible: false,
@@ -171,12 +172,24 @@ class BudgetForm extends Component {
     this.setState({items: tmpItems});
   };
 
-  updateNameInputValue = (name) => {
-    this.setState({nameInput: name});
+  // update budget name
+  updateName = (name) => {
+    this.setState({budgetName: name});
   };
 
-  updateAmountInputValue = (amount) => {
-    this.setState({amountInput: amount});
+  // update monthly income
+  updateIncome = (amount) => {
+    this.setState({income: amount});
+  };
+
+  // update tmpNameInput
+  updateTmpNameInputValue = (name) => {
+    this.setState({tmpNameInput: name});
+  };
+
+  // update tmpAmountValue
+  updateTmpAmountInputValue = (amount) => {
+    this.setState({tmpAmountInput: amount});
   };
 
   // update item in the list when input is changed
@@ -202,18 +215,6 @@ class BudgetForm extends Component {
   onDismiss = () => {
     this.setState({visible: false});
   };
-
-    onChangeComplete = (color) => {
-        this.setState({ curColor : color.hex})
-    };
-
-    handleClick = () => {
-        this.setState({ displayColorPicker: !this.state.displayColorPicker })
-    };
-
-    handleClose = () => {
-        this.setState({ displayColorPicker: false })
-    };
 
   // render individual input in each thing
     renderItem = (item) => {
@@ -254,23 +255,15 @@ class BudgetForm extends Component {
                 <FormGroup>
                   <InputGroup>
                     <InputGroupAddon addonType={"prepend"}>Budget Name</InputGroupAddon>
-                    {this.props.selectedBudget
-                      ?
-                      <Input name="name" placeholder="Name" defaultValue={this.props.selectedBudget.data.name}/>
-                      :
-                      <Input name="name" placeholder="Name"/>
-                    }
+                    <Input name="name" placeholder="Name" onChange={(ev) => this.updateName(ev.target.value)}
+                           value={this.state.budgetName}/>
                   </InputGroup>
                 </FormGroup>
                 <FormGroup>
                   <InputGroup>
                     <InputGroupAddon addonType={"prepend"}>Monthly Income</InputGroupAddon>
-                    {this.props.selectedBudget
-                      ?
-                      <Input name="name" placeholder="Name" defaultValue={this.props.selectedBudget.data.income}/>
-                      :
-                      <Input name="name" placeholder="Name"/>
-                    }
+                    <Input name="income" placeholder="Amount" onChange={(ev) => this.updateIncome(ev.target.value)}
+                           value={this.state.income}/>
                   </InputGroup>
                 </FormGroup>
                 {allItems}
@@ -289,15 +282,15 @@ class BudgetForm extends Component {
                           <CardBody>
                             <CardTitle>New Category</CardTitle>
                             <FormGroup>
-                              <Input onChange={(ev) => this.updateNameInputValue(ev.target.value)} id="nameInput" placeholder="Category Name"/>
+                              <Input onChange={(ev) => this.updateTmpNameInputValue(ev.target.value)} id="tmpNameInput" placeholder="Category Name"/>
                             </FormGroup>
                             <FormGroup>
-                              <Input onChange={(ev) => this.updateAmountInputValue(ev.target.value)} id="amountInput" placeholder="Amount"/>
+                              <Input onChange={(ev) => this.updateTmpAmountInputValue(ev.target.value)} id="tmpAmountInput" placeholder="Amount"/>
                             </FormGroup>
                             <Alert color="danger" isOpen={this.state.visible} toggle={this.onDismiss}>
                               {this.state.errorCode}
                             </Alert>
-                            <Button block onClick={() => this.addItem("nameInput", "amountInput")}>Add to Budget</Button>
+                            <Button block onClick={() => this.addItem("tmpNameInput", "tmpAmountInput")}>Add to Budget</Button>
                           </CardBody>
 
                         </Card>

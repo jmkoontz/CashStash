@@ -20,6 +20,7 @@ class WeeklyPie extends Component {
     }
   }
 
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.vals) {
       this.setState({

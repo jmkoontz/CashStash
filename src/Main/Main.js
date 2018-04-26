@@ -66,12 +66,11 @@ class Main extends Component {
 
       budgets: [],
 
-      show: false,
       edit: false,
       new: false,
-      graphs: true,
 
       selectedBudget: null,
+      test: false,
     }
   }
 
@@ -102,12 +101,6 @@ class Main extends Component {
     });
   };
 
-  switch = () => {
-    this.setState({
-      show: !this.state.show,
-    });
-  };
-
   showEdit = () => {
     this.setState({
       edit: true,
@@ -119,12 +112,7 @@ class Main extends Component {
     this.setState({
       edit: false,
       new: true,
-    });
-  };
-
-  showGraphs = () => {
-    this.setState({
-      graphs: true,
+      selectedBudget: null,
     });
   };
 
@@ -132,7 +120,11 @@ class Main extends Component {
    * Sets the states need for the graph data based on the budget name
    */
   loadBudget = (budget) => {
-    this.setState({selectedBudget: budget});
+    console.log("loading new");
+    this.setState({
+      selectedBudget: budget,
+      test: budget.data.name,
+    });
   };
 
   render() {
@@ -164,17 +156,25 @@ class Main extends Component {
                 <br/>
                 <Row className={"moreSpace"}>
                   <Col xs={6}>
-                    <div>
-                      {(this.state.edit && this.state.selectedBudget)
+                    <BudgetForm selectedBudget={this.state.selectedBudget} uid={this.state.uid} test={this.state.test}/>
+                      {/*(this.state.edit && this.state.selectedBudget)
                         ?
-                        <BudgetForm selectedBudget={this.state.selectedBudget} uid={this.state.uid}
-                                    showGraphs={this.showGraphs}/>
-                        : this.state.new
-                          ?
-                          <BudgetForm uid={this.state.uid} showGraphs={this.showGraphs}/>
-                          : null
-                      }
+
+                        :
+                        {}
+                      */}
+                      {/*this.state.new
+                        ?
+                        <BudgetForm uid={this.state.uid}/>
+                        :
+                        null
+                      */}
+                    {/*<div>
+                      <BudgetForm uid={this.state.uid}/>
                     </div>
+                    <div>
+                      <BudgetForm uid={this.state.uid} selectedBudget={this.state.selectedBudget}/>
+                    </div>*/}
                   </Col>
                   <Col xs={1}/>
                   <Col xs={{size: 4}}>

@@ -1,4 +1,4 @@
-import { PieChart, Cell, Pie, Tooltip } from 'recharts';
+
 import React, { Component } from 'react';
 
 
@@ -20,9 +20,10 @@ class Legend extends Component{
                 {this.props.vals.data.items.map((entry, index) =>
                 <p key={index} style={{color: colors[index].color}}>■ {this.props.vals.data.items[index].name}</p>
             )}
-
+            </div>
         )
     }
 }
 
-export default Legend
+
+export default Legend;

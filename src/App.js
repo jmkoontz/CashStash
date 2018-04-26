@@ -61,11 +61,11 @@ class App extends Component {
   render() {
     return (
       <Switch>
-        <Route exact path='/CashStash' render={() => (
+        <Route exact path='/CashStash/Home' render={() => (
           <Main uid={this.state.uid}/>
         )}/>
 
-        <Route render={() => <Redirect to='/CashStash'/>}/>
+        <Route render={() => <Redirect to='/CashStash/Home'/>}/>
       </Switch>
     );
   }

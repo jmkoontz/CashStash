@@ -16,7 +16,12 @@ class DailyPie extends Component{
         }
     }
 
-    componentWillMount() {
+    componentWillMount () {
+        this.makeTempArray();
+        this.setDailyValues();
+    }
+
+    componentWillReceiveProps() {
         this.makeTempArray();
         this.setDailyValues();
     }

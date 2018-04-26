@@ -21,6 +21,14 @@ class FullPie extends Component{
         this.setMonthlyValues();
     }
 
+    componentWillReceiveProps () {
+        this.setState({
+            tempArray : this.props.vals.data.items,
+        });
+        this.makeTempArray();
+        this.setMonthlyValues();
+    }
+
     makeTempArray = () => {
         for(let value in this.props.vals.data.items) {
             this.state.tempArray[value] = this.props.vals.data.items[value];

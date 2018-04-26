@@ -15,7 +15,13 @@ class WeeklyPie extends Component{
            tempArray : [],
         }
     }
-    componentWillMount() {
+
+    componentWillMount () {
+        this.makeTempArray();
+        this.setWeeklyValues();
+    }
+
+    componentWillReceiveProps() {
         this.makeTempArray();
         this.setWeeklyValues();
     }

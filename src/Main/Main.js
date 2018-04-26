@@ -137,38 +137,31 @@ class Main extends Component {
                 ?
                 <div>
                   <br/>
-                  <Row>
-                    <Col xs={3}>
-                      <Button onClick={this.showEdit}>Edit</Button>
-                    </Col>
-                    <Col xs={3}>
-                      <Button onClick={this.showNew}>New Budget</Button>
-                    </Col>
-                  </Row>
                   <Row className={"moreSpace"}>
                     <Col xs={6}>
                       <div>
-                        <br/>
-                        {/*{!this.state.edit
+                        {(this.state.edit && this.state.selectedBudget)
                           ?
-                            null
-                          : this.props.selectedBudget
-                            ?
-                            <BudgetForm selectedBudget={this.props.selectedBudget} uid={this.state.uid}
-                                        showGraphs={this.showGraphs}/>
-                            : null
-                        }*/}
-                        {this.state.new
-                          ?
-                          <BudgetForm selectedBudget={this.props.selectedBudget} uid={this.state.uid}
+                          <BudgetForm selectedBudget={this.state.selectedBudget} uid={this.state.uid}
                                       showGraphs={this.showGraphs}/>
-                          : null
+                          : this.state.new
+                            ?
+                            <BudgetForm uid={this.state.uid} showGraphs={this.showGraphs}/>
+                            : null
                         }
-                        {/* TODO make a loop which generates the Budget form based on what the user already had*/}
                       </div>
                     </Col>
                   <Col xs={1}/>
                   <Col xs={{size: 4}}>
+                    <Row>
+                      <Col xs={{size: 3}}>
+                        <Button onClick={this.showEdit}>Edit</Button>
+                      </Col>
+                      <Col xs={2}>
+                        <Button onClick={this.showNew}>New Budget</Button>
+                      </Col>
+                    </Row>
+                    <br/>
                     <ListGroup>
                       <ListGroupItem className="" active>Select a Budget</ListGroupItem>
                     </ListGroup>

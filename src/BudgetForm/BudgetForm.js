@@ -188,7 +188,12 @@ class BudgetForm extends Component {
         <Container fluid>
           <Row>
             <Col>
-              <h1 className={"centerText"}>Monthly Info</h1>
+              {this.props.selectedBudget
+                ?
+                <h1 className={"centerText"}>{this.props.selectedBudget.data.name}</h1>
+                :
+                <h1 className={"centerText"}>Monthly Info</h1>
+              }
               <hr/>
               <Form onSubmit={(ev) => this.submitBudget(ev)}>
                 <FormGroup>
@@ -227,7 +232,10 @@ class BudgetForm extends Component {
                 </Alert>
                 <FormGroup>
                   <Row>
-                    <Col>
+                    <Col xs={6}>
+                      <Button className="saveForm">Submit Budget</Button>
+                    </Col>
+                    <Col xs={6}>
                       <Button onClick={this.toggleCollapse} style={{marginBottom: '1rem'}}>+</Button>
                       <Collapse isOpen={this.state.collapse}>
                         <Card>
@@ -246,9 +254,6 @@ class BudgetForm extends Component {
                           </CardBody>
                         </Card>
                       </Collapse>
-                    </Col>
-                    <Col>
-                      <Button className="saveForm">Submit Budget</Button>
                     </Col>
                   </Row>
                 </FormGroup>

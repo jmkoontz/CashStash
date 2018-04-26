@@ -129,11 +129,10 @@ class Main extends Component {
                     <div>
                       {(this.state.edit && this.state.selectedBudget)
                         ?
-                        <BudgetForm selectedBudget={this.state.selectedBudget} uid={this.state.uid}
-                                    showGraphs={this.showGraphs}/>
+                        <BudgetForm selectedBudget={this.state.selectedBudget} uid={this.state.uid}/>
                         : this.state.new
                           ?
-                          <BudgetForm uid={this.state.uid} showGraphs={this.showGraphs}/>
+                          <BudgetForm uid={this.state.uid}/>
                           : null
                       }
                     </div>

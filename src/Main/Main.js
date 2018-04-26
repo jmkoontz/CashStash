@@ -119,38 +119,36 @@ class Main extends Component {
       return (
         <div className="App">
           <div className="backImage">
-          <TopBar signedIn={true} {...data}/>
-          <br/>
-          <br/>
-          <br/>
-          <Container className="graphBack">
-            <Row/>
-            <Row>
-              <Col xs={4}/>
-              <Col xs={4}>
-                <br/>
-                <h2 className="titleCash">{this.state.firstName}'s CashStash</h2>
-              </Col>
-              <Col xs={4}/>
-            </Row>
-              {this.state.graphs
-                ?
-                <div>
+            <TopBar signedIn={true} {...data}/>
+            <br/>
+            <br/>
+            <br/>
+            <Container className="graphBack">
+              <Row/>
+              <Row>
+                <Col xs={4}/>
+                <Col xs={4}>
                   <br/>
-                  <Row className={"moreSpace"}>
-                    <Col xs={6}>
-                      <div>
-                        {(this.state.edit && this.state.selectedBudget)
+                  <h2 className="titleCash">{this.state.firstName}'s CashStash</h2>
+                </Col>
+                <Col xs={4}/>
+              </Row>
+              <div>
+                <br/>
+                <Row className={"moreSpace"}>
+                  <Col xs={6}>
+                    <div>
+                      {(this.state.edit && this.state.selectedBudget)
+                        ?
+                        <BudgetForm selectedBudget={this.state.selectedBudget} uid={this.state.uid}
+                                    showGraphs={this.showGraphs}/>
+                        : this.state.new
                           ?
-                          <BudgetForm selectedBudget={this.state.selectedBudget} uid={this.state.uid}
-                                      showGraphs={this.showGraphs}/>
-                          : this.state.new
-                            ?
-                            <BudgetForm uid={this.state.uid} showGraphs={this.showGraphs}/>
-                            : null
-                        }
-                      </div>
-                    </Col>
+                          <BudgetForm uid={this.state.uid} showGraphs={this.showGraphs}/>
+                          : null
+                      }
+                    </div>
+                  </Col>
                   <Col xs={1}/>
                   <Col xs={{size: 4}}>
                     <Row>
@@ -168,31 +166,10 @@ class Main extends Component {
                     <BudgetList budgets={this.state.budgets} selectedBudget={this.state.selectedBudget}
                                 loadBudget={this.loadBudget}/>
                   </Col>
-                  <Col xs={1} />
+                  <Col xs={1}/>
                 </Row>
-                </div>
-                :
-                  <Row className={"moreSpace"}>
-                    <Col xs={3}/>
-
-                    <Col xs={6}>
-                      {this.state.show
-                        ?
-                        <div>
-                          <BudgetForm showGraphs={this.showGraphs}/>
-                        </div>
-                        :
-                        <div>
-                          <br/>
-                          <Button onClick={this.switch}>Get Started!</Button>
-                          <br/>
-                        </div>
-                      }
-                    </Col>
-                    <Col xs={3}/>
-                  </Row>
-              }
-          </Container>
+              </div>
+            </Container>
           </div>
         </div>
       )

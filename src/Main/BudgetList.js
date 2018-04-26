@@ -10,11 +10,21 @@ class BudgetList extends Component {
 
   // render individual input in each thing
   renderBudget = (budget) => {
-    return (
-      <ListGroup key={budget.data.name}>
-        <ListGroupItem className={"test"} tag="button" onClick={this.props.loadBudget}>{budget.data.name}</ListGroupItem>
-      </ListGroup>
-    )
+    if (this.props.selectedBudget != null && this.props.selectedBudget.data.name === budget.data.name) {
+      return (
+        <ListGroup key={budget.data.name}>
+          <ListGroupItem className="selectedBudget" tag="button"
+                         onClick={() => this.props.loadBudget(budget)}>{budget.data.name}</ListGroupItem>
+        </ListGroup>
+      )
+    } else {
+      return (
+        <ListGroup key={budget.data.name}>
+          <ListGroupItem className="defaultBudget" tag="button"
+                         onClick={() => this.props.loadBudget(budget)}>{budget.data.name}</ListGroupItem>
+        </ListGroup>
+      )
+    }
   };
 
   render() {

@@ -42,6 +42,8 @@ class Main extends Component {
       show: false,
       edit: false,
       graphs: true,
+
+      selectedBudget: null,
     }
   }
 
@@ -93,8 +95,8 @@ class Main extends Component {
   /*
    * Sets the states need for the graph data based on the budget name
    */
-  loadBudget = () => {
-
+  loadBudget = (budget) => {
+    this.setState({selectedBudget: budget});
   };
 
   render() {
@@ -103,7 +105,7 @@ class Main extends Component {
       lastName: this.state.lastName,
       budgets: this.state.budgets,
     };
-console.log(this.state.budgets);
+
     if (this.state.uid) {   // if user is signed in
       return (
         <div className="App">
@@ -129,22 +131,18 @@ console.log(this.state.budgets);
                     <div>
                       <br/>
                       {/* TODO make a loop which generates the Budget form based on what the user already had*/}
-                      <BudgetForm uid={this.state.uid} budgets={this.state.budgets} showGraphs={this.showGraphs}/>
+                      <BudgetForm uid={this.state.uid} budgets={this.state.budgets} selectedBudget={this.state.selectedBudget}
+                                  showGraphs={this.showGraphs}/>
                     </div>
                   </Col>
                   <Col xs={1}/>
                   <Col xs={{size: 4}}>
                     <br/>
-                    <BudgetList budgets={this.state.budgets}/>
-                    {/*<ListGroup>
-                      <ListGroupItem className={"test"} active>Select a Budget</ListGroupItem>
-                    </ListGroup>
                     <ListGroup>
-                      <ListGroupItem className={"test"} tag="button" onClick={this.loadBudget}>June Budget</ListGroupItem>
-                      <ListGroupItem className={"test"} tag="button" onClick={this.loadBudget}>July Budget</ListGroupItem>
-                      <ListGroupItem className={"test"} tag="button" onClick={this.loadBudget}>August Budget</ListGroupItem>
-                      <ListGroupItem className={"test"} tag="button" onClick={this.loadBudget}>September Budget</ListGroupItem>
-                    </ListGroup>*/}
+                      <ListGroupItem className="" active>Select a Budget</ListGroupItem>
+                    </ListGroup>
+                    <BudgetList budgets={this.state.budgets} selectedBudget={this.state.selectedBudget}
+                                loadBudget={this.loadBudget}/>
                   </Col>
                   <Col xs={1} />
                 </Row>

@@ -23,11 +23,39 @@ class BudgetForm extends Component {
   }
 
   componentWillMount() {
+    //console.log("here");
+    //console.log(this.state);
+    //console.log(this.props);
     if (this.props.selectedBudget) {
       this.setState({
         budgetName: this.props.selectedBudget.data.name,
         incomeInput: this.props.selectedBudget.data.income,
         items: this.props.selectedBudget.data.items,
+      });
+    } else {
+      this.setState({
+        budgetName: "",
+        incomeInput: "",
+        items: [],
+      });
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    //console.log("receiving");
+    //console.log(this.state);
+    //console.log(this.props);
+    if (nextProps.selectedBudget) {
+      this.setState({
+        budgetName: nextProps.selectedBudget.data.name,
+        incomeInput: nextProps.selectedBudget.data.income,
+        items: nextProps.selectedBudget.data.items,
+      });
+    } else {
+      this.setState({
+        budgetName: "",
+        incomeInput: "",
+        items: [],
       });
     }
   }
@@ -154,6 +182,7 @@ class BudgetForm extends Component {
     this.setState({amountInput: amount});
   };
 
+  // update item in the list when input is changed
   updateItem = (name, amount) => {
     let tmpItems = [];
 
@@ -193,6 +222,7 @@ class BudgetForm extends Component {
   };
 
   render() {
+    console.log(this.props.test);
     let allItems = [];
 
     this.state.items.forEach((item) => {

@@ -4,7 +4,6 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
 
 import Main from './Main/Main';
-import Form from './BudgetForm/BudgetForm';
 
 class App extends Component {
   constructor() {
@@ -64,10 +63,6 @@ class App extends Component {
       <Switch>
         <Route exact path='/CashStash' render={() => (
           <Main uid={this.state.uid}/>
-        )}/>
-
-        <Route path='/CashStash/Form' render={() => (
-          <Form/>
         )}/>
 
         <Route render={() => <Redirect to='/CashStash'/>}/>

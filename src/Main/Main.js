@@ -9,6 +9,7 @@ import BudgetForm from '../BudgetForm/BudgetForm'
 import FullPie from '../Charts/FullPie'
 import WeekPie from '../Charts/WeeklyPie'
 import DayPie from '../Charts/DailyPie'
+import Legend from '../Legend'
 
 import intro from '../dollabills.jpeg'
 
@@ -187,7 +188,7 @@ class Main extends Component {
             <Row className="space"/>
             <Row>
               <Col xs={12}>
-                <h2 className="titleCash">Cash Stash</h2>
+                <h2 className="titleCash">Cash$tash</h2>
                 <p>Your money troubles are a thing of the past! Cash Stash is a simple and effective way to manage your monthly,
                   weekly, and daily budget.  Our graphs give a break down of where each dollar of your budget ends up to help you plan ahead.</p>
               </Col>
@@ -199,9 +200,20 @@ class Main extends Component {
               </Col>
             </Row>
             <Row>
-              <Col xs={{size: 4, offset: 3}}>
+              <Col md={{size: 4}} xs={{size: 4}}>
+                <ResponsiveContainer>
                 <FullPie vals={vals}/>
+                </ResponsiveContainer>
               </Col>
+
+                <Col className="rightAlign" md={{size: 4, offset: 4}} lg={{size: 4, offset: 3}}>
+                    <br/>
+                    <br/>
+                    <p>Wonce calcuwated, your monfwy budget will be shown all pwetty like right hewere!</p>
+                    <br/>
+                    <br/>
+                  <Legend vals={vals}/>
+                </Col>
             </Row>
             <hr/>
             <Row>

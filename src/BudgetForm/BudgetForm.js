@@ -23,10 +23,8 @@ class BudgetForm extends Component {
     };
   }
 
+  // set state for initial click
   componentWillMount() {
-    //console.log("here");
-    //console.log(this.state);
-    //console.log(this.props);
     if (this.props.selectedBudget) {
       this.setState({
         budgetName: this.props.selectedBudget.data.name,
@@ -42,10 +40,8 @@ class BudgetForm extends Component {
     }
   }
 
+  // update state every time props change
   componentWillReceiveProps(nextProps) {
-    //console.log("receiving");
-    //console.log(this.state);
-    //console.log(this.props);
     if (nextProps.selectedBudget) {
       this.setState({
         budgetName: nextProps.selectedBudget.data.name,
@@ -258,13 +254,23 @@ class BudgetForm extends Component {
                 <FormGroup>
                   <InputGroup>
                     <InputGroupAddon addonType={"prepend"}>Budget Name</InputGroupAddon>
-                    <Input name="name" placeholder="Name" defaultValue={this.state.budgetName}/>
+                    {this.props.selectedBudget
+                      ?
+                      <Input name="name" placeholder="Name" defaultValue={this.props.selectedBudget.data.name}/>
+                      :
+                      <Input name="name" placeholder="Name"/>
+                    }
                   </InputGroup>
                 </FormGroup>
                 <FormGroup>
                   <InputGroup>
                     <InputGroupAddon addonType={"prepend"}>Monthly Income</InputGroupAddon>
-                    <Input name="monthlyIncome" placeholder="Amount" defaultValue={this.state.incomeInput}/>
+                    {this.props.selectedBudget
+                      ?
+                      <Input name="name" placeholder="Name" defaultValue={this.props.selectedBudget.data.income}/>
+                      :
+                      <Input name="name" placeholder="Name"/>
+                    }
                   </InputGroup>
                 </FormGroup>
                 {allItems}
@@ -309,7 +315,5 @@ class BudgetForm extends Component {
 
 
 }
-
-
 
 export default BudgetForm;

@@ -70,7 +70,6 @@ class Main extends Component {
       new: false,
 
       selectedBudget: null,
-      test: false,
     }
   }
 
@@ -120,11 +119,7 @@ class Main extends Component {
    * Sets the states need for the graph data based on the budget name
    */
   loadBudget = (budget) => {
-    console.log("loading new");
-    this.setState({
-      selectedBudget: budget,
-      test: budget.data.name,
-    });
+    this.setState({selectedBudget: budget});
   };
 
   render() {
@@ -156,25 +151,12 @@ class Main extends Component {
                 <br/>
                 <Row>
                   <Col xs={6}>
-                    <BudgetForm selectedBudget={this.state.selectedBudget} uid={this.state.uid} test={this.state.test}/>
-                      {/*(this.state.edit && this.state.selectedBudget)
-                        ?
-
-                        :
-                        {}
-                      */}
-                      {/*this.state.new
-                        ?
-                        <BudgetForm uid={this.state.uid}/>
-                        :
-                        null
-                      */}
-                    {/*<div>
-                      <BudgetForm uid={this.state.uid}/>
-                    </div>
-                    <div>
-                      <BudgetForm uid={this.state.uid} selectedBudget={this.state.selectedBudget}/>
-                    </div>*/}
+                    {(this.state.edit || this.state.new)
+                      ?
+                      <BudgetForm selectedBudget={this.state.selectedBudget} uid={this.state.uid}/>
+                      :
+                      null
+                    }
                   </Col>
                   <Col xs={1}/>
                   <Col xs={{size: 4}}>

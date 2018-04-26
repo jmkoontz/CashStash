@@ -275,7 +275,7 @@ class Main extends Component {
                 <Col className="rightAlign" md={{size: 4, offset: 4}} lg={{size: 4, offset: 3}}>
                     <br/>
                     <br/>
-                    <p>Wonce calcuwated, your monfwy budget will be shown all pwetty like right hewere!</p>
+                    <p>This gives you a break down of your monthly budget, showing each expense and how much it is per month.</p>
                     <br/>
                     <br/>
                   <HomeLegend vals={vals}/>

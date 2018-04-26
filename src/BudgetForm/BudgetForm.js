@@ -198,7 +198,7 @@ class BudgetForm extends Component {
 
     this.state.items.forEach((item) => {
       if (item.name === name)
-        tmpItems.push({name: name, amount: amount});
+        tmpItems.push({name: name, amount: parseInt(amount, 10)});
       else
         tmpItems.push(item);
     });

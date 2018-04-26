@@ -169,12 +169,6 @@ class Main extends Component {
                   </Col>
                   <Col xs={1}/>
                   <Col xs={{size: 4}}>
-                    <Row>
-                      <Col xs={2}>
-                        <Button onClick={this.showNew}>New Budget</Button>
-                      </Col>
-                    </Row>
-                    <br/>
                       <h1>Select a Budget</h1>
                     <br/>
                     <BudgetList budgets={this.state.budgets} selectedBudget={this.state.selectedBudget}

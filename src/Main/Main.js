@@ -205,22 +205,26 @@ class Main extends Component {
                                   <br/>
                                   <br/>
                                   <h1 className={"fullBudget"}>Monthly Budget</h1>
+                                  <hr/>
                               </Col>
+
                           </Row>
                       <Row>
                           <Col>
                               <FullPie vals={this.state.selectedBudget}/>
                           </Col>
-                          <Col>
+                          <Col xs={{size: 4, offset: 1}} className="rightAlign">
                             <Legend vals={this.state.selectedBudget}/>
                           </Col>
                       </Row>
                           <Row>
                               <Col xs={{size: 4, offset: 1}}>
                                   <h1 className={"fullBudget"}>Weekly Budget</h1>
+                                  <hr/>
                               </Col>
                               <Col xs={{size: 4, offset: 2}}>
                                   <h1 className={"fullBudget"}>Daily Budget</h1>
+                                  <hr/>
                               </Col>
                           </Row>
                           <Row>

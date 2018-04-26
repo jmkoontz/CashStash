@@ -4,9 +4,6 @@ import {ListGroup, ListGroupItem} from 'reactstrap';
 import './BudgetList.css';
 
 class BudgetList extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   // render individual input in each thing
   renderBudget = (budget) => {

@@ -225,7 +225,7 @@ class Main extends Component {
                           </Row>
                           <Row>
                             <Col>
-                              <h1>Your remaining value is...</h1>
+                              <h1>Spent vs. Saved</h1>
                               <hr/>
                             </Col>
                           </Row>

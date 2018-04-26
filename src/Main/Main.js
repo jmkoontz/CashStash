@@ -19,6 +19,8 @@ import DayPie from '../Charts/DailyPie'
 import HomeLegend from '../HomeLegend'
 import Legend from '../Legend'
 
+import FinalValue from '../FinalValue'
+
 import BudgetList from "./BudgetList";
 
 const vals = [{name: "Living Expense", value: 300, color: "#353941"}, {name: "Food", value: 250, color: "#9cdb97"},
@@ -191,6 +193,7 @@ class Main extends Component {
 
                           </Row>
                       <Row>
+                          <Col xs={1}/>
                           <Col>
                               <FullPie vals={this.state.selectedBudget}/>
                           </Col>
@@ -216,6 +219,17 @@ class Main extends Component {
                                   <DayPie vals={this.state.selectedBudget}/>
                               </Col>
                           </Row>
+                          <Row>
+                            <Col>
+                              <h1>Spent vs. Saved</h1>
+                              <hr/>
+                            </Col>
+                          </Row>
+                        <Row className="graphCenter">
+                            <Col xs={{size: 4, offset : 3}} className="graphCenter">
+                                <FinalValue budget={this.state.selectedBudget}/>
+                            </Col>
+                        </Row>
                       </div>
                       : null
                   }

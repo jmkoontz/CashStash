@@ -81,7 +81,7 @@ class WeeklyPie extends Component {
       <PieChart width={500} height={500}>
         <Pie data={temp} dataKey="amount" nameKey="name" cx="50%" cy="50%"
              outerRadius={200} fill="#8884d8" label>
-          {temp.map((entry, index) => <Cell key={entry.amount} fill={colors[index].color}/>)}
+          {temp.map((entry, index) => <Cell key={entry.amount} fill={colors[(index*temp.length+1)%colors.length].color}/>)}
         </Pie><Tooltip/>
       </PieChart>
     )

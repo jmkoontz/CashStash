@@ -78,7 +78,28 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     text-align: center;
 }
 
+.rightAlign {
+    alignment: left;
+    text-align: left;
+}
+
 .backImage {
     background-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)),url("../dollabills.jpeg");
 
+}
+
+.color1 {
+    color: #353941;
+}
+.color2 {
+    color: #9cdb97
+}
+.color3 {
+    color: #82c4cc;
+}
+.color4 {
+    color: #afa3cc;
+}
+.color5 {
+    color: #d67b77;
 }

@@ -14,9 +14,9 @@ import HomeDay from '../Charts/HomeDailyPie';
 import FullPie from '../Charts/FullPie';
 import WeekPie from '../Charts/WeeklyPie';
 import DayPie from '../Charts/DailyPie';
-import HomeLegend from '../HomeLegend';
-import Legend from '../Legend';
-import FinalValue from '../FinalValue';
+import HomeLegend from '../Charts/HomeLegend';
+import Legend from '../Charts/Legend';
+import FinalValue from '../Charts/FinalValue';
 
 //for default values
 const vals = [{name: "Living Expense", value: 300, color: "#353941"}, {name: "Food", value: 250, color: "#9cdb97"},

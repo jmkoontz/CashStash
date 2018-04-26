@@ -278,7 +278,9 @@ class Main extends Component {
                 <Col className="rightAlign" md={{size: 4, offset: 4}} lg={{size: 4, offset: 3}}>
                     <br/>
                     <br/>
-                    <p>Wonce calcuwated, your monfwy budget will be shown all pwetty like right hewere!</p>
+                    <p>Once calculated, you stash of cash will be calculated by our super high-tech
+                        budget conversion system and display to you a beautiful set of accurate and
+                    appealing graphs.</p>
                     <br/>
                     <br/>
                   <HomeLegend vals={vals}/>

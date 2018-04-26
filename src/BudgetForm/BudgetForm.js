@@ -233,9 +233,6 @@ class BudgetForm extends Component {
                 <FormGroup>
                   <Row>
                     <Col xs={6}>
-                      <Button className="saveForm">Submit Budget</Button>
-                    </Col>
-                    <Col xs={6}>
                       <Button onClick={this.toggleCollapse} style={{marginBottom: '1rem'}}>+</Button>
                       <Collapse isOpen={this.state.collapse}>
                         <Card>
@@ -254,6 +251,9 @@ class BudgetForm extends Component {
                           </CardBody>
                         </Card>
                       </Collapse>
+                    </Col>
+                    <Col xs={6}>
+                      <Button className="saveForm">Submit Budget</Button>
                     </Col>
                   </Row>
                 </FormGroup>

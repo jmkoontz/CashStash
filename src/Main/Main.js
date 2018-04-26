@@ -40,10 +40,8 @@ class Main extends Component {
 
       budgets: [],
 
-      show: false,
       edit: false,
       new: false,
-      graphs: true,
 
       selectedBudget: null,
     }
@@ -76,11 +74,6 @@ class Main extends Component {
     });
   };
 
-  switch = () => {
-    this.setState({
-      show: !this.state.show,
-    });
-  };
 
   showEdit = () => {
     this.setState({
@@ -96,11 +89,6 @@ class Main extends Component {
     });
   };
 
-  showGraphs = () => {
-    this.setState({
-      graphs: true,
-    });
-  };
 
   /*
    * Sets the states need for the graph data based on the budget name
@@ -136,7 +124,7 @@ class Main extends Component {
               </Row>
               <div>
                 <br/>
-                <Row className={"moreSpace"}>
+                <Row>
                   <Col xs={6}>
                     <div>
                       {(this.state.edit && this.state.selectedBudget)
@@ -169,6 +157,7 @@ class Main extends Component {
                   </Col>
                   <Col xs={1}/>
                 </Row>
+                <div className={"moreSpace"}/>
               </div>
             </Container>
           </div>
@@ -177,7 +166,7 @@ class Main extends Component {
     } else {  // if user is not signed in
       return (
         <div className="App">
-          <body className="backImage">
+          <div className="backImage">
 
           <TopBar signedIn={false} {...data}/>
 
@@ -233,7 +222,7 @@ class Main extends Component {
               </Col>
             </Row>
           </Container>
-          </body>
+          </div>
         </div>
       )
     }

@@ -158,10 +158,6 @@ class Main extends Component {
                                 <br/>
                                 <br/>
                                 <br/>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
                               <p style={{color: "#616161"}}>
                                   Your budget will be shown here when selected
                               </p>
@@ -197,6 +193,7 @@ class Main extends Component {
 
                           </Row>
                       <Row>
+                          <Col xs={1}/>
                           <Col>
                               <FullPie vals={this.state.selectedBudget}/>
                           </Col>
@@ -224,7 +221,7 @@ class Main extends Component {
                           </Row>
                           <Row>
                             <Col>
-                              <h1>Your remaining value is...</h1>
+                              <h1>Spent vs. Saved</h1>
                               <hr/>
                             </Col>
                           </Row>

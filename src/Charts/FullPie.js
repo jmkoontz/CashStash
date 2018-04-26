@@ -35,9 +35,12 @@ class FullPie extends Component {
 
     for (let i in this.state.tempArray) {
       if (this.state.tempArray.hasOwnProperty(i)) {
+        let amount = this.state.tempArray[i].amount;
+        amount = Math.round(amount * 100) / 100;
+
         temp.push({
           name: this.state.tempArray[i].name,
-          amount: Math.trunc(this.state.tempArray[i].amount)
+          amount: amount,
         })
       }
     }

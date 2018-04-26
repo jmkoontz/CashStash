@@ -8,6 +8,31 @@ import React, { Component } from 'react';
 
 class FullPie extends Component{
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            tempArray : [],
+        }
+    }
+
+    componentWillMount () {
+        this.makeTempArray();
+        this.setMonthlyValues();
+    }
+
+    makeTempArray = () => {
+        for(let value in this.props.vals.data.items) {
+            this.state.tempArray[value] = this.props.vals.data.items[value];
+        }
+    };
+
+    setMonthlyValues = () => {
+        let temp = this.state.tempArray;
+        for(let value in temp) {
+            temp[value].amount = Math.trunc(temp[value].amount);
+        }
+    };
 
     render() {
 
@@ -38,11 +63,13 @@ class FullPie extends Component{
 
         ];
 
+
+        let temp = this.state.tempArray;
         return (
             <PieChart width={500} height={500}>
-                <Pie data={this.props.vals.data.items} dataKey="amount" nameKey="name" cx="50%" cy="50%"
+                <Pie data={temp} dataKey="amount" nameKey="name" cx="50%" cy="50%"
                      outerRadius={200} fill="#8884d8" label>
-                    {this.props.vals.data.items.map((entry, index) => <Cell key={entry.amount} fill={colors[index].color}/>)}
+                    {temp.map((entry, index) => <Cell key={entry.amount} fill={colors[index].color}/>)}
                 </Pie><Tooltip/>
             </PieChart>
         )

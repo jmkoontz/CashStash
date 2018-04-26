@@ -8,9 +8,29 @@ import React, { Component } from 'react';
 
 class WeeklyPie extends Component{
 
-    setWeeklyValues = () => {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+           tempArray : [],
+        }
+    }
+    componentWillMount() {
+        this.makeTempArray();
+        this.setWeeklyValues();
+    }
+
+    makeTempArray = () => {
         for(let value in this.props.vals.data.items) {
-            this.props.vals.data.items[value].amount = Math.trunc(this.props.vals.data.items[value].amount/4);
+            this.state.tempArray[value] = this.props.vals.data.items[value];
+        }
+        console.log(this.props.vals.data.items)
+    };
+
+    setWeeklyValues = () => {
+        let temp = this.state.tempArray;
+        for(let value in temp) {
+            temp[value].amount = Math.trunc(temp[value].amount/4);
         }
     };
 
@@ -45,12 +65,12 @@ class WeeklyPie extends Component{
         ];
 
 
-        this.setWeeklyValues();
+        let temp = this.state.tempArray;
         return (
             <PieChart width={500} height={500}>
-                <Pie data={this.props.vals.data.items} dataKey="amount" nameKey="name" cx="50%" cy="50%"
+                <Pie data={temp} dataKey="amount" nameKey="name" cx="50%" cy="50%"
                      outerRadius={200} fill="#8884d8" label>{
-                    this.props.vals.data.items.map((entry, index) => <Cell key={entry.amount} fill={colors[index].color}/>)
+                    temp.map((entry, index) => <Cell key={entry.amount} fill={colors[index].color}/>)
                 } </Pie><Tooltip/>
             </PieChart>
         )

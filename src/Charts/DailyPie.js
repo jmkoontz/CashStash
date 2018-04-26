@@ -1,11 +1,37 @@
 import { PieChart, Cell, Pie, Tooltip } from 'recharts';
 import React, { Component } from 'react';
 
+
+/*const data = [{name: "Living Expense", value: 300, color: "#00C49F"},{name: "Food", value: 250, color: "#55B8D9"},
+    {name: "Luxury", value: 200, color: "#E8F576"},{name: "Entertainment", value: 100, color: "#B855D9"},
+    {name: "Gas", value: 50, color: "#FF8042"}];*/
+
 class DailyPie extends Component{
 
-    setDailyValues = () => {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            tempArray : [],
+        }
+    }
+
+    componentWillMount() {
+        this.makeTempArray();
+        this.setDailyValues();
+    }
+
+    makeTempArray = () => {
         for(let value in this.props.vals.data.items) {
-            this.props.vals.data.items[value].amount = Math.trunc(this.props.vals.data.items[value].amount/7);        }
+            this.state.tempArray[value] = this.props.vals.data.items[value];
+        }
+    };
+
+    setDailyValues = () => {
+        let temp = this.state.tempArray;
+        for(let value in temp) {
+            temp[value].amount = Math.trunc(temp[value].amount/7);
+        }
     };
 
     render() {
@@ -38,12 +64,12 @@ class DailyPie extends Component{
         ];
 
 
-        this.setDailyValues();
+        let temp = this.state.tempArray;
         return (
             <PieChart width={500} height={500}>
-                <Pie data={this.props.vals.data.items} dataKey="amount" nameKey="name" cx="50%" cy="50%"
+                <Pie data={temp} dataKey="amount" nameKey="name" cx="50%" cy="50%"
                      outerRadius={200} fill="#8884d8" label>{
-                    this.props.vals.data.items.map((entry, index) => <Cell key={entry.amount/7} fill={colors[index].color}/>)
+                    temp.map((entry, index) => <Cell key={entry.amount} fill={colors[index].color}/>)
                 } </Pie><Tooltip/>
             </PieChart>
         )

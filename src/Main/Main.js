@@ -187,9 +187,11 @@ class Main extends Component {
                       </Col>
                     </Row>
                     <br/>
-                    <ListGroup>
+                    {/*<ListGroup>
                       <ListGroupItem className="" active>Select a Budget</ListGroupItem>
-                    </ListGroup>
+                    </ListGroup>*/}
+                      <h1>Select a Budget</h1>
+                    <br/>
                     <BudgetList budgets={this.state.budgets} selectedBudget={this.state.selectedBudget}
                                 loadBudget={this.loadBudget}/>
                   </Col>

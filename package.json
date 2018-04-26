@@ -1,7 +1,7 @@
 {
   "name": "lab6",
   "version": "0.1.0",
-  "homepage": "https://jmkoontz.github.io/cs252lab6",
+  "homepage": "https://jmkoontz.github.io/CashStash",
   "private": true,
   "dependencies": {
     "bootstrap": "^4.0.0",

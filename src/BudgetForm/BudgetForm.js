@@ -9,6 +9,7 @@ class BudgetForm extends Component {
     super(props);
 
     this.state = {
+
       items: [],
 
       collapse: false,
@@ -202,8 +203,20 @@ class BudgetForm extends Component {
     this.setState({visible: false});
   };
 
+    onChangeComplete = (color) => {
+        this.setState({ curColor : color.hex})
+    };
+
+    handleClick = () => {
+        this.setState({ displayColorPicker: !this.state.displayColorPicker })
+    };
+
+    handleClose = () => {
+        this.setState({ displayColorPicker: false })
+    };
+
   // render individual input in each thing
-  renderItem = (item) => {
+    renderItem = (item) => {
     return (
       <FormGroup key={item.name}>
         <InputGroup>
@@ -286,6 +299,7 @@ class BudgetForm extends Component {
                             </Alert>
                             <Button block onClick={() => this.addItem("nameInput", "amountInput")}>Add to Budget</Button>
                           </CardBody>
+
                         </Card>
                       </Collapse>
                     </Col>
@@ -298,6 +312,8 @@ class BudgetForm extends Component {
       </div>
     )
   }
+
+
 }
 
 export default BudgetForm;

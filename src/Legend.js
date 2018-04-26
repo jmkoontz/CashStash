@@ -1,20 +1,50 @@
-import { PieChart, Cell, Pie, Tooltip } from 'recharts';
 import React, { Component } from 'react';
-
-
-/*const data = [{name: "Living Expense", value: 300, color: "#00C49F"},{name: "Food", value: 250, color: "#55B8D9"},
-    {name: "Luxury", value: 200, color: "#E8F576"},{name: "Entertainment", value: 100, color: "#B855D9"},
-    {name: "Gas", value: 50, color: "#FF8042"}];*/
 
 class Legend extends Component{
 
 
     render() {
-        return (
-            this.props.vals.map((entry, index) =>
-                <p style={{color: this.props.vals[index].color}}>■ {this.props.vals[index].name}</p>
-            )
 
+        const colors = [
+            {color: "#353941"},
+            {color: "#9cdb97"},
+            {color: "#82c4cc"},
+            {color: "#afa3cc"},
+            {color: "#d67b77"},
+
+            {color: "#3449a1"},
+            {color: "#9cdff7"},
+            {color: "#82addc"},
+            {color: "#aa445c"},
+            {color: "#d67667"},
+
+            {color: "#35a331"},
+            {color: "#9cffa7"},
+            {color: "#80ffcc"},
+            {color: "#a3a4dc"},
+            {color: "#327"},
+
+            {color: "#aa7741"},
+            {color: "#dda797"},
+            {color: "#8dda7c"},
+            {color: "#afdda7"},
+            {color: "#ddda77"},
+
+        ];
+
+
+        return (
+            <div>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                {this.props.vals.data.items.map((entry, index) =>
+                <p key={index} style={{color: colors[index].color}}>■ {this.props.vals.data.items[index].name}</p>
+            )}
+
+            </div>
         )
     }
 }

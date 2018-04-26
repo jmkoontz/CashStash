@@ -8,19 +8,73 @@ import React, { Component } from 'react';
 
 class DailyPie extends Component{
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            tempArray : [],
+        }
+    }
+
+    componentWillMount () {
+        this.makeTempArray();
+        this.setDailyValues();
+    }
+
+    componentWillReceiveProps() {
+        this.makeTempArray();
+        this.setDailyValues();
+    }
+
+    makeTempArray = () => {
+        for(let value in this.props.vals.data.items) {
+            this.state.tempArray[value] = this.props.vals.data.items[value];
+        }
+    };
+
     setDailyValues = () => {
-        for(let value in this.props.vals) {
-            this.props.vals[value].value = Math.trunc(this.props.vals[value].value/7);
+        let temp = this.state.tempArray;
+        for(let value in temp) {
+            temp[value].amount = Math.trunc(temp[value].amount/7);
         }
     };
 
     render() {
-        this.setDailyValues();
+
+        const colors = [
+            {color: "#353941"},
+            {color: "#9cdb97"},
+            {color: "#82c4cc"},
+            {color: "#afa3cc"},
+            {color: "#d67b77"},
+
+            {color: "#3449a1"},
+            {color: "#9cdff7"},
+            {color: "#82addc"},
+            {color: "#aa445c"},
+            {color: "#d67667"},
+
+            {color: "#35a331"},
+            {color: "#9cffa7"},
+            {color: "#80ffcc"},
+            {color: "#a3a4dc"},
+            {color: "#327"},
+
+            {color: "#aa7741"},
+            {color: "#dda797"},
+            {color: "#8dda7c"},
+            {color: "#afdda7"},
+            {color: "#ddda77"},
+
+        ];
+
+
+        let temp = this.state.tempArray;
         return (
             <PieChart width={500} height={500}>
-                <Pie data={this.props.vals} dataKey="value" nameKey="name" cx="50%" cy="50%"
+                <Pie data={temp} dataKey="amount" nameKey="name" cx="50%" cy="50%"
                      outerRadius={200} fill="#8884d8" label>{
-                    this.props.vals.map((entry, index) => <Cell key={entry} fill={this.props.vals[index].color}/>)
+                    temp.map((entry, index) => <Cell key={entry.amount} fill={colors[index].color}/>)
                 } </Pie><Tooltip/>
             </PieChart>
         )

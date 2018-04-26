@@ -143,7 +143,7 @@ class Main extends Component {
                 <Col xs={4}/>
                 <Col xs={4}>
                   <br/>
-                  <h2 className="titleCash">{this.state.firstName}'s CashStash</h2>
+                  <h2 className="titleCash">{this.state.firstName}'s Cash$tash</h2>
                 </Col>
                 <Col xs={4}/>
               </Row>
@@ -151,12 +151,27 @@ class Main extends Component {
                 <br/>
                 <Row>
                   <Col xs={6}>
-                    {(this.state.edit || this.state.new)
-                      ?
-                      <BudgetForm selectedBudget={this.state.selectedBudget} uid={this.state.uid}/>
-                      :
-                      null
-                    }
+                      {(this.state.edit || this.state.new)
+                          ?
+                          <BudgetForm selectedBudget={this.state.selectedBudget} uid={this.state.uid}/>
+                          :
+                          <Row>
+                            <Col xs={{size: 4}}/>
+                            <Col xs={{size: 4, offset: 1}}>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                              <p style={{color: "#616161"}}>
+                                  Your budget will be shown here when selected
+                              </p>
+                            </Col>
+                          </Row>
+                      }
                   </Col>
                   <Col xs={1}/>
                   <Col xs={{size: 4}}>
@@ -164,11 +179,10 @@ class Main extends Component {
                       <Col xs={{size: 3}}>
                         <Button onClick={this.showEdit}>Edit</Button>
                       </Col>
-                      <Col xs={2}>
-                        <Button onClick={this.showNew}>New Budget</Button>
-                      </Col>
+
                     </Row>
                     <br/>
+
                     {/*<ListGroup>
                       <ListGroupItem className="" active>Select a Budget</ListGroupItem>
                     </ListGroup>*/}
@@ -176,6 +190,12 @@ class Main extends Component {
                     <br/>
                     <BudgetList budgets={this.state.budgets} selectedBudget={this.state.selectedBudget}
                                 loadBudget={this.loadBudget}/>
+                    <hr/>
+                    <Row>
+                      <Col>
+                        <Button onClick={this.showNew} block>New Budget</Button>
+                      </Col>
+                    </Row>
                   </Col>
                   <Col xs={1}/>
                 </Row>
@@ -187,22 +207,26 @@ class Main extends Component {
                                   <br/>
                                   <br/>
                                   <h1 className={"fullBudget"}>Monthly Budget</h1>
+                                  <hr/>
                               </Col>
+
                           </Row>
                       <Row>
                           <Col>
                               <FullPie vals={this.state.selectedBudget}/>
                           </Col>
-                          <Col>
+                          <Col xs={{size: 4, offset: 1}} className="rightAlign">
                             <Legend vals={this.state.selectedBudget}/>
                           </Col>
                       </Row>
                           <Row>
                               <Col xs={{size: 4, offset: 1}}>
                                   <h1 className={"fullBudget"}>Weekly Budget</h1>
+                                  <hr/>
                               </Col>
                               <Col xs={{size: 4, offset: 2}}>
                                   <h1 className={"fullBudget"}>Daily Budget</h1>
+                                  <hr/>
                               </Col>
                           </Row>
                           <Row>
@@ -237,7 +261,8 @@ class Main extends Component {
             <Row>
               <Col xs={12}>
                 <h2 className="titleCash">Cash$tash</h2>
-                <p>Your money troubles are a thing of the past! Cash Stash is a simple and effective way to manage your monthly,
+                <br/>
+                <p className={"titOut"}>Your money troubles are a thing of the past!<hr/>Cash Stash is a simple and effective way to manage your monthly,
                   weekly, and daily budget.  Our graphs give a break down of where each dollar of your budget ends up to help you plan ahead.</p>
               </Col>
             </Row>

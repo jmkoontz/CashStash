@@ -36,10 +36,6 @@ class Legend extends Component{
         return (
             <div>
                 <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
                 {this.props.vals.data.items.map((entry, index) =>
                 <p key={index} style={{color: colors[index].color}}>■ {this.props.vals.data.items[index].name}</p>
             )}

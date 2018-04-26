@@ -6,51 +6,25 @@ import './Main.css';
 
 import TopBar from './TopBar';
 import BudgetForm from '../BudgetForm/BudgetForm'
-
-//for default values
-import HomeFull from '../Charts/HomeFullPie'
-import HomeWeek from '../Charts/HomeWeeklyPie'
-import HomeDay from '../Charts/HomeDailyPie'
-
 import FullPie from '../Charts/FullPie'
 import WeekPie from '../Charts/WeeklyPie'
 import DayPie from '../Charts/DailyPie'
-
-import HomeLegend from '../HomeLegend'
 import Legend from '../Legend'
 
+import intro from '../dollabills.jpeg'
 import BudgetList from "./BudgetList";
 
 const vals = [{name: "Living Expense", value: 300, color: "#353941"}, {name: "Food", value: 250, color: "#9cdb97"},
   {name: "Luxury", value: 200, color: "#82c4cc"}, {name: "Entertainment", value: 100, color: "#afa3cc"},
   {name: "Gas", value: 50, color: "#d67b77"}];
 
-/*const colors = [
+const colors = [
   {color: "#353941"},
   {color: "#9cdb97"},
   {color: "#82c4cc"},
   {color: "#afa3cc"},
-  {color: "#d67b77"},
-
-    {color: "#3449a1"},
-    {color: "#9cdff7"},
-    {color: "#82addc"},
-    {color: "#aa445c"},
-    {color: "#d67667"},
-
-    {color: "#35a331"},
-    {color: "#9cffa7"},
-    {color: "#80ffcc"},
-    {color: "#a3a4dc"},
-    {color: "#327"},
-
-    {color: "#aa7741"},
-    {color: "#dda797"},
-    {color: "#8dda7c"},
-    {color: "#afdda7"},
-    {color: "#ddda77"},
-
-];*/
+  {color: "#d67b77"}
+];
 
 class Main extends Component {
 
@@ -182,47 +156,7 @@ class Main extends Component {
                   </Col>
                   <Col xs={1}/>
                 </Row>
-<<<<<<< HEAD
                 <div className={"moreSpace"}/>
-=======
-                  {this.state.selectedBudget
-                      ?
-                      <div>
-                          <Row>
-                              <Col xs={{size: 4, offset: 4}}>
-                                  <br/>
-                                  <br/>
-                                  <h1 className={"fullBudget"}>Monthly Budget</h1>
-                              </Col>
-                          </Row>
-                      <Row>
-                          <Col>
-                              <FullPie vals={this.state.selectedBudget}/>
-                          </Col>
-                          <Col>
-                            <Legend vals={this.state.selectedBudget}/>
-                          </Col>
-                      </Row>
-                          <Row>
-                              <Col xs={{size: 4, offset: 1}}>
-                                  <h1 className={"fullBudget"}>Weekly Budget</h1>
-                              </Col>
-                              <Col xs={{size: 4, offset: 2}}>
-                                  <h1 className={"fullBudget"}>Daily Budget</h1>
-                              </Col>
-                          </Row>
-                          <Row>
-                              <Col>
-                                  <WeekPie vals={this.state.selectedBudget}/>
-                              </Col>
-                              <Col>
-                                  <DayPie vals={this.state.selectedBudget}/>
-                              </Col>
-                          </Row>
-                      </div>
-                      : null
-                  }
->>>>>>> master
               </div>
             </Container>
           </div>
@@ -256,7 +190,7 @@ class Main extends Component {
             <Row>
               <Col md={{size: 4}} xs={{size: 4}}>
                 <ResponsiveContainer>
-                <HomeFull vals={vals}/>
+                <FullPie vals={vals}/>
                 </ResponsiveContainer>
               </Col>
 
@@ -266,7 +200,7 @@ class Main extends Component {
                     <p>Wonce calcuwated, your monfwy budget will be shown all pwetty like right hewere!</p>
                     <br/>
                     <br/>
-                  <HomeLegend vals={vals}/>
+                  <Legend vals={vals}/>
                 </Col>
             </Row>
             <hr/>
@@ -280,10 +214,10 @@ class Main extends Component {
             </Row>
             <Row>
               <Col>
-                <HomeWeek vals={vals}/>
+                <WeekPie vals={vals}/>
               </Col>
               <Col>
-                <HomeDay vals={vals}/>
+                <DayPie vals={vals}/>
               </Col>
             </Row>
           </Container>

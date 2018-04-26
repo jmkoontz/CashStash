@@ -151,12 +151,27 @@ class Main extends Component {
                 <br/>
                 <Row>
                   <Col xs={6}>
-                    {(this.state.edit || this.state.new)
-                      ?
-                      <BudgetForm selectedBudget={this.state.selectedBudget} uid={this.state.uid}/>
-                      :
-                      null
-                    }
+                      {(this.state.edit || this.state.new)
+                          ?
+                          <BudgetForm selectedBudget={this.state.selectedBudget} uid={this.state.uid}/>
+                          :
+                          <Row>
+                            <Col xs={{size: 4}}/>
+                            <Col xs={{size: 4, offset: 1}}>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                              <p style={{color: "#616161"}}>
+                                  Your budget will be shown here when selected
+                              </p>
+                            </Col>
+                          </Row>
+                      }
                   </Col>
                   <Col xs={1}/>
                   <Col xs={{size: 4}}>
@@ -164,11 +179,10 @@ class Main extends Component {
                       <Col xs={{size: 3}}>
                         <Button onClick={this.showEdit}>Edit</Button>
                       </Col>
-                      <Col xs={2}>
-                        <Button onClick={this.showNew}>New Budget</Button>
-                      </Col>
+
                     </Row>
                     <br/>
+
                     {/*<ListGroup>
                       <ListGroupItem className="" active>Select a Budget</ListGroupItem>
                     </ListGroup>*/}
@@ -176,6 +190,12 @@ class Main extends Component {
                     <br/>
                     <BudgetList budgets={this.state.budgets} selectedBudget={this.state.selectedBudget}
                                 loadBudget={this.loadBudget}/>
+                    <hr/>
+                    <Row>
+                      <Col>
+                        <Button onClick={this.showNew} block>New Budget</Button>
+                      </Col>
+                    </Row>
                   </Col>
                   <Col xs={1}/>
                 </Row>

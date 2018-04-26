@@ -154,7 +154,7 @@ class Main extends Component {
               </Row>
               <div>
                 <br/>
-                <Row className={"moreSpace"}>
+                <Row>
                   <Col xs={6}>
                     <BudgetForm selectedBudget={this.state.selectedBudget} uid={this.state.uid} test={this.state.test}/>
                       {/*(this.state.edit && this.state.selectedBudget)
@@ -234,6 +234,7 @@ class Main extends Component {
                       </div>
                       : null
                   }
+                <div className={"moreSpace"}/>
               </div>
             </Container>
           </div>

@@ -11,9 +11,15 @@ class Legend extends Component{
 
     render() {
         return (
-            this.props.vals.map((entry, index) =>
-                <p style={{color: this.props.vals[index].color}}>■ {this.props.vals[index].name}</p>
-            )
+            <div>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                {this.props.vals.data.items.map((entry, index) =>
+                <p key={index} style={{color: colors[index].color}}>■ {this.props.vals.data.items[index].name}</p>
+            )}
 
         )
     }

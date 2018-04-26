@@ -11,6 +11,7 @@ import WeekPie from '../Charts/WeeklyPie'
 import DayPie from '../Charts/DailyPie'
 
 import intro from '../dollabills.jpeg'
+import BudgetList from "./BudgetList";
 
 const vals = [{name: "Living Expense", value: 300, color: "#353941"}, {name: "Food", value: 250, color: "#9cdb97"},
   {name: "Luxury", value: 200, color: "#82c4cc"}, {name: "Entertainment", value: 100, color: "#afa3cc"},
@@ -41,6 +42,8 @@ class Main extends Component {
       show: false,
       edit: false,
       graphs: true,
+
+      selectedBudget: null,
     }
   }
 
@@ -92,16 +95,15 @@ class Main extends Component {
   /*
    * Sets the states need for the graph data based on the budget name
    */
-  loadBudget = () => {
-
+  loadBudget = (budget) => {
+    this.setState({selectedBudget: budget});
   };
 
-
   render() {
-    console.log(this.state.budgets);
     let data = {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
+      budgets: this.state.budgets,
     };
 
     if (this.state.uid) {   // if user is signed in
@@ -129,22 +131,18 @@ class Main extends Component {
                     <div>
                       <br/>
                       {/* TODO make a loop which generates the Budget form based on what the user already had*/}
-                      <BudgetForm uid={this.state.uid} showGraphs={this.showGraphs}/>
+                      <BudgetForm uid={this.state.uid} budgets={this.state.budgets} selectedBudget={this.state.selectedBudget}
+                                  showGraphs={this.showGraphs}/>
                     </div>
                   </Col>
                   <Col xs={1}/>
                   <Col xs={{size: 4}}>
                     <br/>
                     <ListGroup>
-                      <ListGroupItem className={"test"} active>Select a Budget</ListGroupItem>
+                      <ListGroupItem className="" active>Select a Budget</ListGroupItem>
                     </ListGroup>
-                    <ListGroup>
-                      {/* TODO generate all the existing */}
-                      <ListGroupItem className={"test"} tag="button" onClick={this.loadBudget}>June Budget</ListGroupItem>
-                      <ListGroupItem className={"test"} tag="button" onClick={this.loadBudget}>July Budget</ListGroupItem>
-                      <ListGroupItem className={"test"} tag="button" onClick={this.loadBudget}>August Budget</ListGroupItem>
-                      <ListGroupItem className={"test"} tag="button" onClick={this.loadBudget}>September Budget</ListGroupItem>
-                    </ListGroup>
+                    <BudgetList budgets={this.state.budgets} selectedBudget={this.state.selectedBudget}
+                                loadBudget={this.loadBudget}/>
                   </Col>
                   <Col xs={1} />
                 </Row>

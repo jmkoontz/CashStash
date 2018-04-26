@@ -17,11 +17,6 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     border: solid 1px black;
 }
 
-.test {
-    background-color: yellowgreen !important;
-    border: solid 1px #353941 !important
-}
-
 .space {
     height: 3em;
 }

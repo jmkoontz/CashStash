@@ -156,10 +156,6 @@ class Main extends Component {
                                 <br/>
                                 <br/>
                                 <br/>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
                               <p style={{color: "#616161"}}>
                                   Your budget will be shown here when selected
                               </p>

@@ -242,7 +242,7 @@ class Main extends Component {
                 <Col className="rightAlign" md={{size: 4, offset: 4}} lg={{size: 4, offset: 3}}>
                     <br/>
                     <br/>
-                    <p>Once calculated, you stash of cash will be calculated by our super high-tech
+                    <p>Once calculated, your stash of cash will be calculated by our super high-tech
                         budget conversion system and display to you a beautiful set of accurate and
                     appealing graphs.</p>
                     <br/>

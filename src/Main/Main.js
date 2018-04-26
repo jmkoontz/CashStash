@@ -197,6 +197,7 @@ class Main extends Component {
 
                           </Row>
                       <Row>
+                          <Col xs={1}/>
                           <Col>
                               <FullPie vals={this.state.selectedBudget}/>
                           </Col>

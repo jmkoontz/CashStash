@@ -11,10 +11,16 @@ class TopBar extends Component {
     super(props);
 
     this.state = {
+      open: false,
       modalSignIn: false,
       modalCreateAccount: false,
     }
   }
+
+  // toggle navbar
+  toggleNavbar = () => {
+    this.setState({open: !this.state.open});
+  };
 
   // toggle sign in modal
   toggleSignIn = () => {
@@ -45,8 +51,8 @@ class TopBar extends Component {
       <div className={"App navT"}>
         <Navbar className="bg-dark" light expand={"md"}>
           <NavbarBrand className="head">Cash$tash</NavbarBrand>
-          <NavbarToggler className="mr-2"/>
-          <Collapse navbar>
+          <NavbarToggler className="mr-2" onClick={this.toggleNavbar}/>
+          <Collapse isOpen={this.state.open} navbar>
             <Nav className="ml-auto" navbar>
               <Col xs={7} hidden={!this.props.signedIn}>
                 <NavItem>

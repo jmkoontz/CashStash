@@ -40,6 +40,7 @@ class Main extends Component {
 
       show: false,
       edit: false,
+      new: false,
       graphs: true,
     }
   }
@@ -77,9 +78,17 @@ class Main extends Component {
     });
   };
 
-  switchEdit = () => {
+  showEdit = () => {
     this.setState({
-      edit: !this.state.edit,
+      edit: true,
+      new: false,
+    });
+  };
+
+  showNew = () => {
+    this.setState({
+      edit: true,
+      new: false,
     });
   };
 
@@ -118,36 +127,60 @@ class Main extends Component {
               <Col xs={4}/>
               <Col xs={4}>
                 <br/>
-                <h2 className="titleCash">{this.state.firstName}'s Cash Stash</h2>
+                <h2 className="titleCash">{this.state.firstName}'s CashStash</h2>
               </Col>
               <Col xs={4}/>
             </Row>
               {this.state.graphs
                 ?
-                <Row className={"moreSpace"}>
-                  <Col xs={6}>
-                    <div>
+                <div>
+                  <br/>
+                  <Row>
+                    <Col xs={3}>
+                      <Button onClick={this.showEdit}>Edit</Button>
+                    </Col>
+                    <Col xs={3}>
+                      <Button onClick={this.showNew}>New Budget</Button>
+                    </Col>
+                  </Row>
+                  <Row className={"moreSpace"}>
+                    <Col xs={6}>
+                      <div>
+                        <br/>
+                        {/*Pass the budget into the form or don't*/}
+                        {this.state.edit && this.props.selectedBudget
+                          ?
+                            <BudgetForm selectedBudget={this.props.selectedBudget} uid={this.state.uid} showGraphs={this.showGraphs}/>
+                          : this.state.new
+                            ?
+                              <BudgetForm uid={this.state.uid} showGraphs={this.showGraphs}/>
+                            : null
+
+                        }
+                        {/* TODO make a loop which generates the Budget form based on what the user already had*/}
+                      </div>
+                    </Col>
+                    <Col xs={1}/>
+                    <Col xs={{size: 4}}>
                       <br/>
-                      {/* TODO make a loop which generates the Budget form based on what the user already had*/}
-                      <BudgetForm uid={this.state.uid} showGraphs={this.showGraphs}/>
-                    </div>
-                  </Col>
-                  <Col xs={1}/>
-                  <Col xs={{size: 4}}>
-                    <br/>
-                    <ListGroup>
-                      <ListGroupItem className={"test"} active>Select a Budget</ListGroupItem>
-                    </ListGroup>
-                    <ListGroup>
-                      {/* TODO generate all the existing */}
-                      <ListGroupItem className={"test"} tag="button" onClick={this.loadBudget}>June Budget</ListGroupItem>
-                      <ListGroupItem className={"test"} tag="button" onClick={this.loadBudget}>July Budget</ListGroupItem>
-                      <ListGroupItem className={"test"} tag="button" onClick={this.loadBudget}>August Budget</ListGroupItem>
-                      <ListGroupItem className={"test"} tag="button" onClick={this.loadBudget}>September Budget</ListGroupItem>
-                    </ListGroup>
-                  </Col>
-                  <Col xs={1} />
-                </Row>
+                      <ListGroup>
+                        <ListGroupItem className={"test"} active>Select a Budget</ListGroupItem>
+                      </ListGroup>
+                      <ListGroup>
+                        {/* TODO generate all the existing */}
+                        <ListGroupItem className={"test"} tag="button" onClick={this.loadBudget}>June
+                          Budget</ListGroupItem>
+                        <ListGroupItem className={"test"} tag="button" onClick={this.loadBudget}>July
+                          Budget</ListGroupItem>
+                        <ListGroupItem className={"test"} tag="button" onClick={this.loadBudget}>August
+                          Budget</ListGroupItem>
+                        <ListGroupItem className={"test"} tag="button" onClick={this.loadBudget}>September
+                          Budget</ListGroupItem>
+                      </ListGroup>
+                    </Col>
+                    <Col xs={1}/>
+                  </Row>
+                </div>
                 :
                   <Row className={"moreSpace"}>
                     <Col xs={3}/>

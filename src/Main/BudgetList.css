@@ -1,0 +1,9 @@
+.selectedBudget {
+    background-color: palevioletred !important;
+    border: solid 1px #353941 !important;
+}
+
+.defaultBudget {
+    background-color: yellowgreen !important;
+    border: solid 1px #353941 !important;
+}

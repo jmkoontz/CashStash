@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { fireauth } from "../base";
-import { Container, Row, Col, Button, Navbar, Modal, ModalHeader, ModalBody, Collapse, Nav, NavbarBrand, NavItem, NavbarToggler, Label } from 'reactstrap';
+import { Container, Row, Col, Button, Navbar, Modal, ModalHeader, ModalBody, Collapse, Nav, NavbarBrand, NavItem, NavbarToggler } from 'reactstrap';
 import './TopBar.css'
 
 import SignIn from '../Account/SignIn';

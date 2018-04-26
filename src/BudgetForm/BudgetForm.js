@@ -22,10 +22,8 @@ class BudgetForm extends Component {
     };
   }
 
+  // set state for initial click
   componentWillMount() {
-    //console.log("here");
-    //console.log(this.state);
-    //console.log(this.props);
     if (this.props.selectedBudget) {
       this.setState({
         budgetName: this.props.selectedBudget.data.name,
@@ -41,18 +39,13 @@ class BudgetForm extends Component {
     }
   }
 
+  // update state every time props change
   componentWillReceiveProps(nextProps) {
-    //console.log("receiving");
-    //console.log(this.state);
-    //console.log(this.props);
     if (nextProps.selectedBudget) {
-      console.log(nextProps.selectedBudget.data.name);
       this.setState({
         budgetName: nextProps.selectedBudget.data.name,
         incomeInput: nextProps.selectedBudget.data.income,
         items: nextProps.selectedBudget.data.items,
-      }, () => {
-        console.log(this.state.budgetName);
       });
     } else {
       this.setState({
@@ -61,7 +54,6 @@ class BudgetForm extends Component {
         items: [],
       });
     }
-    //console.log(this.state.budgetName);
   }
 
   submitBudget = (ev) => {
@@ -307,7 +299,5 @@ class BudgetForm extends Component {
     )
   }
 }
-
-
 
 export default BudgetForm;

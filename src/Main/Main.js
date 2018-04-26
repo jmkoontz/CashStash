@@ -124,25 +124,12 @@ class Main extends Component {
                 <br/>
                 <Row className={"moreSpace"}>
                   <Col xs={6}>
-                    <BudgetForm selectedBudget={this.state.selectedBudget} uid={this.state.uid} test={this.state.test}/>
-                      {/*(this.state.edit && this.state.selectedBudget)
-                        ?
-
-                        :
-                        {}
-                      */}
-                      {/*this.state.new
-                        ?
-                        <BudgetForm uid={this.state.uid}/>
-                        :
-                        null
-                      */}
-                    {/*<div>
-                      <BudgetForm uid={this.state.uid}/>
-                    </div>
-                    <div>
-                      <BudgetForm uid={this.state.uid} selectedBudget={this.state.selectedBudget}/>
-                    </div>*/}
+                    {(this.state.edit || this.state.new)
+                      ?
+                      <BudgetForm selectedBudget={this.state.selectedBudget} uid={this.state.uid}/>
+                      :
+                      null
+                    }
                   </Col>
                   <Col xs={1}/>
                   <Col xs={{size: 4}}>

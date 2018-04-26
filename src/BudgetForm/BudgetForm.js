@@ -203,18 +203,6 @@ class BudgetForm extends Component {
     this.setState({visible: false});
   };
 
-    onChangeComplete = (color) => {
-        this.setState({ curColor : color.hex})
-    };
-
-    handleClick = () => {
-        this.setState({ displayColorPicker: !this.state.displayColorPicker })
-    };
-
-    handleClose = () => {
-        this.setState({ displayColorPicker: false })
-    };
-
   // render individual input in each thing
     renderItem = (item) => {
     return (
@@ -256,9 +244,9 @@ class BudgetForm extends Component {
                     <InputGroupAddon addonType={"prepend"}>Budget Name</InputGroupAddon>
                     {this.props.selectedBudget
                       ?
-                      <Input name="name" placeholder="Name" defaultValue={this.props.selectedBudget.data.name}/>
+                      <Input name="name" placeholder="Name" value={this.props.selectedBudget.data.name}/>
                       :
-                      <Input name="name" placeholder="Name"/>
+                      <Input name="name" placeholder="Name" value={""}/>
                     }
                   </InputGroup>
                 </FormGroup>
@@ -267,9 +255,9 @@ class BudgetForm extends Component {
                     <InputGroupAddon addonType={"prepend"}>Monthly Income</InputGroupAddon>
                     {this.props.selectedBudget
                       ?
-                      <Input name="name" placeholder="Name" defaultValue={this.props.selectedBudget.data.income}/>
+                      <Input name="name" placeholder="Name" value={this.props.selectedBudget.data.income}/>
                       :
-                      <Input name="name" placeholder="Name"/>
+                      <Input name="name" placeholder="Name" value={""}/>
                     }
                   </InputGroup>
                 </FormGroup>

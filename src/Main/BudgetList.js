@@ -4,20 +4,19 @@ import {ListGroup, ListGroupItem} from 'reactstrap';
 import './BudgetList.css';
 
 class BudgetList extends Component {
-
   // render individual input in each thing
   renderBudget = (budget) => {
     if (this.props.selectedBudget != null && this.props.selectedBudget.data.name === budget.data.name) {
       return (
         <ListGroup key={budget.data.name}>
-          <ListGroupItem className="selectedBudget" tag="button"
+          <ListGroupItem className="selectedBudget"
                          onClick={() => this.props.loadBudget(budget)}>{budget.data.name}</ListGroupItem>
         </ListGroup>
       )
     } else {
       return (
         <ListGroup key={budget.data.name}>
-          <ListGroupItem className="defaultBudget" tag="button"
+          <ListGroupItem className="defaultBudget"
                          onClick={() => this.props.loadBudget(budget)}>{budget.data.name}</ListGroupItem>
         </ListGroup>
       )

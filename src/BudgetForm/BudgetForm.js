@@ -89,16 +89,18 @@ class BudgetForm extends Component {
       });
 
       // write budget into Firebase
+      console.log(this.props.selectedBudget);
+      console.log(this.getCode());
       let budgetRef = firestore.collection("users").doc(this.props.uid).collection("budgets").doc(this.getCode());
       budgetRef.set({
         name: name,
         income: parseInt(monthlyIncome, 10),
         items: self.state.items,
+      }).then(() => {
+        window.location.reload();   // force reload page
       }).catch((error) => {
         console.log("Error setting budget:", error);
       });
-
-      window.location.reload();   // force reload page
     }
   };
 

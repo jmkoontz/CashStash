@@ -235,7 +235,6 @@ class BudgetForm extends Component {
   };
 
   render() {
-    console.log(this.props.test);
     let allItems = [];
 
     this.state.items.forEach((item) => {

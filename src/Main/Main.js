@@ -114,27 +114,27 @@ class Main extends Component {
                 <br/>
                 <Row>
                   <Col xs={6}>
-                      {(this.state.new || this.state.selectedBudget)
-                          ?
-                          <BudgetForm selectedBudget={this.state.selectedBudget} uid={this.state.uid}/>
-                          :
-                          <Row>
-                            <Col xs={{size: 4}}/>
-                            <Col xs={{size: 4, offset: 1}}>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
-                              <p style={{color: "#616161"}}>
-                                  Your budget will be shown here when selected
-                              </p>
-                            </Col>
-                          </Row>
-                      }
+                    {(this.state.new || this.state.selectedBudget)
+                      ?
+                      <BudgetForm selectedBudget={this.state.selectedBudget} uid={this.state.uid}/>
+                      :
+                      <Row>
+                        <Col xs={{size: 4}}/>
+                        <Col xs={{size: 4, offset: 1}}>
+                          <br/>
+                          <br/>
+                          <br/>
+                          <br/>
+                          <p style={{color: "#616161"}}>
+                            Your budget will be shown here when selected
+                          </p>
+                        </Col>
+                      </Row>
+                    }
                   </Col>
                   <Col xs={1}/>
                   <Col xs={{size: 4}}>
-                      <h1>Select a Budget</h1>
+                    <h1>Select a Budget</h1>
                     <br/>
                     <BudgetList budgets={this.state.budgets} selectedBudget={this.state.selectedBudget}
                                 loadBudget={this.loadBudget}/>
@@ -147,59 +147,63 @@ class Main extends Component {
                   </Col>
                   <Col xs={1}/>
                 </Row>
-                  {this.state.selectedBudget
-                      ?
-                      <div>
-                          <Row>
-                              <Col xs={{size: 4, offset: 4}}>
-                                  <br/>
-                                  <br/>
-                                  <h1 className={"fullBudget"}>Monthly Budget</h1>
-                                  <hr/>
-                              </Col>
+                {this.state.selectedBudget
+                  ?
+                  <div>
+                    <Row>
+                      <Col xs={{size: 4, offset: 4}}>
+                        <br/>
+                        <br/>
+                        <h1 className={"fullBudget"}>Monthly Budget</h1>
+                        <hr/>
+                      </Col>
 
-                          </Row>
-                      <Row>
-                          <Col xs={1}/>
-                          <Col>
-                              <FullPie vals={this.state.selectedBudget}/>
-                          </Col>
-                          <Col xs={{size: 4, offset: 1}} className="rightAlign">
-                            <Legend vals={this.state.selectedBudget}/>
-                          </Col>
-                      </Row>
-                          <Row>
-                              <Col xs={{size: 4, offset: 1}}>
-                                  <h1 className={"fullBudget"}>Weekly Budget</h1>
-                                  <hr/>
-                              </Col>
-                              <Col xs={{size: 4, offset: 2}}>
-                                  <h1 className={"fullBudget"}>Daily Budget</h1>
-                                  <hr/>
-                              </Col>
-                          </Row>
-                          <Row>
-                              <Col>
-                                  <WeekPie vals={this.state.selectedBudget}/>
-                              </Col>
-                              <Col>
-                                  <DayPie vals={this.state.selectedBudget}/>
-                              </Col>
-                          </Row>
-                          <Row>
-                            <Col>
-                              <h1>Spent vs. Saved</h1>
-                              <hr/>
-                            </Col>
-                          </Row>
-                        <Row className="graphCenter">
-                            <Col xs={{size: 4, offset : 3}} className="graphCenter">
-                                <FinalValue budget={this.state.selectedBudget}/>
-                            </Col>
-                        </Row>
-                      </div>
-                      : null
-                  }
+                    </Row>
+                    <Row>
+                      <Col xs={1}/>
+                      <Col>
+                        <FullPie vals={this.state.selectedBudget}/>
+                      </Col>
+                      <Col xs={{size: 4, offset: 1}} className="rightAlign">
+                        <Legend vals={this.state.selectedBudget}/>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col xs={{size: 4, offset: 1}}>
+                        <h1 className={"fullBudget"}>Weekly Budget</h1>
+                        <hr/>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col>
+                        <WeekPie vals={this.state.selectedBudget}/>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col xs={{size: 4, offset: 2}}>
+                        <h1 className={"fullBudget"}>Daily Budget</h1>
+                        <hr/>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col>
+                        <DayPie vals={this.state.selectedBudget}/>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col>
+                        <h1>Spent vs. Saved</h1>
+                        <hr/>
+                      </Col>
+                    </Row>
+                    <Row className="graphCenter">
+                      <Col xs={{size: 4, offset: 3}} className="graphCenter">
+                        <FinalValue budget={this.state.selectedBudget}/>
+                      </Col>
+                    </Row>
+                  </div>
+                  : null
+                }
                 <div className={"moreSpace"}/>
               </div>
             </Container>
@@ -222,8 +226,12 @@ class Main extends Component {
               <Col xs={12}>
                 <h2 className="titleCash">Cash$tash</h2>
                 <br/>
-                <p className={"titOut"}>Your money troubles are a thing of the past!<hr/>Cash Stash is a simple and effective way to manage your monthly,
-                  weekly, and daily budget.  Our graphs give a break down of where each dollar of your budget ends up to help you plan ahead.</p>
+                <p className={"titOut"}>Your money troubles are a thing of the past!
+                  <hr/>
+                  Cash Stash is a simple and effective way to manage your monthly,
+                  weekly, and daily budget. Our graphs give a break down of where each dollar of your budget ends up to
+                  help you plan ahead.
+                </p>
               </Col>
             </Row>
             <hr/>
@@ -235,36 +243,57 @@ class Main extends Component {
             <Row>
               <Col md={{size: 4}} xs={{size: 4}}>
                 <ResponsiveContainer>
-                <HomeFull vals={vals}/>
+                  <HomeFull vals={vals}/>
                 </ResponsiveContainer>
               </Col>
 
-                <Col className="rightAlign" md={{size: 4, offset: 4}} lg={{size: 4, offset: 3}}>
-                    <br/>
-                    <br/>
-                    <p>Once calculated, your stash of cash will be calculated by our super high-tech
-                        budget conversion system and display to you a beautiful set of accurate and
-                    appealing graphs.</p>
-                    <br/>
-                    <br/>
-                  <HomeLegend vals={vals}/>
-                </Col>
+              <Col className="rightAlign" md={{size: 4, offset: 4}} lg={{size: 4, offset: 3}}>
+                <br/>
+                <br/>
+                <p>Once calculated, your stash of cash will be processed by our super high-tech
+                  budget conversion system and display to you a beautiful set of accurate and
+                  appealing graphs.</p>
+                <br/>
+                <br/>
+                <HomeLegend vals={vals}/>
+              </Col>
             </Row>
             <hr/>
             <Row>
-              <Col xs={{size: 4, offset: 1}}>
+              <Col xs={{size: 4, offset: 4}}>
                 <h1 className={"fullBudget"}>Weekly Budget</h1>
               </Col>
-              <Col xs={{size: 4, offset: 2}}>
+            </Row>
+            <Row>
+              <Col md={{size: 4}} xs={{size: 4}}>
+                <HomeWeek vals={vals}/>
+              </Col>
+              <Col className="rightAlign" md={{size: 4, offset: 4}} lg={{size: 4, offset: 3}}>
+                <br/>
+                <br/>
+                <p>Discover where each dollar is going per week</p>
+                <br/>
+                <br/>
+                <HomeLegend vals={vals}/>
+              </Col>
+            </Row>
+            <hr/>
+            <Row>
+              <Col xs={{size: 4, offset: 4}}>
                 <h1 className={"fullBudget"}>Daily Budget</h1>
               </Col>
             </Row>
             <Row>
-              <Col>
-                <HomeWeek vals={vals}/>
-              </Col>
-              <Col>
+              <Col md={{size: 4}} xs={{size: 4}}>
                 <HomeDay vals={vals}/>
+              </Col>
+              <Col className="rightAlign" md={{size: 4, offset: 4}} lg={{size: 4, offset: 3}}>
+                <br/>
+                <br/>
+                <p>Break down where the money you spend is going each day</p>
+                <br/>
+                <br/>
+                <HomeLegend vals={vals}/>
               </Col>
             </Row>
           </Container>

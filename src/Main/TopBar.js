@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { fireauth } from "../base";
-import { Container, Row, Col, Button, Navbar, Modal, ModalHeader, ModalBody, Collapse, Nav, NavbarBrand, NavItem, NavbarToggler } from 'reactstrap';
+import { Container, Row, Col, Button, Navbar, Modal, ModalHeader, ModalBody, Collapse, Nav, NavbarBrand, NavItem, NavbarToggler, NavLink, NavDropdown } from 'reactstrap';
 import './TopBar.css'
 
 import SignIn from '../Account/SignIn';
@@ -46,34 +46,50 @@ class TopBar extends Component {
     window.location.reload();   // force reload page
   };
 
+
   render() {
+    {/*}
+<Navbar color="faded" light>
+<NavbarBrand href="/" className="mr-auto">reactstrap</NavbarBrand>
+<NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
+<Collapse isOpen={!this.state.collapsed} navbar>
+<Nav navbar>
+<NavItem>
+<NavLink href="/components/">Components</NavLink>
+</NavItem>
+<NavItem>
+<NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+</NavItem>
+</Nav>
+</Collapse>
+</Navbar>*/}
     return (
-      <div className={"App navT"}>
+      <div className={"navT"}>
         <Navbar className="bg-dark" light expand={"md"}>
           <NavbarBrand className="head">Cash$tash</NavbarBrand>
-          <NavbarToggler className="mr-2" onClick={this.toggleNavbar}/>
+          <NavbarToggler className="mr-2" onClick={this.toggleNavbar} outline/>
           <Collapse isOpen={this.state.open} navbar>
             <Nav className="ml-auto" navbar>
-              <Col xs={7} hidden={!this.props.signedIn}>
+              <div className={"pad"} hidden={!this.props.signedIn}>
                 <NavItem>
                   <NavbarBrand className="name">{this.props.firstName} {this.props.lastName}</NavbarBrand>
                 </NavItem>
-              </Col>
-              <Col hidden={this.props.signedIn}>
+              </div>
+              <div hidden={this.props.signedIn}>
                 <NavItem>
-                  <Button onClick={this.toggleSignIn}>Sign In</Button>
+                  <NavLink onClick={this.toggleSignIn}><Button>Sign In</Button></NavLink>
                 </NavItem>
-              </Col>
-              <Col hidden={this.props.signedIn}>
+              </div>
+              <div hidden={this.props.signedIn}>
                 <NavItem>
-                  <Button onClick={this.toggleCreateAccount}>Create Account</Button>
+                  <NavLink onClick={this.toggleCreateAccount}><Button>Create Account</Button></NavLink>
                 </NavItem>
-              </Col>
-              <Col hidden={!this.props.signedIn}>
+              </div>
+              <div hidden={!this.props.signedIn}>
                 <NavItem>
-                  <Button onClick={this.handleSignOut}>Sign Out</Button>
+                  <NavLink onClick={this.handleSignOut}><Button>Sign Out</Button></NavLink>
                 </NavItem>
-              </Col>
+              </div>
             </Nav>
           </Collapse>
         </Navbar>

@@ -1,4 +1,5 @@
 import {PieChart, Cell, Pie, Tooltip} from 'recharts';
+import {Row, Col} from 'reactstrap';
 import React, {Component} from 'react';
 
 class DailyPie extends Component {
@@ -77,12 +78,23 @@ class DailyPie extends Component {
 
     let temp = this.state.tempArray;
     return (
-      <PieChart width={500} height={500}>
-        <Pie data={temp} dataKey="amount" nameKey="name" cx="50%" cy="50%"
-             outerRadius={200} fill="#8884d8" label>
-          {temp.map((entry, index) => <Cell key={entry.amount} fill={colors[index].color}/>)}
-        </Pie><Tooltip/>
-      </PieChart>
+      <Row>
+        <Col xs={1}/>
+        <Col>
+          <PieChart width={500} height={500}>
+            <Pie data={temp} dataKey="amount" nameKey="name" cx="50%" cy="50%"
+                 outerRadius={200} fill="#8884d8" label>
+              {temp.map((entry, index) => <Cell key={entry.amount} fill={colors[index].color}/>)}
+            </Pie><Tooltip/>
+          </PieChart>
+        </Col>
+        <Col xs={{size: 4, offset: 1}} >
+          <br/>
+          {temp.map((entry, index) =>
+            <p key={index} style={{color: colors[index].color, textAlign: "left"}}>■ {this.props.vals.data.items[index].name}</p>)}
+
+        </Col>
+      </Row>
     )
   }
 }

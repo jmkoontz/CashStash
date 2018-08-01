@@ -15,7 +15,6 @@ import FullPie from '../Charts/FullPie';
 import WeekPie from '../Charts/WeeklyPie';
 import DayPie from '../Charts/DailyPie';
 import HomeLegend from '../Charts/HomeLegend';
-import Legend from '../Charts/Legend';
 import FinalValue from '../Charts/FinalValue';
 
 //for default values
@@ -158,15 +157,7 @@ class Main extends Component {
                         <hr/>
                       </Col>
                     </Row>
-                    <Row>
-                      <Col xs={1}/>
-                      <Col>
-                        <FullPie vals={this.state.selectedBudget}/>
-                      </Col>
-                      <Col xs={{size: 4, offset: 1}} className="leftAlign">
-                        <Legend vals={this.state.selectedBudget}/>
-                      </Col>
-                    </Row>
+                    <FullPie vals={this.state.selectedBudget}/>
 
                     <Row>
                       <Col xs={{size: 4, offset: 4}}>
@@ -174,15 +165,7 @@ class Main extends Component {
                         <hr/>
                       </Col>
                     </Row>
-                    <Row>
-                      <Col xs={1}/>
-                      <Col>
-                        <WeekPie vals={this.state.selectedBudget}/>
-                      </Col>
-                      <Col xs={{size: 4, offset: 1}} className="leftAlign">
-                        <Legend vals={this.state.selectedBudget}/>
-                      </Col>
-                    </Row>
+                    <WeekPie vals={this.state.selectedBudget}/>
 
                     <Row>
                       <Col xs={{size: 4, offset: 4}}>
@@ -190,15 +173,8 @@ class Main extends Component {
                         <hr/>
                       </Col>
                     </Row>
-                    <Row>
-                      <Col xs={1}/>
-                      <Col>
-                        <DayPie vals={this.state.selectedBudget}/>
-                      </Col>
-                      <Col xs={{size: 4, offset: 1}} className="leftAlign">
-                        <Legend vals={this.state.selectedBudget}/>
-                      </Col>
-                    </Row>
+
+                    <DayPie vals={this.state.selectedBudget}/>
 
                     <Row>
                       <Col xs={{size: 4, offset: 4}}>
@@ -206,7 +182,9 @@ class Main extends Component {
                         <hr/>
                       </Col>
                     </Row>
+
                     <FinalValue className="leftAlign" budget={this.state.selectedBudget}/>
+
                   </div>
                   : null
                 }

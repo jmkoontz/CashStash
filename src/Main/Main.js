@@ -157,50 +157,56 @@ class Main extends Component {
                         <h1 className={"fullBudget"}>Monthly Budget</h1>
                         <hr/>
                       </Col>
-
                     </Row>
                     <Row>
                       <Col xs={1}/>
                       <Col>
                         <FullPie vals={this.state.selectedBudget}/>
                       </Col>
-                      <Col xs={{size: 4, offset: 1}} className="rightAlign">
+                      <Col xs={{size: 4, offset: 1}} className="leftAlign">
                         <Legend vals={this.state.selectedBudget}/>
                       </Col>
                     </Row>
+
                     <Row>
-                      <Col xs={{size: 4, offset: 1}}>
+                      <Col xs={{size: 4, offset: 4}}>
                         <h1 className={"fullBudget"}>Weekly Budget</h1>
                         <hr/>
                       </Col>
                     </Row>
                     <Row>
+                      <Col xs={1}/>
                       <Col>
                         <WeekPie vals={this.state.selectedBudget}/>
                       </Col>
+                      <Col xs={{size: 4, offset: 1}} className="leftAlign">
+                        <Legend vals={this.state.selectedBudget}/>
+                      </Col>
                     </Row>
+
                     <Row>
-                      <Col xs={{size: 4, offset: 2}}>
+                      <Col xs={{size: 4, offset: 4}}>
                         <h1 className={"fullBudget"}>Daily Budget</h1>
                         <hr/>
                       </Col>
                     </Row>
                     <Row>
+                      <Col xs={1}/>
                       <Col>
                         <DayPie vals={this.state.selectedBudget}/>
                       </Col>
+                      <Col xs={{size: 4, offset: 1}} className="leftAlign">
+                        <Legend vals={this.state.selectedBudget}/>
+                      </Col>
                     </Row>
+
                     <Row>
-                      <Col>
+                      <Col xs={{size: 4, offset: 4}}>
                         <h1>Spent vs. Saved</h1>
                         <hr/>
                       </Col>
                     </Row>
-                    <Row className="graphCenter">
-                      <Col xs={{size: 4, offset: 3}} className="graphCenter">
-                        <FinalValue budget={this.state.selectedBudget}/>
-                      </Col>
-                    </Row>
+                    <FinalValue className="leftAlign" budget={this.state.selectedBudget}/>
                   </div>
                   : null
                 }

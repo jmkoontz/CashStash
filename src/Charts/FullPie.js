@@ -33,6 +33,7 @@ class FullPie extends Component {
 
   setMonthlyValues = () => {
     let temp = [];
+    let amt = this.addUp();
 
     for (let i in this.state.tempArray) {
       if (this.state.tempArray.hasOwnProperty(i)) {
@@ -46,7 +47,20 @@ class FullPie extends Component {
       }
     }
 
+    temp.push({amount: amt, name: "Saved"});
+
     this.setState({tempArray: temp});
+  };
+
+  addUp = () => {
+    let value = 0;
+    for (let index in this.props.vals.data.items) {
+      value += this.props.vals.data.items[index].amount;
+    }
+
+    value = this.props.vals.data.income - value;
+    value = Math.round(value * 100) / 100;
+    return value;
   };
 
   render() {
@@ -91,7 +105,7 @@ class FullPie extends Component {
         <Col xs={{size: 4, offset: 1}} >
           <br/>
           {temp.map((entry, index) =>
-            <p key={index} style={{color: colors[index].color, textAlign: "left"}}>■ {this.props.vals.data.items[index].name}</p>)}
+            <p key={index} style={{color: colors[index].color, textAlign: "left"}}>■ {this.state.tempArray[index].name}</p>)}
 
         </Col>
       </Row>

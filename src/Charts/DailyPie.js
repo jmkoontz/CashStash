@@ -33,6 +33,7 @@ class DailyPie extends Component {
 
   setDailyValues = () => {
     let temp = [];
+    let amt = this.addUp();
 
     for (let i in this.state.tempArray) {
       if (this.state.tempArray.hasOwnProperty(i)) {
@@ -46,7 +47,20 @@ class DailyPie extends Component {
       }
     }
 
+    temp.push({amount: amt, name: "Saved"});
+
     this.setState({tempArray: temp});
+  };
+
+  addUp = () => {
+    let value = 0;
+    for (let index in this.props.vals.data.items) {
+      value += this.props.vals.data.items[index].amount;
+    }
+
+    value = (this.props.vals.data.income - value)/28;
+    value = Math.round(value * 100) / 100;
+    return value;
   };
 
   render() {
@@ -84,14 +98,14 @@ class DailyPie extends Component {
           <PieChart width={500} height={500}>
             <Pie data={temp} dataKey="amount" nameKey="name" cx="50%" cy="50%"
                  outerRadius={200} fill="#8884d8" label>
-              {temp.map((entry, index) => <Cell key={entry.amount} fill={colors[index].color}/>)}
+              {temp.map((entry, index) => <Cell key={entry.name} fill={colors[index+5].color}/>)}
             </Pie><Tooltip/>
           </PieChart>
         </Col>
         <Col xs={{size: 4, offset: 1}} >
           <br/>
           {temp.map((entry, index) =>
-            <p key={index} style={{color: colors[index].color, textAlign: "left"}}>■ {this.props.vals.data.items[index].name}</p>)}
+            <p key={index} style={{color: colors[index+5].color, textAlign: "left"}}>■ {this.state.tempArray[index].name}</p>)}
 
         </Col>
       </Row>

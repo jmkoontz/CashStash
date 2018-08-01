@@ -155,6 +155,7 @@ class Main extends Component {
                         <br/>
                         <h1 className={"fullBudget"}>Monthly Budget</h1>
                         <hr/>
+                        <p>This graph displays the average monthly amount to spend on each item</p>
                       </Col>
                     </Row>
                     <FullPie vals={this.state.selectedBudget}/>
@@ -163,6 +164,7 @@ class Main extends Component {
                       <Col xs={{size: 4, offset: 4}}>
                         <h1 className={"fullBudget"}>Weekly Budget</h1>
                         <hr/>
+                        <p>This graph displays the average weekly amount to spend on each item</p>
                       </Col>
                     </Row>
                     <WeekPie vals={this.state.selectedBudget}/>
@@ -171,6 +173,7 @@ class Main extends Component {
                       <Col xs={{size: 4, offset: 4}}>
                         <h1 className={"fullBudget"}>Daily Budget</h1>
                         <hr/>
+                        <p>This graph displays the average daily amount to spend on each item</p>
                       </Col>
                     </Row>
 
@@ -180,6 +183,7 @@ class Main extends Component {
                       <Col xs={{size: 4, offset: 4}}>
                         <h1>Spent vs. Saved</h1>
                         <hr/>
+                        <p>This graph displays the total amount of money spent this month</p>
                       </Col>
                     </Row>
 
